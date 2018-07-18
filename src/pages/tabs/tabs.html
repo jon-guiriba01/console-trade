@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>NAVBAR</ion-title>
+
+    <ion-icon class="settings" name="settings" (click)="navTo('options')"></ion-icon>
+   
+  </ion-navbar>
+</ion-header>
+
+<ion-tabs tabsPlacement="bottom" selectedIndex="0">
+  <ion-tab [root]="tab1Root" tabTitle="Profile" tabIcon="contact"></ion-tab>
+  <ion-tab [root]="tab2Root" tabTitle="Trade" tabIcon="contacts"></ion-tab>
+  <ion-tab [root]="tab3Root" tabTitle="Sale" tabIcon="home"></ion-tab>
+</ion-tabs>
+

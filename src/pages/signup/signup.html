@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-navbar>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  
+  <form (ngSubmit)="signup()" [formGroup]="signupForm" (change)="checkForm()">
+
+  		<h2>Signup</h2>
+      <ion-list inset>
+
+        <ion-item style="margin-top: 20px;">
+          <ion-input type="text" placeholder="First Name" formControlName="first_name"></ion-input>
+        </ion-item>
+        
+        <div class="error-list" >
+        	<div *ngFor="let validation of validation_messages.first_name" >
+	        	<h5 class="error-msg" *ngIf="signupForm.get('first_name').hasError(validation.type) && (signupForm.get('first_name').dirty || signupForm.get('first_name').touched)" >
+	        		{{validation.message}}
+	        	</h5>
+        	</div>
+        </div>
+
+        <ion-item style="margin-top: 20px;" >
+          <ion-input type="text" placeholder="Last Name" formControlName="last_name"></ion-input>
+        </ion-item>
+        
+        <div class="error-list" >
+        	<div *ngFor="let validation of validation_messages.last_name" >
+	        	<h5 class="error-msg" *ngIf="signupForm.get('last_name').hasError(validation.type) && (signupForm.get('last_name').dirty || signupForm.get('last_name').touched)" >
+	        		{{validation.message}}
+	        	</h5>
+        	</div>
+        </div>
+
+        <ion-item >
+          <ion-input type="text" placeholder="Email" formControlName="email"></ion-input>
+        </ion-item>
+        
+        <div class="error-list" >
+        	<div *ngFor="let validation of validation_messages.email" >
+
+	        	<h5 class="error-msg" *ngIf="signupForm.get('email').hasError('required') && 
+	        	(signupForm.get('email').dirty || signupForm.get('email').touched) &&
+	        	validation.type == 'required'
+	        	" >
+	        		{{validation.message}}
+	        	</h5>
+	        	<h5 class="error-msg" *ngIf="!signupForm.get('email').hasError('required') && signupForm.get('email').hasError(validation.type) && (signupForm.get('email').dirty || signupForm.get('email').touched);" >
+	        		{{validation.message}}
+	        	</h5>
+					</div>
+				</div>
+
+        <ion-item>
+          <ion-input type="{{passwordType}}" placeholder="Password" formControlName="password"></ion-input>
+        	<ion-icon name="{{showPasswordIcon}}" (click)="showPassword()" item-right></ion-icon>
+        </ion-item>
+        
+        <div class="error-list" >
+        	<div *ngFor="let validation of validation_messages.password" >
+	        	<h5 class="error-msg" *ngIf="signupForm.get('password').hasError(validation.type) && (signupForm.get('password').dirty || signupForm.get('password').touched)" >
+	        		{{validation.message}}
+	        	</h5>
+        	</div>
+        </div>
+
+      </ion-list>
+
+      <div class="btn-container">
+      	<button ion-button type="submit" [disabled]="!signupForm.valid">Submit</button>
+      </div>
+
+
+    </form>
+
+</ion-content>

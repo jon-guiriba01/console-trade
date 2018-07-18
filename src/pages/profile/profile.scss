@@ -1,0 +1,166 @@
+ion-content .scroll-content{
+	padding: 36px 0 0 0;
+}
+page-profile {
+	.profile{
+		display: flex;
+		align-items: center;
+		padding-left: 5px;
+		padding-top: 10px;
+	}
+	.profile-image{
+		width: 65px;
+		height: 65px;
+		overflow: hidden;
+		border-radius: 100%;
+		position: relative;
+		display: inline-block;
+	}
+	.circle-head{
+		width: 100%;
+		height: 100%;
+	}
+	.profile-image>h5{
+		position: absolute;
+    overflow: hidden;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    background: #003791;
+    margin: 0px 0;
+    font-size: 1.4rem;
+    color: #fff;
+    line-height: 150%;
+	}
+
+	.profile-info-wrapper{
+		display: inline-block;
+		width: 200px;
+	}
+
+	.profile-info{
+		align-items: center;
+		padding-left: 10px;
+		color: #fff;
+	}
+
+	.game-input-wrapper{
+		width: 90%;
+		padding: 20px 0 15px 0;
+		margin: 0 auto;
+	}
+
+
+	.profile-info ion-icon{
+		display: inline-block;
+	}
+	.profile-info h4{
+		width: 90%;
+		display: inline-block;
+	}
+
+	.trade-info{
+		padding-top: 10px;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+
+	.display-info{
+		margin-top: 30px;
+	}
+
+	.display-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 240px);
+    justify-content: center;
+    width: 100%;
+	}
+
+	.display-list .trade-item{
+		display: inline-block;
+    width: 240px;
+    height: 240px;
+    margin: 10px 0;
+	}
+	.display-list .trade-img{
+		width: 180px;
+    height: 100%;
+    display: inline-block;
+	}
+
+	.display-grid{
+    display: grid;
+    grid-auto-columns: auto;
+    grid-template-columns: repeat( auto-fill, minmax(110px, 1fr) );
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 35px;
+	}
+
+	.display-grid .trade-item{
+		display: inline-block;
+ 		width: 110px;
+    height: 160px;
+    margin: 25px 0;
+	}
+
+	.display-grid .trade-img{
+		width: 100%;
+    height: 100%;
+    display: inline-block;
+	}
+
+	.display-grid .platforms{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    overflow: auto;
+    justify-content: space-between;
+    margin: -4px 0 0 0px;
+	}
+	.display-grid .platforms img{
+		display: inline-block;
+		width: 32.5%;
+	}
+
+	.tip-text{
+		/*color: color($colors, white, base);*/
+		color: #fff;
+		font-weight: 100;
+	}
+
+	.divider{
+		color: #fff;
+    border-bottom: 1px solid #fff;
+    width: 72%;
+	}
+
+	.trade-list .platforms{
+    width: 50px;
+    display: inline-block;
+    overflow: auto;
+    height: 100%;
+    margin: 0 0 0 -3px;
+	}
+	.trade-list .platforms img{
+		display: block;
+		width: 50px;
+	}
+
+	.autocomplete{
+		position: absolute;
+		width: 87.5%;
+		z-index: 2;
+	}
+	.autocomplete img{
+		width: 50px;
+	}
+	.autocomplete h5{
+		display: inline-block;
+		padding-left: 20px;
+	}
+	.autocomplete-item .label.label-md{
+		display: flex;
+		align-items: center;
+	}
+}

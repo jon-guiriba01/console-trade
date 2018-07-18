@@ -1,0 +1,14 @@
+page-tabs {
+	.toolbar-content.toolbar-content-md{
+		display: flex;
+		align-items: center;
+	}
+	.title.title-md{
+		display: inline-block;
+	}
+	ion-icon.settings{
+		/*position: absolute;*/
+		right: 0;
+		padding-right: 20px;
+	}
+}

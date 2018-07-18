@@ -1,0 +1,35 @@
+page-signup {
+	ion-item.item-md, .button.button-md{
+		margin-top: 40px;
+		display: block;
+	}
+
+	.btn-container{
+    display: flex;
+    justify-content: center;
+	}
+	.btn-container .button{
+		width: 160px;
+	}
+
+	form{
+		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+		max-width: 500px;
+		min-width: 280px;
+		width: 90%;
+		padding: 20px;
+	}
+
+	.error-msg{
+		max-width: 355px;
+		padding-top: 10px;
+		color: #ff0033;
+		display: block;
+	}
+
+	ion-content.content-md .scroll-content{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
