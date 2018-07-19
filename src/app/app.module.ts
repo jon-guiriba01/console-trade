@@ -23,6 +23,9 @@ import { IgdbProvider } from '../providers/igdb/igdb';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { TradeProvider } from '../providers/trade/trade';
+import { ProfileProvider } from '../providers/profile/profile';
+
+import { KeysPipe } from '../pipes/keys/keys';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,8 @@ import { TradeProvider } from '../providers/trade/trade';
     LoginPage,
     SignupPage,
     OptionsPage,
-    TabsPage
+    TabsPage,
+    KeysPipe
   ],
   imports: [
     BrowserModule,
@@ -64,7 +68,8 @@ import { TradeProvider } from '../providers/trade/trade';
     AppAuthProvider,
     HttpClient,
     IgdbProvider,
-    TradeProvider
+    TradeProvider,
+    ProfileProvider
   ]
 })
 export class AppModule {}

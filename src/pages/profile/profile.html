@@ -2,13 +2,13 @@
 
 <div class="profile">
   <div class="profile-image">
-    <img class="circle-head" src="{{auth.profile.profileImage}}">
+    <img class="circle-head" src="{{profile.user.profileImage}}">
   </div>
   <div class="profile-info-wrapper">
     <div class="profile-info">
-        <h4>{{auth.profile.name}}</h4>
+        <h4>{{profile.user.name}}</h4>
         <!-- <ion-icon name="create"></ion-icon> -->
-      <!-- <h5>{{auth.profile.location}}</h5> -->
+      <!-- <h5>{{profile.user.location}}</h5> -->
     </div>
   </div>
 </div>
@@ -35,7 +35,7 @@
   <h5 class="divider" style="padding-top: 30px;">Looking for</h5>
 
   <div class="display-grid">
-    <div class="trade-item" *ngFor="let item of auth.profile.wishList">
+    <div class="trade-item" *ngFor="let item of profile.user.wishList">
       <div class="trade-img" (click)="toggleItemOwnership(item, true)">
         <img class="fit-img" src="{{item.cover_url}}">
       </div>
@@ -50,11 +50,10 @@
   <h5 class="divider" >Owned</h5>
   
   <div class="display-grid">
-    <div class="trade-item" *ngFor="let item of auth.profile.ownedList">
+    <div class="trade-item" *ngFor="let item of profile.user.ownedList">
       <div class="trade-img" (click)="toggleItemOwnership(item, false)">
         <img class="fit-img" src="{{item.cover_url}}">
       </div>
-
       <div class="platforms">
         <img (click)="toggleItemPlatform(item, 'xbox1')" [ngClass]="{'faded': item.platforms.indexOf('xbox1') == -1}" src="assets/imgs/xbox_icon.png">
         <img (click)="toggleItemPlatform(item, 'ps4')" [ngClass]="{'faded': item.platforms.indexOf('ps4') == -1}" src="assets/imgs/ps4_icon.png">

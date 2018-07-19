@@ -22,7 +22,7 @@ export class IgdbProvider {
 
 
 
-    var search = "https://api-endpoint.igdb.com/games/?search="+"zelda"+"&filter[release_dates.platform][any]=48,49,130&fields=*";
+    var search = "https://api-endpoint.igdb.com/games/?search="+input+"&filter[release_dates.platform][any]=48,49,130&fields=*";
     // var search = 'https://api-endpoint.igdb.com/games/?search=' + input +
   		// "&filter[release_dates.platform][any]=48,49,130" +
   		// "&filter[version_parent][not_exists]=1" +

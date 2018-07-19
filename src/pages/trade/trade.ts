@@ -2,6 +2,8 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, Platform } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { AppAuthProvider } from '../../providers/app-auth/app-auth';
+import { ProfileProvider } from '../../providers/profile/profile';
+import { TradeProvider } from '../../providers/trade/trade';
 
 import { Profile } from '../../models/profile';
 import { C } from '../../config';
@@ -18,87 +20,14 @@ export class TradePage {
 	geocoder: any;
 	markers = [];
 
-	public profile1: Profile = new Profile(
-		"assets/imgs/temp_profile_img_1.png", 
-		"Jon Carlo Guiriba", 
-		"Quezon City",
-		[
-			{
-				title: "Halo 5",
-				cover_url:"https://images.igdb.com/igdb/image/upload/t_cover_big/rzjnrhuv5rozj52g9aq3.jpg",
-				platforms: [C.XBOX1]
-			},
-		],
-		[
-			{
-				title: "Zelda Breath of the Wild",
-				cover_url:"https://images.igdb.com/igdb/image/upload/t_cover_big/mievpzb9rbzzenmznvnr.jpg",
-				platforms: [C.NS]
-			},
-			{
-				title: "Detroit Become Human",
-				cover_url:"https://images.igdb.com/igdb/image/upload/t_cover_big/gfzcaqqg1iinenf1rntp.jpg",
-				platforms: [C.PS4]
-			},
-			
-		],[
-			"ps4","ns","xbox1"
-		],[
-			{
-				location: "Casa Milan Quezon City"
-			},
-			{
-				location: "St peter chapels novaliches"
-			},
-			{
-				location: "SM fairview quezon city"
-			},
-		]
-	);
-	public profile2: Profile = new Profile(
-		"assets/imgs/temp_profile_img_1.png", 
-		"Jon Carlo Guiriba", 
-		"Quezon City",
-		[
-			{
-				title: "Detroit Become Human",
-				cover_url:"https://images.igdb.com/igdb/image/upload/t_cover_big/gfzcaqqg1iinenf1rntp.jpg",
-				platforms: [C.PS4]
-			},
-		],
-		[
-			{
-				title: "Zelda Breath of the Wild",
-				cover_url:"https://images.igdb.com/igdb/image/upload/t_cover_big/mievpzb9rbzzenmznvnr.jpg",
-				platforms: [C.NS]
-			},
-			{
-				title: "Halo 5",
-				cover_url:"https://images.igdb.com/igdb/image/upload/t_cover_big/rzjnrhuv5rozj52g9aq3.jpg",
-				platforms: [C.XBOX1]
-			},
-			
-		],[
-			"ps4","ns","xbox1"
-		],[
-			{
-				location: "Casa Milan Quezon City"
-			},
-			{
-				location: "St peter chapels novaliches"
-			},
-			{
-				location: "SM fairview quezon city"
-			},
-		]
-	);
-
 
   constructor(
   	public navCtrl: NavController
 		, public platform: Platform
   	, private auth: AppAuthProvider
 		, private geolocation: Geolocation
+		, private trade: TradeProvider
+		, private profile: ProfileProvider
   	) {
 
 
@@ -111,6 +40,11 @@ export class TradePage {
 	  //   	this.initMap();
 			// }
 	  // });
+  }
+
+  getNearestPossibleTrades(){
+  	console.log("getNearestPossibleTrades")
+  	this.trade.getNearestPossibleTrades(this.auth.user.email);
   }
 
   initMap() {
@@ -128,7 +62,7 @@ export class TradePage {
 
 	    this.addMarker(mylocation)
 
-	    for(let tradeLocation of this.auth.profile.tradeLocations){
+	    for(let tradeLocation of this.profile.user.tradeLocations){
 		    	this.geocoder.geocode({'address': tradeLocation["location"]}, function(res,status){
 		        if (status === 'OK') {
 				    		self.addMarker(res[0].geometry.location, null, "assets/imgs/blue_marker.png")

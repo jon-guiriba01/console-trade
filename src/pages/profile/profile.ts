@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NavController } from 'ionic-angular';
 import { AppAuthProvider } from '../../providers/app-auth/app-auth';
+import { ProfileProvider } from '../../providers/profile/profile';
 import { IgdbProvider } from '../../providers/igdb/igdb';
 import { Game } from '../../models/game';
 import { C } from '../../config';
@@ -17,7 +18,8 @@ export class ProfilePage {
   constructor(
   	public navCtrl: NavController,
   	public igdb: IgdbProvider,
-  	private auth: AppAuthProvider
+    private auth: AppAuthProvider,
+  	private profile: ProfileProvider
 	) {
 
   }
@@ -25,19 +27,20 @@ export class ProfilePage {
   toggleItemOwnership(item, owned){
   	if(owned){
 
-  		var duplicate = _.find(this.auth.profile.ownedList, e=>{return e.title === item.title})  
+  		var duplicate = _.find(this.profile.user.ownedList, e=>{return e.name === item.name})  
   		if(duplicate) return;
 
-  		this.auth.profile.ownedList.push(item)
-  		this.auth.profile.wishList = _.reject(this.auth.profile.wishList, el=>{ return el.title === item.title; });
-  	
+  		this.profile.user.ownedList.push(item)
+  		this.profile.user.wishList = _.reject(this.profile.user.wishList, el=>{ return el.name === item.name; });
+  	  console.log("toggleGame owned" + owned, this.profile.user)
   	}else{
 
-  		var duplicate = _.find(this.auth.profile.wishList, e=>{return e.title === item.title})  
+  		var duplicate = _.find(this.profile.user.wishList, e=>{return e.name === item.name})  
   		if(duplicate) return;
 
-  		this.auth.profile.wishList.push(item)
-  		this.auth.profile.ownedList = _.reject(this.auth.profile.ownedList, el=>{ return el.title === item.title; });
+  		this.profile.user.wishList.push(item)
+  		this.profile.user.ownedList = _.reject(this.profile.user.ownedList, el=>{ return el.name === item.name; });
+      console.log("toggleGame owned" + owned, this.profile.user)
   	}
   }
 
@@ -67,23 +70,30 @@ export class ProfilePage {
   	this.igdb.searchOptions = [];
   }
 
-  addGameToProfile(game){
+  addGameToProfile(option){
+
+    console.log(111, this.profile.user.wishList.indexOf("_"+option.id) )
+    if(this.profile.user.wishList.indexOf("_"+option.id) > 0) return;
+
 
   	var platforms = [];
   	
-  	if(game.platforms){
-	  	if(game.platforms.includes(C.PS4_ID))
+  	if(option.platforms){
+	  	if(option.platforms.includes(C.PS4_ID))
 	  		platforms.push("ps4")
 
-	  	if(game.platforms.includes(C.NS_ID))
+	  	if(option.platforms.includes(C.NS_ID))
 	  		platforms.push("nintendo_switch")
 
-	  	if(game.platforms.includes(C.XBOX1_ID))
+	  	if(option.platforms.includes(C.XBOX1_ID))
 	  		platforms.push("xbox1")
   	}
 
-  	var url = game.cover.url.replace("thumb","cover_big")
-  	this.auth.profile.wishList.push(new Game(game.name, url, platforms))
+  	var url = option.cover.url.replace("thumb","cover_big")
+    console.log("addGameToProfile: ", option)
+    var game = new Game(option.id, option.name, url, platforms);
+    console.log("addGameToProfile [game]: ", game)
+  	this.profile.addGameToProfile(this.auth.user, game, false)
   	this.searchInput = null;
   	this.igdb.searchOptions = [];
   }

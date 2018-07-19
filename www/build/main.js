@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 188:
+/***/ 191:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -13,11 +13,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 188;
+webpackEmptyAsyncContext.id = 191;
 
 /***/ }),
 
-/***/ 231:
+/***/ 234:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -30,44 +30,21 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 231;
+webpackEmptyAsyncContext.id = 234;
 
 /***/ }),
 
-/***/ 279:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return firebaseConfig; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return C; });
-var firebaseConfig = {
-    web: {
-        apiKey: "AIzaSyCs8fw6B3hdkNBkf9o48V_0sTGhxC1Pg_E",
-        authDomain: "console-trade.firebaseapp.com",
-        databaseURL: "https://console-trade.firebaseio.com",
-        projectId: "console-trade",
-        storageBucket: "console-trade.appspot.com",
-        messagingSenderId: "670922071182"
-    }
-};
-var C = {
-    PS4: "ps4",
-    XBOX1: "xbox1",
-    NS: "nintendo_switch",
-};
-//# sourceMappingURL=config.js.map
-
-/***/ }),
-
-/***/ 287:
+/***/ 289:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TradePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__ = __webpack_require__(288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__ = __webpack_require__(157);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_app_auth_app_auth__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_profile_profile__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_trade_trade__ = __webpack_require__(290);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -81,22 +58,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var TradePage = /** @class */ (function () {
-    function TradePage(navCtrl, platform, auth, geolocation) {
+    function TradePage(navCtrl, platform, auth, geolocation, trade, profile) {
         this.navCtrl = navCtrl;
         this.platform = platform;
         this.auth = auth;
         this.geolocation = geolocation;
+        this.trade = trade;
+        this.profile = profile;
         this.markers = [];
     }
     TradePage.prototype.ionViewDidLoad = function () {
-        var _this = this;
-        this.platform.ready().then(function () {
-            if (google) {
-                _this.geocoder = new google.maps.Geocoder();
-                _this.initMap();
-            }
-        });
+        //  this.platform.ready().then(() => {
+        // if(google){
+        // 		this.geocoder = new google.maps.Geocoder();
+        //   	this.initMap();
+        // }
+        // });
+    };
+    TradePage.prototype.getNearestPossibleTrades = function () {
+        console.log("getNearestPossibleTrades");
+        this.trade.getNearestPossibleTrades(this.auth.user.email);
     };
     TradePage.prototype.initMap = function () {
         var _this = this;
@@ -110,7 +94,7 @@ var TradePage = /** @class */ (function () {
                 center: mylocation
             });
             _this.addMarker(mylocation);
-            for (var _i = 0, _a = _this.auth.profile.tradeLocations; _i < _a.length; _i++) {
+            for (var _i = 0, _a = _this.profile.user.tradeLocations; _i < _a.length; _i++) {
                 var tradeLocation = _a[_i];
                 _this.geocoder.geocode({ 'address': tradeLocation["location"] }, function (res, status) {
                     if (status === 'OK') {
@@ -188,12 +172,14 @@ var TradePage = /** @class */ (function () {
     ], TradePage.prototype, "mapElement", void 0);
     TradePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-trade',template:/*ion-inline-start:"C:\wamp64\www\console-trade\src\pages\trade\trade.html"*/'<ion-content >\n <!--  <div #map id="map" style="height: 100%;"></div> -->\n</ion-content>'/*ion-inline-end:"C:\wamp64\www\console-trade\src\pages\trade\trade.html"*/
+            selector: 'page-trade',template:/*ion-inline-start:"C:\wamp64\www\console-trade\src\pages\trade\trade.html"*/'<ion-content >\n<div style="height: 100%;" (click)="getNearestPossibleTrades()">\n	\n</div>\n <!--  <div #map id="map" style="height: 100%;"></div> -->\n</ion-content>'/*ion-inline-end:"C:\wamp64\www\console-trade\src\pages\trade\trade.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Platform */],
             __WEBPACK_IMPORTED_MODULE_3__providers_app_auth_app_auth__["a" /* AppAuthProvider */],
-            __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */]])
+            __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */],
+            __WEBPACK_IMPORTED_MODULE_5__providers_trade_trade__["a" /* TradeProvider */],
+            __WEBPACK_IMPORTED_MODULE_4__providers_profile_profile__["a" /* ProfileProvider */]])
     ], TradePage);
     return TradePage;
 }());
@@ -202,7 +188,50 @@ var TradePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 289:
+/***/ 290:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TradeProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var TradeProvider = /** @class */ (function () {
+    function TradeProvider(http) {
+        this.http = http;
+    }
+    TradeProvider.prototype.getNearestPossibleTrades = function (email) {
+        console.log("provider getNPT: " + email);
+        var headers = new __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["c" /* HttpHeaders */]()
+            .set("key", "eJQ0S7PjPs9BJJEJY8fXaJTNrngJIko4");
+        // var url = "https://lemon-data-center-js.herokuapp.com/";
+        var url = 'http://localhost:3000/api/getNPT?email=' + email;
+        this.http.get(url, { headers: headers }).subscribe(function (res) {
+            console.log("res", res);
+        });
+    };
+    TradeProvider = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]])
+    ], TradeProvider);
+    return TradeProvider;
+}());
+
+//# sourceMappingURL=trade.js.map
+
+/***/ }),
+
+/***/ 291:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -237,7 +266,7 @@ var ContactPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 290:
+/***/ 292:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -245,9 +274,12 @@ var ContactPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_app_auth_app_auth__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_igdb_igdb__ = __webpack_require__(291);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_underscore_underscore__ = __webpack_require__(496);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_underscore_underscore___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_underscore_underscore__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_profile_profile__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_igdb_igdb__ = __webpack_require__(293);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_game__ = __webpack_require__(498);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__config__ = __webpack_require__(294);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_underscore_underscore__ = __webpack_require__(499);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_underscore_underscore___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_underscore_underscore__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -262,46 +294,81 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
 var ProfilePage = /** @class */ (function () {
-    function ProfilePage(navCtrl, igdb, auth) {
+    function ProfilePage(navCtrl, igdb, auth, profile) {
         this.navCtrl = navCtrl;
         this.igdb = igdb;
         this.auth = auth;
+        this.profile = profile;
     }
     ProfilePage.prototype.toggleItemOwnership = function (item, owned) {
         if (owned) {
-            var duplicate = __WEBPACK_IMPORTED_MODULE_4_underscore_underscore__["find"](this.auth.profile.ownedList, function (e) { return e.title === item.title; });
+            var duplicate = __WEBPACK_IMPORTED_MODULE_7_underscore_underscore__["find"](this.profile.user.ownedList, function (e) { return e.title === item.title; });
             if (duplicate)
                 return;
-            this.auth.profile.ownedList.push(item);
-            this.auth.profile.wishList = __WEBPACK_IMPORTED_MODULE_4_underscore_underscore__["reject"](this.auth.profile.wishList, function (el) { return el.title === item.title; });
+            this.profile.user.ownedList.push(item);
+            this.profile.user.wishList = __WEBPACK_IMPORTED_MODULE_7_underscore_underscore__["reject"](this.profile.user.wishList, function (el) { return el.title === item.title; });
         }
         else {
-            var duplicate = __WEBPACK_IMPORTED_MODULE_4_underscore_underscore__["find"](this.auth.profile.wishList, function (e) { return e.title === item.title; });
+            var duplicate = __WEBPACK_IMPORTED_MODULE_7_underscore_underscore__["find"](this.profile.user.wishList, function (e) { return e.title === item.title; });
             if (duplicate)
                 return;
-            this.auth.profile.wishList.push(item);
-            this.auth.profile.ownedList = __WEBPACK_IMPORTED_MODULE_4_underscore_underscore__["reject"](this.auth.profile.ownedList, function (el) { return el.title === item.title; });
+            this.profile.user.wishList.push(item);
+            this.profile.user.ownedList = __WEBPACK_IMPORTED_MODULE_7_underscore_underscore__["reject"](this.profile.user.ownedList, function (el) { return el.title === item.title; });
         }
     };
     ProfilePage.prototype.toggleItemPlatform = function (item, platform) {
-        if (__WEBPACK_IMPORTED_MODULE_4_underscore_underscore__["contains"](item.platforms, platform)) {
-            item.platforms = __WEBPACK_IMPORTED_MODULE_4_underscore_underscore__["reject"](item.platforms, function (el) { return el === platform; });
+        if (__WEBPACK_IMPORTED_MODULE_7_underscore_underscore__["contains"](item.platforms, platform)) {
+            item.platforms = __WEBPACK_IMPORTED_MODULE_7_underscore_underscore__["reject"](item.platforms, function (el) { return el === platform; });
         }
         else {
             item.platforms.push(platform);
         }
     };
     ProfilePage.prototype.searchtTitle = function () {
-        this.igdb.search(this.searchInput);
+        var _this = this;
+        clearTimeout(this.timeout);
+        this.timeout = setTimeout(function () {
+            if (!_this.searchInput)
+                return;
+            if (_this.searchInput.length > 2)
+                _this.igdb.search(_this.searchInput);
+        }, 500);
+    };
+    ProfilePage.prototype.clearSearch = function () {
+        this.igdb.searchOptions = [];
+    };
+    ProfilePage.prototype.addGameToProfile = function (option) {
+        if (this.profile.user.wishList.indexOf("_" + option.id) > 0)
+            return;
+        var platforms = [];
+        if (option.platforms) {
+            if (option.platforms.includes(__WEBPACK_IMPORTED_MODULE_6__config__["a" /* C */].PS4_ID))
+                platforms.push("ps4");
+            if (option.platforms.includes(__WEBPACK_IMPORTED_MODULE_6__config__["a" /* C */].NS_ID))
+                platforms.push("nintendo_switch");
+            if (option.platforms.includes(__WEBPACK_IMPORTED_MODULE_6__config__["a" /* C */].XBOX1_ID))
+                platforms.push("xbox1");
+        }
+        var url = option.cover.url.replace("thumb", "cover_big");
+        console.log("addGameToProfile: ", option);
+        var game = new __WEBPACK_IMPORTED_MODULE_5__models_game__["a" /* Game */](option.id, option.name, url, platforms);
+        console.log("addGameToProfile [game]: ", game);
+        this.profile.addGameToProfile(this.auth.user, game, false);
+        this.searchInput = null;
+        this.igdb.searchOptions = [];
     };
     ProfilePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-profile',template:/*ion-inline-start:"C:\wamp64\www\console-trade\src\pages\profile\profile.html"*/'<ion-content class="ps4-bg" (click)="clearSearch()">\n\n<div class="profile">\n  <div class="profile-image">\n    <img class="circle-head" src="{{auth.profile.profileImage}}">\n  </div>\n  <div class="profile-info-wrapper">\n    <div class="profile-info">\n        <h4>{{auth.profile.name}}</h4>\n        <!-- <ion-icon name="create"></ion-icon> -->\n      <!-- <h5>{{auth.profile.location}}</h5> -->\n    </div>\n  </div>\n</div>\n\n<hr inset padding-horizontal style="background-color: #fff;">\n\n<div class="trade-info" >\n  \n  <div class="game-input-wrapper">\n    <ion-item  inset >\n      <ion-input (ionChange)="searchtTitle()" type="text" [(ngModel)]="searchInput" placeholder="Add a game"></ion-input>\n    </ion-item>\n    <h5 float-right class="tip-text">*tap games to toggle</h5>\n    <div class="autocomplete">\n      <ion-list>\n        <ion-item class="autocomplete-item" *ngFor="let item of igdb.searchOptions" (click)="addGameToProfile(item)">\n          <!-- <img *ngIf="item.cover != null" src="{{item.cover.url}}"> -->\n          <h5>{{item.name}}</h5>\n        </ion-item>\n      </ion-list>\n    </div>\n  </div>\n  \n  <h5 class="divider" style="padding-top: 30px;">Looking for</h5>\n\n  <div class="display-grid">\n    <div class="trade-item" *ngFor="let item of auth.profile.wishList">\n      <div class="trade-img" (click)="toggleItemOwnership(item, true)">\n        <img class="fit-img" src="{{item.cover_url}}">\n      </div>\n      <div class="platforms">\n        <img (click)="toggleItemPlatform(item, \'xbox1\')" [ngClass]="{\'faded\': item.platforms.indexOf(\'xbox1\') == -1}" src="assets/imgs/xbox_icon.png">\n        <img (click)="toggleItemPlatform(item, \'ps4\')" [ngClass]="{\'faded\': item.platforms.indexOf(\'ps4\') == -1}" src="assets/imgs/ps4_icon.png">\n        <img (click)="toggleItemPlatform(item, \'nintendo_switch\')" [ngClass]="{\'faded\': item.platforms.indexOf(\'nintendo_switch\') == -1}" src="assets/imgs/ns_icon.png">\n      </div>\n    </div>    \n  </div>\n\n  <h5 class="divider" >Owned</h5>\n  \n  <div class="display-grid">\n    <div class="trade-item" *ngFor="let item of auth.profile.ownedList">\n      <div class="trade-img" (click)="toggleItemOwnership(item, false)">\n        <img class="fit-img" src="{{item.cover_url}}">\n      </div>\n\n      <div class="platforms">\n        <img (click)="toggleItemPlatform(item, \'xbox1\')" [ngClass]="{\'faded\': item.platforms.indexOf(\'xbox1\') == -1}" src="assets/imgs/xbox_icon.png">\n        <img (click)="toggleItemPlatform(item, \'ps4\')" [ngClass]="{\'faded\': item.platforms.indexOf(\'ps4\') == -1}" src="assets/imgs/ps4_icon.png">\n        <img (click)="toggleItemPlatform(item, \'nintendo_switch\')" [ngClass]="{\'faded\': item.platforms.indexOf(\'nintendo_switch\') == -1}" src="assets/imgs/ns_icon.png">\n      </div>\n      \n    </div>    \n  </div>\n</div>\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\wamp64\www\console-trade\src\pages\profile\profile.html"*/
+            selector: 'page-profile',template:/*ion-inline-start:"C:\wamp64\www\console-trade\src\pages\profile\profile.html"*/'<ion-content class="ps4-bg" (click)="clearSearch()">\n\n\n\n<div class="profile">\n\n  <div class="profile-image">\n\n    <img class="circle-head" src="{{profile.user.profileImage}}">\n\n  </div>\n\n  <div class="profile-info-wrapper">\n\n    <div class="profile-info">\n\n        <h4>{{profile.user.name}}</h4>\n\n        <!-- <ion-icon name="create"></ion-icon> -->\n\n      <!-- <h5>{{profile.user.location}}</h5> -->\n\n    </div>\n\n  </div>\n\n</div>\n\n\n\n<hr inset padding-horizontal style="background-color: #fff;">\n\n\n\n<div class="trade-info" >\n\n  \n\n  <div class="game-input-wrapper">\n\n    <ion-item  inset >\n\n      <ion-input (ionChange)="searchtTitle()" type="text" [(ngModel)]="searchInput" placeholder="Add a game"></ion-input>\n\n    </ion-item>\n\n    <h5 float-right class="tip-text">*tap games to toggle</h5>\n\n    <div class="autocomplete">\n\n      <ion-list>\n\n        <ion-item class="autocomplete-item" *ngFor="let item of igdb.searchOptions" (click)="addGameToProfile(item)">\n\n          <!-- <img *ngIf="item.cover != null" src="{{item.cover.url}}"> -->\n\n          <h5>{{item.name}}</h5>\n\n        </ion-item>\n\n      </ion-list>\n\n    </div>\n\n  </div>\n\n  \n\n  <h5 class="divider" style="padding-top: 30px;">Looking for</h5>\n\n\n\n  <div class="display-grid">\n\n    <div class="trade-item" *ngFor="let item of profile.user.wishList">\n\n      <div class="trade-img" (click)="toggleItemOwnership(item, true)">\n\n        <img class="fit-img" src="{{item.cover_url}}">\n\n      </div>\n\n      <div class="platforms">\n\n        <img (click)="toggleItemPlatform(item, \'xbox1\')" [ngClass]="{\'faded\': item.platforms.indexOf(\'xbox1\') == -1}" src="assets/imgs/xbox_icon.png">\n\n        <img (click)="toggleItemPlatform(item, \'ps4\')" [ngClass]="{\'faded\': item.platforms.indexOf(\'ps4\') == -1}" src="assets/imgs/ps4_icon.png">\n\n        <img (click)="toggleItemPlatform(item, \'nintendo_switch\')" [ngClass]="{\'faded\': item.platforms.indexOf(\'nintendo_switch\') == -1}" src="assets/imgs/ns_icon.png">\n\n      </div>\n\n    </div>    \n\n  </div>\n\n\n\n  <h5 class="divider" >Owned</h5>\n\n  \n\n  <div class="display-grid">\n\n    <div class="trade-item" *ngFor="let item of profile.user.ownedList">\n\n      <div class="trade-img" (click)="toggleItemOwnership(item, false)">\n\n        <img class="fit-img" src="{{item.cover_url}}">\n\n      </div>\n\n      <div class="platforms">\n\n        <img (click)="toggleItemPlatform(item, \'xbox1\')" [ngClass]="{\'faded\': item.platforms.indexOf(\'xbox1\') == -1}" src="assets/imgs/xbox_icon.png">\n\n        <img (click)="toggleItemPlatform(item, \'ps4\')" [ngClass]="{\'faded\': item.platforms.indexOf(\'ps4\') == -1}" src="assets/imgs/ps4_icon.png">\n\n        <img (click)="toggleItemPlatform(item, \'nintendo_switch\')" [ngClass]="{\'faded\': item.platforms.indexOf(\'nintendo_switch\') == -1}" src="assets/imgs/ns_icon.png">\n\n      </div>\n\n      \n\n    </div>    \n\n  </div>\n\n</div>\n\n\n\n\n\n</ion-content>\n\n\n\n'/*ion-inline-end:"C:\wamp64\www\console-trade\src\pages\profile\profile.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_igdb_igdb__["a" /* IgdbProvider */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_app_auth_app_auth__["a" /* AppAuthProvider */]])
+            __WEBPACK_IMPORTED_MODULE_4__providers_igdb_igdb__["a" /* IgdbProvider */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_app_auth_app_auth__["a" /* AppAuthProvider */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_profile_profile__["a" /* ProfileProvider */]])
     ], ProfilePage);
     return ProfilePage;
 }());
@@ -310,12 +377,12 @@ var ProfilePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 291:
+/***/ 293:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IgdbProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -328,22 +395,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-/*
-  Generated class for the IgdbProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 var IgdbProvider = /** @class */ (function () {
     function IgdbProvider(http) {
         this.http = http;
+        // const PS4_ID = 48;
+        // const NINTENDO_SWITCH_ID = 130;
+        // const XBOX_ONE = 49;
+        this.searchOptions = [];
     }
     IgdbProvider.prototype.search = function (input) {
+        var _this = this;
         var headers = new __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["c" /* HttpHeaders */]()
             .set("user-key", "5227ae6e46cee2806cf25779d4c97966")
             .set("Accept", "application/json");
-        this.http.get('https://api-endpoint.igdb.com/games/?search=' + input).subscribe(function (res) {
-            console.log(res);
+        var search = "https://api-endpoint.igdb.com/games/?search=" + input + "&filter[release_dates.platform][any]=48,49,130&fields=*";
+        // var search = 'https://api-endpoint.igdb.com/games/?search=' + input +
+        // "&filter[release_dates.platform][any]=48,49,130" +
+        // "&filter[version_parent][not_exists]=1" +
+        // "&fields=*";
+        this.http.get(search, { headers: headers }).subscribe(function (res) {
+            var gameIds = "";
+            console.log("res", res);
+            var first = true;
+            for (var _i = 0, res_1 = res; _i < res_1.length; _i++) {
+                var r = res_1[_i];
+                if (first)
+                    gameIds += r["id"];
+                else
+                    gameIds += "," + r["id"];
+                first = false;
+            }
+            _this.searchOptions = res;
         });
     };
     IgdbProvider = __decorate([
@@ -357,7 +439,35 @@ var IgdbProvider = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 293:
+/***/ 294:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return firebaseConfig; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return C; });
+var firebaseConfig = {
+    web: {
+        apiKey: "AIzaSyCs8fw6B3hdkNBkf9o48V_0sTGhxC1Pg_E",
+        authDomain: "console-trade.firebaseapp.com",
+        databaseURL: "https://console-trade.firebaseio.com",
+        projectId: "console-trade",
+        storageBucket: "console-trade.appspot.com",
+        messagingSenderId: "670922071182"
+    }
+};
+var C = {
+    PS4: "ps4",
+    XBOX1: "xbox1",
+    NS: "nintendo_switch",
+    PS4_ID: 48,
+    NS_ID: 130,
+    XBOX1_ID: 49,
+};
+//# sourceMappingURL=config.js.map
+
+/***/ }),
+
+/***/ 295:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -403,7 +513,7 @@ var OptionsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 294:
+/***/ 296:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -411,8 +521,8 @@ var OptionsPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__signup_signup__ = __webpack_require__(295);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__tabs_tabs__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__signup_signup__ = __webpack_require__(297);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__tabs_tabs__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_app_auth_app_auth__ = __webpack_require__(44);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -474,7 +584,7 @@ var LoginPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 295:
+/***/ 297:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -483,7 +593,7 @@ var LoginPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_app_auth_app_auth__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__tabs_tabs__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__tabs_tabs__ = __webpack_require__(92);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -578,13 +688,13 @@ var SignupPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 298:
+/***/ 300:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(299);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(421);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(301);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(423);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -592,7 +702,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 421:
+/***/ 423:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -600,31 +710,37 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(462);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(271);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__ = __webpack_require__(273);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angularfire2__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__ = __webpack_require__(274);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__config__ = __webpack_require__(279);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ultimate_ngxerrors__ = __webpack_require__(498);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_trade_trade__ = __webpack_require__(287);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_contact_contact__ = __webpack_require__(289);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_profile_profile__ = __webpack_require__(290);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_tabs_tabs__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_login_login__ = __webpack_require__(294);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_signup_signup__ = __webpack_require__(295);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_options_options__ = __webpack_require__(293);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(464);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(274);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angularfire2__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__ = __webpack_require__(277);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__config__ = __webpack_require__(294);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ultimate_ngxerrors__ = __webpack_require__(501);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_trade_trade__ = __webpack_require__(289);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_contact_contact__ = __webpack_require__(291);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_profile_profile__ = __webpack_require__(292);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_tabs_tabs__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_login_login__ = __webpack_require__(296);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_signup_signup__ = __webpack_require__(297);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_options_options__ = __webpack_require__(295);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__providers_app_auth_app_auth__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_geolocation__ = __webpack_require__(288);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_angularfire2_database__ = __webpack_require__(280);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__providers_igdb_igdb__ = __webpack_require__(291);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__angular_common_http__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_geolocation__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_angularfire2_database__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__providers_igdb_igdb__ = __webpack_require__(293);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__angular_common_http__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__providers_trade_trade__ = __webpack_require__(290);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__providers_profile_profile__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pipes_keys_keys__ = __webpack_require__(514);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -661,7 +777,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_14__pages_login_login__["a" /* LoginPage */],
                 __WEBPACK_IMPORTED_MODULE_15__pages_signup_signup__["a" /* SignupPage */],
                 __WEBPACK_IMPORTED_MODULE_16__pages_options_options__["a" /* OptionsPage */],
-                __WEBPACK_IMPORTED_MODULE_13__pages_tabs_tabs__["a" /* TabsPage */]
+                __WEBPACK_IMPORTED_MODULE_13__pages_tabs_tabs__["a" /* TabsPage */],
+                __WEBPACK_IMPORTED_MODULE_24__pipes_keys_keys__["a" /* KeysPipe */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
@@ -693,7 +810,9 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_19_angularfire2_database__["a" /* AngularFireDatabase */],
                 __WEBPACK_IMPORTED_MODULE_17__providers_app_auth_app_auth__["a" /* AppAuthProvider */],
                 __WEBPACK_IMPORTED_MODULE_21__angular_common_http__["a" /* HttpClient */],
-                __WEBPACK_IMPORTED_MODULE_20__providers_igdb_igdb__["a" /* IgdbProvider */]
+                __WEBPACK_IMPORTED_MODULE_20__providers_igdb_igdb__["a" /* IgdbProvider */],
+                __WEBPACK_IMPORTED_MODULE_22__providers_trade_trade__["a" /* TradeProvider */],
+                __WEBPACK_IMPORTED_MODULE_23__providers_profile_profile__["a" /* ProfileProvider */]
             ]
         })
     ], AppModule);
@@ -710,22 +829,10 @@ var AppModule = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppAuthProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_auth__ = __webpack_require__(274);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase_app__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_auth__ = __webpack_require__(277);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase_app__ = __webpack_require__(279);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase_app___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase_app__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_profile__ = __webpack_require__(481);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__config__ = __webpack_require__(279);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__ = __webpack_require__(280);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_operators__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_geolocation__ = __webpack_require__(288);
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__ = __webpack_require__(90);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -739,92 +846,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
-
-
 var AppAuthProvider = /** @class */ (function () {
-    function AppAuthProvider(afAuth, afdb, geolocation) {
+    function AppAuthProvider(afAuth, afdb) {
         var _this = this;
         this.afAuth = afAuth;
         this.afdb = afdb;
-        this.geolocation = geolocation;
-        this.profile = new __WEBPACK_IMPORTED_MODULE_3__models_profile__["a" /* Profile */]("assets/imgs/temp_profile_img_1.png", "Jon Carlo Guiriba", "Quezon City", [
-            {
-                title: "Crash Bandicoot",
-                cover_url: "https://images.igdb.com/igdb/image/upload/t_cover_big/kqlntgss9yb5invq8nxi.jpg",
-                platforms: [__WEBPACK_IMPORTED_MODULE_4__config__["a" /* C */].PS4, __WEBPACK_IMPORTED_MODULE_4__config__["a" /* C */].XBOX1, __WEBPACK_IMPORTED_MODULE_4__config__["a" /* C */].NS]
-            },
-            {
-                title: "Zelda Breath of the Wild",
-                cover_url: "https://images.igdb.com/igdb/image/upload/t_cover_big/mievpzb9rbzzenmznvnr.jpg",
-                platforms: [__WEBPACK_IMPORTED_MODULE_4__config__["a" /* C */].NS]
-            },
-            {
-                title: "Detroit Become Human",
-                cover_url: "https://images.igdb.com/igdb/image/upload/t_cover_big/gfzcaqqg1iinenf1rntp.jpg",
-                platforms: [__WEBPACK_IMPORTED_MODULE_4__config__["a" /* C */].PS4]
-            },
-            {
-                title: "Halo 5",
-                cover_url: "https://images.igdb.com/igdb/image/upload/t_cover_big/rzjnrhuv5rozj52g9aq3.jpg",
-                platforms: [__WEBPACK_IMPORTED_MODULE_4__config__["a" /* C */].XBOX1]
-            },
-        ], [
-            {
-                title: "Zelda Breath of the Wild",
-                cover_url: "https://images.igdb.com/igdb/image/upload/t_cover_big/mievpzb9rbzzenmznvnr.jpg",
-                platforms: [__WEBPACK_IMPORTED_MODULE_4__config__["a" /* C */].NS]
-            },
-            {
-                title: "Detroit Become Human",
-                cover_url: "https://images.igdb.com/igdb/image/upload/t_cover_big/gfzcaqqg1iinenf1rntp.jpg",
-                platforms: [__WEBPACK_IMPORTED_MODULE_4__config__["a" /* C */].PS4]
-            },
-            {
-                title: "Halo 5",
-                cover_url: "https://images.igdb.com/igdb/image/upload/t_cover_big/rzjnrhuv5rozj52g9aq3.jpg",
-                platforms: [__WEBPACK_IMPORTED_MODULE_4__config__["a" /* C */].XBOX1]
-            },
-        ], [
-            "ps4", "ns", "xbox1"
-        ], [
-            {
-                location: "Casa Milan Quezon City"
-            },
-            {
-                location: "St peter chapels novaliches"
-            },
-            {
-                location: "SM fairview quezon city"
-            },
-        ]);
         afAuth.authState.subscribe(function (user) {
             console.log("user", user);
             _this.user = user;
-            var usersRef;
-            var users;
-            if (_this.user != null) {
-                var userRef = _this.afdb.list('/user', function (ref) { return ref.orderByChild('email').equalTo(_this.user.email); });
-                var userSub = userRef.snapshotChanges().pipe(Object(__WEBPACK_IMPORTED_MODULE_6_rxjs_operators__["map"])(function (changes) {
-                    return changes.map(function (c) { return (__assign({ key: c.payload.key }, c.payload.val())); });
-                })).subscribe(function (res) {
-                    if (!res[0])
-                        return;
-                    _this.profile.name = res[0]["first_name"] + " " + res[0]["last_name"];
-                    _this.geolocation.getCurrentPosition().then(function (geodata) {
-                        userRef.update(res[0]["key"], {
-                            last_location: {
-                                lat: geodata.coords.latitude,
-                                long: geodata.coords.longitude
-                            }
-                        });
-                        userSub.unsubscribe();
-                    }).catch(function (error) {
-                        console.log('Error getting location', error);
-                    });
-                });
-            }
         });
     }
     AppAuthProvider.prototype.signInWithEmail = function (credentials) {
@@ -833,7 +862,7 @@ var AppAuthProvider = /** @class */ (function () {
     AppAuthProvider.prototype.signUp = function (form) {
         var _this = this;
         return this.afAuth.auth.createUserWithEmailAndPassword(form.email, form.password).then(function (e) {
-            _this.afdb.list('user').push({
+            _this.afdb.list('/users').push({
                 first_name: form.firstName,
                 last_name: form.lastName,
                 email: form.email,
@@ -876,28 +905,40 @@ var AppAuthProvider = /** @class */ (function () {
     };
     AppAuthProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_angularfire2_auth__["a" /* AngularFireAuth */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_angularfire2_auth__["a" /* AngularFireAuth */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_7__ionic_native_geolocation__["a" /* Geolocation */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__ionic_native_geolocation__["a" /* Geolocation */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_angularfire2_auth__["a" /* AngularFireAuth */],
+            __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["a" /* AngularFireDatabase */]])
     ], AppAuthProvider);
     return AppAuthProvider;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=app-auth.js.map
 
 /***/ }),
 
-/***/ 462:
+/***/ 464:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(271);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(274);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(276);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_app_auth_app_auth__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_tabs_tabs__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_login_login__ = __webpack_require__(294);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_operators__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_profile_profile__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_geolocation__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_tabs_tabs__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_login_login__ = __webpack_require__(296);
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -914,8 +955,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
+
 var MyApp = /** @class */ (function () {
-    function MyApp(platform, statusBar, splashScreen, auth) {
+    function MyApp(platform, statusBar, splashScreen, afdb, auth, profile, geolocation) {
         var _this = this;
         this.rootPage = null;
         platform.ready().then(function () {
@@ -926,13 +971,39 @@ var MyApp = /** @class */ (function () {
             auth.afAuth.authState
                 .subscribe(function (user) {
                 if (user) {
-                    _this.rootPage = __WEBPACK_IMPORTED_MODULE_5__pages_tabs_tabs__["a" /* TabsPage */];
+                    var usersRef = void 0;
+                    var users = void 0;
+                    if (user != null) {
+                        var userRef = afdb.list('/users', function (ref) { return ref.orderByChild('email').equalTo(user.email); });
+                        var userSub = userRef.snapshotChanges().pipe(Object(__WEBPACK_IMPORTED_MODULE_6_rxjs_operators__["map"])(function (changes) {
+                            return changes.map(function (c) { return (__assign({ key: c.payload.key }, c.payload.val())); });
+                        })).subscribe(function (res) {
+                            if (!res[0])
+                                return;
+                            console.log(res);
+                            profile.user.name = res[0]["first_name"] + " " + res[0]["last_name"];
+                            profile.user.wishList = res[0]["wishlist"];
+                            // profile.user.ownedList = res[0]["ownedlist"];
+                            geolocation.getCurrentPosition().then(function (geodata) {
+                                userRef.update(res[0]["key"], {
+                                    last_location: {
+                                        lat: geodata.coords.latitude,
+                                        long: geodata.coords.longitude
+                                    }
+                                });
+                                userSub.unsubscribe();
+                            }).catch(function (error) {
+                                console.log('Error getting location', error);
+                            });
+                        });
+                    }
+                    _this.rootPage = __WEBPACK_IMPORTED_MODULE_9__pages_tabs_tabs__["a" /* TabsPage */];
                 }
                 else {
-                    _this.rootPage = __WEBPACK_IMPORTED_MODULE_6__pages_login_login__["a" /* LoginPage */];
+                    _this.rootPage = __WEBPACK_IMPORTED_MODULE_10__pages_login_login__["a" /* LoginPage */];
                 }
             }, function () {
-                _this.rootPage = __WEBPACK_IMPORTED_MODULE_6__pages_login_login__["a" /* LoginPage */];
+                _this.rootPage = __WEBPACK_IMPORTED_MODULE_10__pages_login_login__["a" /* LoginPage */];
             });
         });
     }
@@ -942,7 +1013,10 @@ var MyApp = /** @class */ (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Platform */],
             __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
             __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
-            __WEBPACK_IMPORTED_MODULE_4__providers_app_auth_app_auth__["a" /* AppAuthProvider */]])
+            __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__["a" /* AngularFireDatabase */],
+            __WEBPACK_IMPORTED_MODULE_4__providers_app_auth_app_auth__["a" /* AppAuthProvider */],
+            __WEBPACK_IMPORTED_MODULE_7__providers_profile_profile__["a" /* ProfileProvider */],
+            __WEBPACK_IMPORTED_MODULE_8__ionic_native_geolocation__["a" /* Geolocation */]])
     ], MyApp);
     return MyApp;
 }());
@@ -951,27 +1025,21 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 481:
+/***/ 497:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Profile; });
 var Profile = /** @class */ (function () {
-    function Profile(profileImage, name, location, wishList, ownedList, consoles, tradeLocations) {
-        if (profileImage === void 0) { profileImage = null; }
-        if (name === void 0) { name = null; }
-        if (location === void 0) { location = null; }
-        if (wishList === void 0) { wishList = null; }
-        if (ownedList === void 0) { ownedList = null; }
-        if (consoles === void 0) { consoles = null; }
-        if (tradeLocations === void 0) { tradeLocations = null; }
-        this.profileImage = profileImage;
-        this.name = name;
-        this.location = location;
-        this.wishList = wishList;
-        this.ownedList = ownedList;
-        this.consoles = consoles;
-        this.tradeLocations = tradeLocations;
+    function Profile() {
+        this.wishList = [];
+        this.ownedList = [];
+        this.consoles = [];
+        this.tradeLocations = [];
+        this.wishList = [];
+        this.ownedList = [];
+        this.consoles = [];
+        this.tradeLocations = [];
     }
     return Profile;
 }());
@@ -980,17 +1048,151 @@ var Profile = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 89:
+/***/ 498:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Game; });
+var Game = /** @class */ (function () {
+    function Game(id, name, cover_url, platforms) {
+        if (id === void 0) { id = null; }
+        if (name === void 0) { name = null; }
+        if (cover_url === void 0) { cover_url = null; }
+        if (platforms === void 0) { platforms = null; }
+        this.id = id;
+        this.name = name;
+        this.cover_url = cover_url;
+        this.platforms = platforms;
+    }
+    return Game;
+}());
+
+//# sourceMappingURL=game.js.map
+
+/***/ }),
+
+/***/ 514:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return KeysPipe; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var KeysPipe = /** @class */ (function () {
+    function KeysPipe() {
+    }
+    KeysPipe.prototype.transform = function (value, args) {
+        var values = [];
+        for (var key in value) {
+            values.push(value[key]);
+        }
+        return values;
+    };
+    KeysPipe = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["S" /* Pipe */])({
+            name: 'keys',
+        })
+    ], KeysPipe);
+    return KeysPipe;
+}());
+
+//# sourceMappingURL=keys.js.map
+
+/***/ }),
+
+/***/ 91:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfileProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_profile__ = __webpack_require__(497);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators__ = __webpack_require__(18);
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var ProfileProvider = /** @class */ (function () {
+    function ProfileProvider(http, afdb) {
+        this.http = http;
+        this.afdb = afdb;
+        console.log('Hello ProfileProvider Provider');
+        this.user = new __WEBPACK_IMPORTED_MODULE_3__models_profile__["a" /* Profile */]();
+    }
+    ProfileProvider.prototype.addGameToProfile = function (user, game, owned) {
+        var _this = this;
+        console.log("addGamToProfile: ", game);
+        var userRef = this.afdb.list('/users', function (ref) { return ref.orderByChild('email').equalTo(user.email); });
+        console.log("wl", this.user.wishList);
+        if (this.user.wishList == undefined)
+            this.user.wishList = [];
+        this.user.wishList["_" + game.id] = game;
+        console.log(this.user.wishList);
+        var userSub = userRef.snapshotChanges().pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["map"])(function (changes) {
+            return changes.map(function (c) { return (__assign({ key: c.payload.key }, c.payload.val())); });
+        })).subscribe(function (res) {
+            if (!res[0])
+                return;
+            if (owned)
+                userRef.update(res[0]["key"], {
+                    ownedlist: _this.user.ownedList
+                });
+            else
+                userRef.update(res[0]["key"], {
+                    wishlist: _this.user.wishList
+                });
+            userSub.unsubscribe();
+        });
+    };
+    ProfileProvider = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */]])
+    ], ProfileProvider);
+    return ProfileProvider;
+}());
+
+//# sourceMappingURL=profile.js.map
+
+/***/ }),
+
+/***/ 92:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__trade_trade__ = __webpack_require__(287);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__contact_contact__ = __webpack_require__(289);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__profile_profile__ = __webpack_require__(290);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__options_options__ = __webpack_require__(293);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__trade_trade__ = __webpack_require__(289);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__contact_contact__ = __webpack_require__(291);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__profile_profile__ = __webpack_require__(292);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__options_options__ = __webpack_require__(295);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1029,5 +1231,5 @@ var TabsPage = /** @class */ (function () {
 
 /***/ })
 
-},[298]);
+},[300]);
 //# sourceMappingURL=main.js.map
