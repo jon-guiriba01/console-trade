@@ -1,6 +1,17 @@
 <ion-content >
-<div style="height: 100%;" (click)="getNearestPossibleTrades()">
+<!-- <div style="height: 100%;" (click)="getNearestPossibleTrades()">
 	
-</div>
+</div> -->
  <!--  <div #map id="map" style="height: 100%;"></div> -->
+
+ <ion-list>
+ 	<ion-item *ngFor="let trader of trade.matchingTraders">
+ 		<h5>{{trader.first_name + " " + trader.last_name}} matches {{trader.matchingTrades.length}} game in you wishlist</h5>
+ 		<h5>{{trader.distance}} away</h5>
+ 		<div *ngFor="let item of trader.matchingTrades" class="matching-trades">
+ 			<img src="{{item.cover_url}}">
+ 			<h4>{{item.name}}</h4>
+ 		</div>
+ 	</ion-item>
+ </ion-list>
 </ion-content>

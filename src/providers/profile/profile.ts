@@ -1,12 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Game } from '../../models/game';
-import * as firebase from 'firebase/app';
-import { AngularFireDatabase, AngularFireList  } from 'angularfire2/database';
 import { Profile } from '../../models/profile';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { C } from '../../config';
+import * as _ from 'underscore/underscore';
+import { FirebaseappProvider } from '../../providers/firebaseapp/firebaseapp';
  
 
 @Injectable()
@@ -32,51 +31,112 @@ export class ProfileProvider {
 	// );
 
 	user : Profile;
-
+	allListsUpdateTimeout = null
+	wishListUpdateTimeout = null
+	ownedListUpdateTimeout = null
 
   constructor(
   	public http: HttpClient
-		, public afdb: AngularFireDatabase) {
-    console.log('Hello ProfileProvider Provider');
-    this.user = new Profile();
+  	, public fbapp: FirebaseappProvider) {
+  	this.user = new Profile();
   }
 
 	addGameToProfile(user : firebase.User, game : Game, owned : boolean){
 		console.log("addGamToProfile: ",game)
-		var userRef = this.afdb.list('/users', ref=> ref.orderByChild('email').equalTo(user.email))
 
-  	this.user.wishList.push(game)
+    var duplicate = _.find(this.user.wishList, e=>{return e.id === game.id})
 
-		var userSub = userRef.snapshotChanges().pipe(
-		  map(changes => 
-		    changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
-		  )
-		).subscribe((res)=>{
-    	console.log("get user data", res)
-						
-			if(!res[0]) return;
-				var key = res[0]["key"];
-				if(owned){
-    			console.log("adding to owned[" + key + "]", this.user.ownedList)
-					userRef.update(key, {
-							id : game.id,
-							cover_url : game.cover_url,
-							name : game.name,
-							platforms : game.platforms
-					})
+    if(duplicate)
+      this.user.ownedList.push(game)
+  	else
+      this.user.wishList.push(game)
 
-				}
-				else{
-    			console.log("adding to wishlist[" + key + "]", this.user.wishList)
-					
-					userRef.update(key, {
-						wishList: this.user.wishList
-					})
+		this.fbapp.updateUserWishList(user, this.user.wishList)
 
-				}
 
-			userSub.unsubscribe();
-		})
 	}
+
+	toggleItemOwnership(authUser, item, owned){
+  	if(owned){
+			var duplicate = _.find(this.user.wishList, e=>{return e.id === item.id})  
+			if(duplicate) return;
+
+			this.user.wishList.push(item)
+			this.user.ownedList = _.reject(this.user.ownedList, e=>{ return e.id === item.id});
+  	}else{
+			var duplicate = _.find(this.user.ownedList, e=>{return e.id === item.id})  
+			if(duplicate) return;
+			
+			this.user.ownedList.push(item)
+			this.user.wishList = _.reject(this.user.wishList, e=>{ return e.id === item.id});
+		}
+
+  	this.startAllListsUpdateTImer(authUser);
+
+  }
+
+  toggleItemPlatform(authUser, item, platform, owned){
+  	if(_.contains(item.platforms, platform)){
+  		item.platforms = _.reject(item.platforms, el=>{ return el === platform; });
+  	}else{
+  		item.platforms.push(platform)
+  	}
+
+  	if(owned){
+  		this.startWishListUpdateTImer(authUser);
+  	}else{
+  		this.startOwnedListUpdateTImer(authUser);
+  	}
+
+
+  }
+
+  removeItem(authUser, item, owned){
+
+
+  	if(owned){
+  		this.user.ownedList = _.reject(this.user.ownedList, el=>{ return el.id === item.id; });
+  		this.startOwnedListUpdateTImer(authUser);
+  	}else{
+  		this.user.wishList = _.reject(this.user.wishList, el=>{ return el.id === item.id; });
+  		this.startWishListUpdateTImer(authUser);
+  	}
+
+
+  }
+
+  private startAllListsUpdateTImer(authUser){
+		clearTimeout(this.allListsUpdateTimeout)
+
+  	var self = this;
+
+  	this.allListsUpdateTimeout = setTimeout( function(){
+  		self.fbapp.updateUserWishList(authUser, self.user.wishList)
+  		self.fbapp.updateUserOwnedList(authUser, self.user.ownedList)
+  	},1000)
+  }
+
+
+  private startWishListUpdateTImer(authUser){
+		clearTimeout(this.wishListUpdateTimeout)
+
+  	var self = this;
+
+  	this.wishListUpdateTimeout = setTimeout( function(){
+  		self.fbapp.updateUserWishList(authUser, self.user.wishList)
+  	},1000)
+  }
+
+
+  private startOwnedListUpdateTImer(authUser){
+		clearTimeout(this.ownedListUpdateTimeout)
+
+  	var self = this;
+
+  	this.ownedListUpdateTimeout = setTimeout( function(){
+  		self.fbapp.updateUserOwnedList(authUser, self.user.ownedList)
+  	},1000)
+  }
+
 
 }

@@ -25,33 +25,17 @@ export class ProfilePage {
   }
 
   toggleItemOwnership(item, owned){
-  	if(owned){
-
-  		var duplicate = _.find(this.profile.user.ownedList, e=>{return e.name === item.name})  
-  		if(duplicate) return;
-
-  		this.profile.user.ownedList.push(item)
-  		this.profile.user.wishList = _.reject(this.profile.user.wishList, el=>{ return el.name === item.name; });
-  	  console.log("toggleGame owned" + owned, this.profile.user)
-  	}else{
-
-  		var duplicate = _.find(this.profile.user.wishList, e=>{return e.name === item.name})  
-  		if(duplicate) return;
-
-  		this.profile.user.wishList.push(item)
-  		this.profile.user.ownedList = _.reject(this.profile.user.ownedList, el=>{ return el.name === item.name; });
-      console.log("toggleGame owned" + owned, this.profile.user)
-  	}
+     this.profile.toggleItemOwnership(this.auth.user, item, owned);
   }
 
-  toggleItemPlatform(item, platform){
+  toggleItemPlatform(item, platform, owned){
+    this.profile.toggleItemPlatform(this.auth.user, item, platform, owned);
+  }
 
-  	if(_.contains(item.platforms, platform)){
-  		item.platforms = _.reject(item.platforms, el=>{ return el === platform; });
-  	}else{
-  		item.platforms.push(platform)
+  removeItem(item, owned){
+    console.log("pressing")
+    this.profile.removeItem(this.auth.user, item, owned);
 
-  	}
   }
 
   timeout
@@ -71,10 +55,6 @@ export class ProfilePage {
   }
 
   addGameToProfile(option){
-
-    console.log(111, this.profile.user.wishList.indexOf("_"+option.id) )
-    if(this.profile.user.wishList.indexOf("_"+option.id) > 0) return;
-
 
   	var platforms = [];
   	

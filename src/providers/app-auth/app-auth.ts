@@ -38,13 +38,7 @@ export class AppAuthProvider {
 		this.afdb.list('/users').push({
 				first_name: form.firstName,
 				last_name: form.lastName,
-				email: form.email,
-				wishList: {
-					empty : true
-				},
-				ownedList: {
-					empty : true
-				},
+				email: form.email
 			})
 			 		
 	 });

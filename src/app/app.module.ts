@@ -26,6 +26,8 @@ import { TradeProvider } from '../providers/trade/trade';
 import { ProfileProvider } from '../providers/profile/profile';
 
 import { KeysPipe } from '../pipes/keys/keys';
+import { FirebaseappProvider } from '../providers/firebaseapp/firebaseapp';
+import { LongPressModule } from 'ionic-long-press';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,7 @@ import { KeysPipe } from '../pipes/keys/keys';
     AngularFireModule.initializeApp(firebaseConfig.web),
     AngularFireDatabaseModule,
     HttpClientModule,
+    LongPressModule,
     NgxErrorsModule
   ],
   bootstrap: [IonicApp],
@@ -69,7 +72,8 @@ import { KeysPipe } from '../pipes/keys/keys';
     HttpClient,
     IgdbProvider,
     TradeProvider,
-    ProfileProvider
+    ProfileProvider,
+    FirebaseappProvider
   ]
 })
 export class AppModule {}

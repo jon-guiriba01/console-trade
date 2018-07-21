@@ -44,7 +44,7 @@ export class TradePage {
 
   getNearestPossibleTrades(){
   	console.log("getNearestPossibleTrades")
-  	this.trade.getNearestPossibleTrades(this.auth.user.email);
+  	this.trade.getNearestPossibleTrades(this.profile.user.key);
   }
 
   initMap() {
