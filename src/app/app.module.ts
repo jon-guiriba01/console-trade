@@ -25,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { TradeProvider } from '../providers/trade/trade';
 import { ProfileProvider } from '../providers/profile/profile';
 
-import { KeysPipe } from '../pipes/keys/keys';
+import { ReplacePipe } from '../pipes/replace/replace';
+import { DistancePipe } from '../pipes/distance/distance';
 import { FirebaseappProvider } from '../providers/firebaseapp/firebaseapp';
 import { LongPressModule } from 'ionic-long-press';
 
@@ -39,7 +40,8 @@ import { LongPressModule } from 'ionic-long-press';
     SignupPage,
     OptionsPage,
     TabsPage,
-    KeysPipe
+    ReplacePipe,
+    DistancePipe
   ],
   imports: [
     BrowserModule,

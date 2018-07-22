@@ -1,6 +1,52 @@
 webpackJsonp([0],{
 
-/***/ 191:
+/***/ 158:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TradeProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var TradeProvider = /** @class */ (function () {
+    function TradeProvider(http) {
+        this.http = http;
+        this.matchingTraders = [];
+    }
+    TradeProvider.prototype.getNearestPossibleTrades = function (key) {
+        var _this = this;
+        console.log("provider getNPT: " + key);
+        var headers = new __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["c" /* HttpHeaders */]()
+            .set("key", "eJQ0S7PjPs9BJJEJY8fXaJTNrngJIko4");
+        // var url = "https://lemon-data-center-js.herokuapp.com/";
+        var url = 'http://localhost:3000/api/getNPT?key=' + key;
+        this.http.get(url, { headers: headers }).subscribe(function (res) {
+            _this.matchingTraders = res;
+            console.log("get getNearestPossibleTrades: ", _this.matchingTraders);
+        });
+    };
+    TradeProvider = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]])
+    ], TradeProvider);
+    return TradeProvider;
+}());
+
+//# sourceMappingURL=trade.js.map
+
+/***/ }),
+
+/***/ 192:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -13,11 +59,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 191;
+webpackEmptyAsyncContext.id = 192;
 
 /***/ }),
 
-/***/ 234:
+/***/ 235:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -30,11 +76,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 234;
+webpackEmptyAsyncContext.id = 235;
 
 /***/ }),
 
-/***/ 290:
+/***/ 291:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -120,7 +166,7 @@ var FirebaseappProvider = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 291:
+/***/ 292:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -130,7 +176,7 @@ var FirebaseappProvider = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__ = __webpack_require__(157);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_app_auth_app_auth__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_profile_profile__ = __webpack_require__(91);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_trade_trade__ = __webpack_require__(292);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_trade_trade__ = __webpack_require__(158);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -258,7 +304,7 @@ var TradePage = /** @class */ (function () {
     ], TradePage.prototype, "mapElement", void 0);
     TradePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-trade',template:/*ion-inline-start:"C:\wamp64\www\console-trade\src\pages\trade\trade.html"*/'<ion-content >\n<!-- <div style="height: 100%;" (click)="getNearestPossibleTrades()">\n	\n</div> -->\n <!--  <div #map id="map" style="height: 100%;"></div> -->\n\n <ion-list>\n 	<ion-item *ngFor="let trader of trade.matchingTraders">\n 		<h5>{{trader.first_name + " " + trader.last_name}} matches {{trader.matchingTrades.length}} game in you wishlist</h5>\n 		<h5>{{trader.distance}} away</h5>\n 		<div *ngFor="let item of trader.matchingTrades" class="matching-trades">\n 			<img src="{{item.cover_url}}">\n 			<h4>{{item.name}}</h4>\n 		</div>\n 	</ion-item>\n </ion-list>\n</ion-content>'/*ion-inline-end:"C:\wamp64\www\console-trade\src\pages\trade\trade.html"*/
+            selector: 'page-trade',template:/*ion-inline-start:"C:\wamp64\www\console-trade\src\pages\trade\trade.html"*/'<ion-content class="ps4-bg">\n<!-- <div style="height: 100%;" (click)="getNearestPossibleTrades()">\n	\n</div> -->\n <!--  <div #map id="map" style="height: 100%;"></div> -->\n\n 	<ion-item class="matching-trades" *ngFor="let trader of trade.matchingTraders" no-lines>\n 		<div class="trader-info">\n 			<ion-icon style="color: #fff;" name="chatbubbles"></ion-icon>\n	 		<h5>{{trader.first_name + " " + trader.last_name}} </h5>\n	 		<h5>{{trader.matchingTrades.length}} matches  </h5>\n 			<h5>{{trader.distance | ceil}} miles away</h5>\n 		</div>\n 		<div class="trade-grid">\n	 		<div class="trade-item" *ngFor="let item of trader.matchingTrades">\n	 			<img class="fit-img" src="{{item.cover_url | replace: \'cover_big\':\'thumb\'}}">\n	 		</div>\n 		</div>\n 	</ion-item>\n</ion-content>'/*ion-inline-end:"C:\wamp64\www\console-trade\src\pages\trade\trade.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Platform */],
@@ -268,49 +314,6 @@ var TradePage = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_4__providers_profile_profile__["a" /* ProfileProvider */]])
     ], TradePage);
     return TradePage;
-}());
-
-//# sourceMappingURL=trade.js.map
-
-/***/ }),
-
-/***/ 292:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TradeProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var TradeProvider = /** @class */ (function () {
-    function TradeProvider(http) {
-        this.http = http;
-    }
-    TradeProvider.prototype.getNearestPossibleTrades = function (key) {
-        console.log("provider getNPT: " + key);
-        var headers = new __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["c" /* HttpHeaders */]()
-            .set("key", "eJQ0S7PjPs9BJJEJY8fXaJTNrngJIko4");
-        // var url = "https://lemon-data-center-js.herokuapp.com/";
-        var url = 'http://localhost:3000/api/getNPT?key=' + key;
-        this.http.get(url, { headers: headers }).subscribe(function (res) {
-            console.log("res", res);
-        });
-    };
-    TradeProvider = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]])
-    ], TradeProvider);
-    return TradeProvider;
 }());
 
 //# sourceMappingURL=trade.js.map
@@ -778,13 +781,13 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(465);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(275);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__ = __webpack_require__(277);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__ = __webpack_require__(278);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angularfire2__ = __webpack_require__(154);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__ = __webpack_require__(278);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__ = __webpack_require__(279);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__config__ = __webpack_require__(296);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ultimate_ngxerrors__ = __webpack_require__(502);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_trade_trade__ = __webpack_require__(291);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_trade_trade__ = __webpack_require__(292);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_contact_contact__ = __webpack_require__(293);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_profile_profile__ = __webpack_require__(294);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_tabs_tabs__ = __webpack_require__(92);
@@ -796,17 +799,19 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_angularfire2_database__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__providers_igdb_igdb__ = __webpack_require__(295);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__angular_common_http__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__providers_trade_trade__ = __webpack_require__(292);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__providers_trade_trade__ = __webpack_require__(158);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__providers_profile_profile__ = __webpack_require__(91);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pipes_keys_keys__ = __webpack_require__(515);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__providers_firebaseapp_firebaseapp__ = __webpack_require__(290);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_ionic_long_press__ = __webpack_require__(516);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pipes_replace_replace__ = __webpack_require__(515);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pipes_distance_distance__ = __webpack_require__(516);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__providers_firebaseapp_firebaseapp__ = __webpack_require__(291);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_ionic_long_press__ = __webpack_require__(517);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -849,7 +854,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_15__pages_signup_signup__["a" /* SignupPage */],
                 __WEBPACK_IMPORTED_MODULE_16__pages_options_options__["a" /* OptionsPage */],
                 __WEBPACK_IMPORTED_MODULE_13__pages_tabs_tabs__["a" /* TabsPage */],
-                __WEBPACK_IMPORTED_MODULE_24__pipes_keys_keys__["a" /* KeysPipe */]
+                __WEBPACK_IMPORTED_MODULE_24__pipes_replace_replace__["a" /* ReplacePipe */],
+                __WEBPACK_IMPORTED_MODULE_25__pipes_distance_distance__["a" /* DistancePipe */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
@@ -859,7 +865,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_6_angularfire2__["a" /* AngularFireModule */].initializeApp(__WEBPACK_IMPORTED_MODULE_8__config__["b" /* firebaseConfig */].web),
                 __WEBPACK_IMPORTED_MODULE_19_angularfire2_database__["b" /* AngularFireDatabaseModule */],
                 __WEBPACK_IMPORTED_MODULE_21__angular_common_http__["b" /* HttpClientModule */],
-                __WEBPACK_IMPORTED_MODULE_26_ionic_long_press__["a" /* LongPressModule */],
+                __WEBPACK_IMPORTED_MODULE_27_ionic_long_press__["a" /* LongPressModule */],
                 __WEBPACK_IMPORTED_MODULE_9__ultimate_ngxerrors__["a" /* NgxErrorsModule */]
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* IonicApp */]],
@@ -885,7 +891,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_20__providers_igdb_igdb__["a" /* IgdbProvider */],
                 __WEBPACK_IMPORTED_MODULE_22__providers_trade_trade__["a" /* TradeProvider */],
                 __WEBPACK_IMPORTED_MODULE_23__providers_profile_profile__["a" /* ProfileProvider */],
-                __WEBPACK_IMPORTED_MODULE_25__providers_firebaseapp_firebaseapp__["a" /* FirebaseappProvider */]
+                __WEBPACK_IMPORTED_MODULE_26__providers_firebaseapp_firebaseapp__["a" /* FirebaseappProvider */]
             ]
         })
     ], AppModule);
@@ -902,8 +908,8 @@ var AppModule = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppAuthProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_auth__ = __webpack_require__(278);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase_app__ = __webpack_require__(280);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_auth__ = __webpack_require__(279);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase_app__ = __webpack_require__(281);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase_app___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase_app__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__ = __webpack_require__(90);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -995,15 +1001,16 @@ var AppAuthProvider = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(275);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(277);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(278);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_app_auth_app_auth__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_operators__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_profile_profile__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_geolocation__ = __webpack_require__(157);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_tabs_tabs__ = __webpack_require__(92);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_login_login__ = __webpack_require__(298);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__providers_trade_trade__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_tabs_tabs__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_login_login__ = __webpack_require__(298);
 var __assign = (this && this.__assign) || Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
         s = arguments[i];
@@ -1032,9 +1039,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var MyApp = /** @class */ (function () {
-    function MyApp(platform, statusBar, splashScreen, afdb, auth, profile, geolocation) {
+    function MyApp(platform, statusBar, splashScreen, afdb, auth, profile, geolocation, trade) {
         var _this = this;
+        this.platform = platform;
+        this.statusBar = statusBar;
+        this.splashScreen = splashScreen;
+        this.afdb = afdb;
+        this.auth = auth;
+        this.profile = profile;
+        this.geolocation = geolocation;
+        this.trade = trade;
         this.rootPage = null;
         platform.ready().then(function () {
             // Okay, so the platform is ready and our plugins are available.
@@ -1045,45 +1061,56 @@ var MyApp = /** @class */ (function () {
                 .subscribe(function (user) {
                 console.log("app component subscription");
                 if (user) {
+                    _this.rootPage = __WEBPACK_IMPORTED_MODULE_10__pages_tabs_tabs__["a" /* TabsPage */];
                     var usersRef = void 0;
                     var users = void 0;
-                    if (user != null) {
-                        var userRef = afdb.list('/users', function (ref) { return ref.orderByChild('email').equalTo(user.email); });
-                        var userSub = userRef.snapshotChanges().pipe(Object(__WEBPACK_IMPORTED_MODULE_6_rxjs_operators__["map"])(function (changes) {
-                            return changes.map(function (c) { return (__assign({ key: c.payload.key }, c.payload.val())); });
-                        })).subscribe(function (res) {
-                            if (!res[0])
-                                return;
-                            console.log("fb user", res);
-                            profile.user.profileImage = res[0]["profile_image"] ? res[0]["profile_image"] : "assets/imgs/temp_profile_img_1.png";
-                            profile.user.name = res[0]["first_name"] + " " + res[0]["last_name"];
-                            profile.user.wishList = res[0]["wishList"] ? res[0]["wishList"] : [];
-                            profile.user.ownedList = res[0]["ownedList"] ? res[0]["ownedList"] : [];
-                            profile.user.key = res[0].key;
-                            geolocation.getCurrentPosition().then(function (geodata) {
-                                userRef.update(res[0]["key"], {
-                                    last_location: {
-                                        lat: geodata.coords.latitude,
-                                        long: geodata.coords.longitude
-                                    }
-                                });
-                                console.log("user from component ", profile.user);
-                                userSub.unsubscribe();
-                            }).catch(function (error) {
-                                console.log('Error getting location', error);
-                            });
-                        });
-                    }
-                    _this.rootPage = __WEBPACK_IMPORTED_MODULE_9__pages_tabs_tabs__["a" /* TabsPage */];
+                    _this.initProfile(user).then(function (e) {
+                        return _this.initTrades(user);
+                    });
                 }
                 else {
-                    _this.rootPage = __WEBPACK_IMPORTED_MODULE_10__pages_login_login__["a" /* LoginPage */];
+                    _this.rootPage = __WEBPACK_IMPORTED_MODULE_11__pages_login_login__["a" /* LoginPage */];
                 }
             }, function () {
-                _this.rootPage = __WEBPACK_IMPORTED_MODULE_10__pages_login_login__["a" /* LoginPage */];
+                _this.rootPage = __WEBPACK_IMPORTED_MODULE_11__pages_login_login__["a" /* LoginPage */];
             });
         });
     }
+    MyApp.prototype.initTrades = function (user) {
+        this.trade.getNearestPossibleTrades(this.profile.user.key);
+    };
+    MyApp.prototype.initProfile = function (user) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var userRef = _this.afdb.list('/users', function (ref) { return ref.orderByChild('email').equalTo(user.email); });
+            var userSub = userRef.snapshotChanges().pipe(Object(__WEBPACK_IMPORTED_MODULE_6_rxjs_operators__["map"])(function (changes) {
+                return changes.map(function (c) { return (__assign({ key: c.payload.key }, c.payload.val())); });
+            })).subscribe(function (res) {
+                if (!res[0])
+                    return;
+                console.log("fb user", res);
+                _this.profile.user.profileImage = res[0]["profile_image"] ? res[0]["profile_image"] : "assets/imgs/temp_profile_img_1.png";
+                _this.profile.user.name = res[0]["first_name"] + " " + res[0]["last_name"];
+                _this.profile.user.wishList = res[0]["wishList"] ? res[0]["wishList"] : [];
+                _this.profile.user.ownedList = res[0]["ownedList"] ? res[0]["ownedList"] : [];
+                _this.profile.user.key = res[0].key;
+                _this.geolocation.getCurrentPosition().then(function (geodata) {
+                    userRef.update(res[0]["key"], {
+                        last_location: {
+                            lat: geodata.coords.latitude,
+                            long: geodata.coords.longitude
+                        }
+                    }).then(function (e) {
+                        resolve();
+                    });
+                    console.log("user from component ", _this.profile.user);
+                    userSub.unsubscribe();
+                }).catch(function (error) {
+                    reject(console.log('Error getting location', error));
+                });
+            });
+        });
+    };
     MyApp = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\wamp64\www\console-trade\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"C:\wamp64\www\console-trade\src\app\app.html"*/
         }),
@@ -1093,7 +1120,8 @@ var MyApp = /** @class */ (function () {
             __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__["a" /* AngularFireDatabase */],
             __WEBPACK_IMPORTED_MODULE_4__providers_app_auth_app_auth__["a" /* AppAuthProvider */],
             __WEBPACK_IMPORTED_MODULE_7__providers_profile_profile__["a" /* ProfileProvider */],
-            __WEBPACK_IMPORTED_MODULE_8__ionic_native_geolocation__["a" /* Geolocation */]])
+            __WEBPACK_IMPORTED_MODULE_8__ionic_native_geolocation__["a" /* Geolocation */],
+            __WEBPACK_IMPORTED_MODULE_9__providers_trade_trade__["a" /* TradeProvider */]])
     ], MyApp);
     return MyApp;
 }());
@@ -1148,7 +1176,7 @@ var Game = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return KeysPipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ReplacePipe; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1157,25 +1185,76 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 
-var KeysPipe = /** @class */ (function () {
-    function KeysPipe() {
+/**
+ * Generated class for the ReplacePipe pipe.
+ *
+ * See https://angular.io/api/core/Pipe for more info on Angular Pipes.
+ */
+var ReplacePipe = /** @class */ (function () {
+    function ReplacePipe() {
     }
-    KeysPipe.prototype.transform = function (value, args) {
-        var values = [];
-        for (var key in value) {
-            values.push(value);
+    /**
+     * Takes a value and makes it lowercase.
+     */
+    ReplacePipe.prototype.transform = function (value) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
         }
-        return values;
+        return value.replace(args[0], args[1]);
     };
-    KeysPipe = __decorate([
+    ReplacePipe = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["S" /* Pipe */])({
-            name: 'keys',
+            name: 'replace',
         })
-    ], KeysPipe);
-    return KeysPipe;
+    ], ReplacePipe);
+    return ReplacePipe;
 }());
 
-//# sourceMappingURL=keys.js.map
+//# sourceMappingURL=replace.js.map
+
+/***/ }),
+
+/***/ 516:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DistancePipe; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+/**
+ * Generated class for the DistancePipe pipe.
+ *
+ * See https://angular.io/api/core/Pipe for more info on Angular Pipes.
+ */
+var DistancePipe = /** @class */ (function () {
+    function DistancePipe() {
+    }
+    /**
+     * Takes a value and makes it lowercase.
+     */
+    DistancePipe.prototype.transform = function (value) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        return Math.ceil(parseFloat(value));
+    };
+    DistancePipe = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["S" /* Pipe */])({
+            name: 'ceil',
+        })
+    ], DistancePipe);
+    return DistancePipe;
+}());
+
+//# sourceMappingURL=distance.js.map
 
 /***/ }),
 
@@ -1189,7 +1268,7 @@ var KeysPipe = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_profile__ = __webpack_require__(498);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_underscore_underscore__ = __webpack_require__(499);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_underscore_underscore___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_underscore_underscore__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_firebaseapp_firebaseapp__ = __webpack_require__(290);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_firebaseapp_firebaseapp__ = __webpack_require__(291);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1215,23 +1294,27 @@ var ProfileProvider = /** @class */ (function () {
     }
     ProfileProvider.prototype.addGameToProfile = function (user, game, owned) {
         console.log("addGamToProfile: ", game);
-        this.user.wishList.push(game);
+        var duplicate = __WEBPACK_IMPORTED_MODULE_3_underscore_underscore__["find"](this.user.wishList, function (e) { return e.id === game.id; });
+        if (duplicate)
+            this.user.ownedList.push(game);
+        else
+            this.user.wishList.push(game);
         this.fbapp.updateUserWishList(user, this.user.wishList);
     };
     ProfileProvider.prototype.toggleItemOwnership = function (authUser, item, owned) {
         if (owned) {
-            var duplicate = __WEBPACK_IMPORTED_MODULE_3_underscore_underscore__["find"](this.user.wishList, function (e) { return e.name === item.name; });
+            var duplicate = __WEBPACK_IMPORTED_MODULE_3_underscore_underscore__["find"](this.user.wishList, function (e) { return e.id === item.id; });
             if (duplicate)
                 return;
             this.user.wishList.push(item);
-            this.user.ownedList = __WEBPACK_IMPORTED_MODULE_3_underscore_underscore__["reject"](this.user.ownedList, function (e) { return e.name === item.name; });
+            this.user.ownedList = __WEBPACK_IMPORTED_MODULE_3_underscore_underscore__["reject"](this.user.ownedList, function (e) { return e.id === item.id; });
         }
         else {
-            var duplicate = __WEBPACK_IMPORTED_MODULE_3_underscore_underscore__["find"](this.user.ownedList, function (e) { return e.name === item.name; });
+            var duplicate = __WEBPACK_IMPORTED_MODULE_3_underscore_underscore__["find"](this.user.ownedList, function (e) { return e.id === item.id; });
             if (duplicate)
                 return;
             this.user.ownedList.push(item);
-            this.user.wishList = __WEBPACK_IMPORTED_MODULE_3_underscore_underscore__["reject"](this.user.wishList, function (e) { return e.name === item.name; });
+            this.user.wishList = __WEBPACK_IMPORTED_MODULE_3_underscore_underscore__["reject"](this.user.wishList, function (e) { return e.id === item.id; });
         }
         this.startAllListsUpdateTImer(authUser);
     };
@@ -1251,11 +1334,11 @@ var ProfileProvider = /** @class */ (function () {
     };
     ProfileProvider.prototype.removeItem = function (authUser, item, owned) {
         if (owned) {
-            this.user.ownedList = __WEBPACK_IMPORTED_MODULE_3_underscore_underscore__["reject"](this.user.ownedList, function (el) { return el.name === item.name; });
+            this.user.ownedList = __WEBPACK_IMPORTED_MODULE_3_underscore_underscore__["reject"](this.user.ownedList, function (el) { return el.id === item.id; });
             this.startOwnedListUpdateTImer(authUser);
         }
         else {
-            this.user.wishList = __WEBPACK_IMPORTED_MODULE_3_underscore_underscore__["reject"](this.user.wishList, function (el) { return el.name === item.name; });
+            this.user.wishList = __WEBPACK_IMPORTED_MODULE_3_underscore_underscore__["reject"](this.user.wishList, function (el) { return el.id === item.id; });
             this.startWishListUpdateTImer(authUser);
         }
     };
@@ -1300,7 +1383,7 @@ var ProfileProvider = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__trade_trade__ = __webpack_require__(291);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__trade_trade__ = __webpack_require__(292);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__contact_contact__ = __webpack_require__(293);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__profile_profile__ = __webpack_require__(294);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__options_options__ = __webpack_require__(297);

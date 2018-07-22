@@ -41,20 +41,18 @@ export class MyApp {
             user => {
             console.log("app component subscription")
             if (user) {
+              this.rootPage = TabsPage;
 
               let usersRef : AngularFireList<any>;
               let users: any;
 
-              if(user != null){
                 this.initProfile(user).then((e)=>{
                   return this.initTrades(user)
                 })
-                this.rootPage = TabsPage;
 
-              } else {
-                this.rootPage = LoginPage;
-              }
 
+            }else {
+              this.rootPage = LoginPage;
             }
           },
           () => {

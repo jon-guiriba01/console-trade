@@ -1,17 +1,20 @@
-<ion-content >
+<ion-content class="ps4-bg">
 <!-- <div style="height: 100%;" (click)="getNearestPossibleTrades()">
 	
 </div> -->
  <!--  <div #map id="map" style="height: 100%;"></div> -->
 
- <ion-list>
- 	<ion-item *ngFor="let trader of trade.matchingTraders">
- 		<h5>{{trader.first_name + " " + trader.last_name}} matches {{trader.matchingTrades.length}} game in you wishlist</h5>
- 		<h5>{{trader.distance}} away</h5>
- 		<div *ngFor="let item of trader.matchingTrades" class="matching-trades">
- 			<img src="{{item.cover_url}}">
- 			<h4>{{item.name}}</h4>
+ 	<ion-item class="matching-trades" *ngFor="let trader of trade.matchingTraders" no-lines>
+ 		<div class="trader-info">
+ 			<ion-icon style="color: #fff;" name="chatbubbles"></ion-icon>
+	 		<h5>{{trader.first_name + " " + trader.last_name}} </h5>
+	 		<h5>{{trader.matchingTrades.length}} matches  </h5>
+ 			<h5>{{trader.distance | ceil}} miles away</h5>
+ 		</div>
+ 		<div class="trade-grid">
+	 		<div class="trade-item" *ngFor="let item of trader.matchingTrades">
+	 			<img class="fit-img" src="{{item.cover_url | replace: 'cover_big':'thumb'}}">
+	 		</div>
  		</div>
  	</ion-item>
- </ion-list>
 </ion-content>

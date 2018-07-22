@@ -1,2 +1,35 @@
-page-about {
+page-trade {
+
+	.matching-trades{
+		background: initial;
+	}
+	.trader-info{
+		display: flex;
+		justify-content: space-between;
+		background: color($colors, ps4_dark_blue_2, base);
+		padding: 2px 5px;
+	}
+	.trader-info h5:first-child{
+		width: 38%;
+		padding-right: 10px;
+		text-align: left;
+	}
+	.trader-info h5{
+		display: inline-block;
+		width: 30%;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		text-align: center;
+		color: #fff;
+	}
+	.trade-grid{
+		padding-top: 15px;
+	}
+	div.trade-item{
+		display: inline-block;
+		width: 32%;
+		max-width: 100px;
+		padding-right: 1%;
+	}
 }
