@@ -103,7 +103,7 @@ export class MyApp {
           })
 
           console.log("user from component ", this.profile.user)
-
+          userSub.unsubscribe();
         }).catch((error) => {
           reject( console.log('Error getting location', error) );
         });

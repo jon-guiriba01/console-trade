@@ -54,25 +54,23 @@ export class ProfilePage {
   	this.igdb.searchOptions = [];
   }
 
-  addGameToProfile(option){
+  addGameToProfile(item){
 
-  	var platforms = [];
+  	var platforms = [""];
   	
-  	if(option.platforms){
-	  	if(option.platforms.includes(C.PS4_ID))
+  	if(item.platforms){
+	  	if(item.platforms.includes(C.PS4_ID))
 	  		platforms.push("ps4")
 
-	  	if(option.platforms.includes(C.NS_ID))
+	  	if(item.platforms.includes(C.NS_ID))
 	  		platforms.push("nintendo_switch")
 
-	  	if(option.platforms.includes(C.XBOX1_ID))
+	  	if(item.platforms.includes(C.XBOX1_ID))
 	  		platforms.push("xbox1")
   	}
 
-  	var url = option.cover.url.replace("thumb","cover_big")
-    console.log("addGameToProfile: ", option)
-    var game = new Game(option.id, option.name, url, platforms);
-    console.log("addGameToProfile [game]: ", game)
+  	var url = item.cover.url.replace("thumb","cover_big")
+    var game = new Game(item.id, item.name, url, platforms);
   	this.profile.addGameToProfile(this.auth.user, game, false)
   	this.searchInput = null;
   	this.igdb.searchOptions = [];

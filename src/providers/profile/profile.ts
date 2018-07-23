@@ -42,16 +42,22 @@ export class ProfileProvider {
   }
 
 	addGameToProfile(user : firebase.User, game : Game, owned : boolean){
-		console.log("addGamToProfile: ",game)
 
     var duplicate = _.find(this.user.wishList, e=>{return e.id === game.id})
-
-    if(duplicate)
+    
+    if(!game.platforms) 
+      game.platforms = [];
+    console.log("addGamToProfile: ",game)
+    
+    if(duplicate){
       this.user.ownedList.push(game)
-  	else
+      this.fbapp.updateUserOwnedList(user, this.user.ownedList)
+    }
+  	else{
       this.user.wishList.push(game)
+      this.fbapp.updateUserWishList(user, this.user.wishList)
+    }
 
-		this.fbapp.updateUserWishList(user, this.user.wishList)
 
 
 	}
