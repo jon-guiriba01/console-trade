@@ -28,7 +28,7 @@ export class IgdbProvider {
   		// "&filter[version_parent][not_exists]=1" +
   		// "&fields=*";
 
-  	this.http.get( search, {headers}).subscribe((res:Array<object>)=>{
+  	var httpSub = this.http.get( search, {headers}).subscribe((res:Array<object>)=>{
   		var gameIds = "";
 			console.log("res", res)
 
@@ -45,7 +45,7 @@ export class IgdbProvider {
   		}
 
   		this.searchOptions = res;
-
+      httpSub.unsubscribe();
   	});
 
   }

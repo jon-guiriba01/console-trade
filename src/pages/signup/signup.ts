@@ -14,14 +14,14 @@ export class SignupPage {
 	validation_messages = {
 		'first_name': [
 				{ type: 'required', message: 'first name is required.' },
-				{ type: 'minlength', message: 'Username must be at least 3 characters long.' },
-				{ type: 'maxlength', message: 'Username cannot be more than 12 characters long.' },
+				{ type: 'minlength', message: 'first name must be at least 3 characters long.' },
+				{ type: 'maxlength', message: 'first name cannot be more than 20 characters long.' },
 				{ type: 'validUsername', message: 'Your username has already been taken.' }
 			],
 		'last_name': [
 				{ type: 'required', message: 'last name is required.' },
-				{ type: 'minlength', message: 'Username must be at least 5 characters long.' },
-				{ type: 'maxlength', message: 'Username cannot be more than 25 characters long.' },
+				{ type: 'minlength', message: 'last name must be at least 3 characters long.' },
+				{ type: 'maxlength', message: 'last name cannot be more than 20 characters long.' },
 				{ type: 'validUsername', message: 'Your username has already been taken.' }
 			],
 			'email': [
@@ -51,10 +51,10 @@ export class SignupPage {
   	var passwordRegex = '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$';
 
 		this.signupForm = fb.group({
-			first_name: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(12)])],
-			last_name: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(12)])],
+			first_name: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(20)])],
+			last_name: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(20)])],
 			email: ['', Validators.compose([Validators.required, Validators.email])],
-			password: ['', Validators.compose([Validators.required, Validators.pattern(passwordRegex), Validators.minLength(8)])],
+			password: ['', Validators.compose([Validators.required, Validators.pattern(passwordRegex), Validators.minLength(8), Validators.maxLength(20)])],
 		});
 
   }

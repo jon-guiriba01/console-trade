@@ -78,15 +78,19 @@ export class MyApp {
           changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
         )
        ).subscribe((res)=>{
-        if(!res[0]) return;
+        if(!res[0] || !res[0]["key"]) return;
 
         console.log("fb user", res)
 
         this.profile.user.profileImage = res[0]["profile_image"] ? res[0]["profile_image"] : "assets/imgs/temp_profile_img_1.png";
         this.profile.user.name = res[0]["first_name"] + " " + res[0]["last_name"];
+        this.profile.user.first_name = res[0]["first_name"];
+        this.profile.user.last_name = res[0]["last_name"];
+        this.profile.user.email = res[0]["email"];
         this.profile.user.wishList = res[0]["wishList"] ? res[0]["wishList"] : [];
         this.profile.user.ownedList = res[0]["ownedList"] ? res[0]["ownedList"] : [];
         this.profile.user.key = res[0].key;
+        this.profile.user.conversations = res[0]["conversations"];
 
         this.geolocation.getCurrentPosition().then((geodata) => {
           userRef.update(res[0]["key"], {
@@ -99,7 +103,6 @@ export class MyApp {
           })
 
           console.log("user from component ", this.profile.user)
-          userSub.unsubscribe();
 
         }).catch((error) => {
           reject( console.log('Error getting location', error) );

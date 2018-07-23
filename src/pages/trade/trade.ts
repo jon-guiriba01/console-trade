@@ -1,9 +1,10 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController, Platform } from 'ionic-angular';
+import { NavController, Platform, App } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { AppAuthProvider } from '../../providers/app-auth/app-auth';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { TradeProvider } from '../../providers/trade/trade';
+import { ChatPage } from '../../pages/chat/chat';
 
 import { Profile } from '../../models/profile';
 import { C } from '../../config';
@@ -28,6 +29,7 @@ export class TradePage {
 		, private geolocation: Geolocation
 		, private trade: TradeProvider
 		, private profile: ProfileProvider
+		, private app: App
   	) {
 
 
@@ -45,6 +47,12 @@ export class TradePage {
   getNearestPossibleTrades(){
   	console.log("getNearestPossibleTrades")
   	this.trade.getNearestPossibleTrades(this.profile.user.key);
+  }
+
+  showChat(trader){
+  	this.app.getRootNavs()[0].push(ChatPage, {
+  		trader : trader
+  	});
   }
 
   initMap() {

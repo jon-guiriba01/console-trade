@@ -19,10 +19,11 @@ export class TradeProvider {
    	// var url = "https://lemon-data-center-js.herokuapp.com/";
    	var url = 'http://localhost:3000/api/getNPT?key='+key;
 
-  	this.http.get(url, {headers}).subscribe((res)=>{
+    var httpSub = this.http.get(url, {headers}).subscribe((res)=>{
       
       this.matchingTraders = res;
       console.log("get getNearestPossibleTrades: ", this.matchingTraders)
+      httpSub.unsubscribe();
   	});
   }
   

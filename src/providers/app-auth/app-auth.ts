@@ -8,6 +8,7 @@ import { AngularFireDatabase, AngularFireList  } from 'angularfire2/database';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Game } from '../../models/game';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @Injectable()
 export class AppAuthProvider {
@@ -17,10 +18,11 @@ export class AppAuthProvider {
 
 	constructor(
 		public afAuth: AngularFireAuth
+    ,public  geolocation: Geolocation
 		, public afdb: AngularFireDatabase
 		) {
 
-		afAuth.authState.subscribe(user => {
+	 afAuth.authState.subscribe(user => {
 			console.log("user", user)
 			this.user = user;
 		});
@@ -32,15 +34,35 @@ export class AppAuthProvider {
 	}
 
 	signUp(form) {
-	 return this.afAuth.auth.createUserWithEmailAndPassword(form.email,form.password).then((e)=>{
+	 return new Promise( (resolve,reject)=>{
+	 	this.afAuth.auth.createUserWithEmailAndPassword(form.email,form.password).then((e)=>{
+
+		 	var profile = new Profile();
+		 	profile.first_name = form.firstName,
+			profile.last_name = form.lastName,
+			profile.email = form.email
 
 
-		this.afdb.list('/users').push({
-				first_name: form.firstName,
-				last_name: form.lastName,
-				email: form.email
-			})
-			 		
+	    this.geolocation.getCurrentPosition().then((geodata) => {
+	  		profile.last_location = {
+	          lat:geodata.coords.latitude, 
+	          long: geodata.coords.longitude
+	        }
+
+	  		this.afdb.list('/users').push(profile).then(snap=>{
+					this.afdb.list('/users').update(snap.key,{
+						key : snap.key
+					})
+					resolve();
+				})
+
+	    }).catch((error) => {
+	    	reject();
+	      console.log('Error getting location', error);
+	    });
+
+		 });
+
 	 });
 	}
 

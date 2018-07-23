@@ -6,7 +6,7 @@
 
  	<ion-item class="matching-trades" *ngFor="let trader of trade.matchingTraders" no-lines>
  		<div class="trader-info">
- 			<ion-icon style="color: #fff;" name="chatbubbles"></ion-icon>
+ 			<ion-icon style="color: #fff;" name="chatbubbles" (click)="showChat(trader)"></ion-icon>
 	 		<h5>{{trader.first_name + " " + trader.last_name}} </h5>
 	 		<h5>{{trader.matchingTrades.length}} matches  </h5>
  			<h5>{{trader.distance | ceil}} miles away</h5>

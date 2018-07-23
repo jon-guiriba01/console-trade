@@ -70716,6 +70716,72 @@ h4 {
   background: linear-gradient(0deg, #00488a 0%, #66b1ff 100%);
 }
 
+page-chat {
+  /*	.message-input .input.input-md{
+	}
+	.message-input input{
+		color: #6d6d6d;
+		padding: 6px 15px;
+		border-radius: 25px;
+		background-color: #e6e9ed;
+		margin: 0;
+	}
+
+	.message-input ion-icon{
+		position: absolute;
+		right: 10%;
+		font-size: 2.5rem;
+		color: #6d6d6d;
+	}*/
+}
+
+page-chat .message-input {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 20px;
+}
+
+page-chat .message-input * {
+  padding: 0;
+}
+
+page-chat .message-input ion-item.item.item-md {
+  width: 90%;
+  color: #fff;
+}
+
+page-chat .ps4-message-input .input.input-md {
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+page-chat .ps4-message-input .text-input-md {
+  color: #fff;
+  margin: 8px 8px;
+}
+
+page-chat .ps4-message-input button {
+  padding: 10px 20px;
+  border: 0.5px solid #fff;
+  background: rgba(48, 73, 158, 0.8);
+  color: #fff;
+  margin-left: 5px;
+}
+
 page-login ion-item.item-md, page-login .button.button-md {
   margin-top: 40px;
   display: block;
@@ -71068,7 +71134,8 @@ page-trade .trader-info h5 {
 }
 
 page-trade .trade-grid {
-  padding-top: 15px;
+  padding-top: 2px;
+  background: rgba(0, 0, 0, 0.3);
 }
 
 page-trade div.trade-item {

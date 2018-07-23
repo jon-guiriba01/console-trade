@@ -16,6 +16,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { OptionsPage } from '../pages/options/options';
+import { ChatPage } from '../pages/chat/chat';
 import { AppAuthProvider } from '../providers/app-auth/app-auth';
 import { Geolocation } from '@ionic-native/geolocation';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
@@ -33,6 +34,7 @@ import { LongPressModule } from 'ionic-long-press';
 @NgModule({
   declarations: [
     MyApp,
+    ChatPage,
     TradePage,
     ContactPage,
     ProfilePage,
@@ -55,6 +57,7 @@ import { LongPressModule } from 'ionic-long-press';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    ChatPage,
     TradePage,
     ContactPage,
     ProfilePage,

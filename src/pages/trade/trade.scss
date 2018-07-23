@@ -3,6 +3,7 @@ page-trade {
 	.matching-trades{
 		background: initial;
 	}
+
 	.trader-info{
 		display: flex;
 		justify-content: space-between;
@@ -24,7 +25,8 @@ page-trade {
 		color: #fff;
 	}
 	.trade-grid{
-		padding-top: 15px;
+		padding-top: 2px;
+		background: rgba(0, 0, 0, 0.3);
 	}
 	div.trade-item{
 		display: inline-block;
