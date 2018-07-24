@@ -70782,6 +70782,22 @@ page-chat .ps4-message-input button {
   margin-left: 5px;
 }
 
+page-chat .thread {
+  height: 86%;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+page-chat .chat-message h5 {
+  background: #b4d7ff;
+  border-radius: 15px;
+  padding: 20px 10px;
+  max-width: 40%;
+  margin-bottom: 10px;
+  display: block;
+  font-size: 1.5rem;
+}
+
 page-login ion-item.item-md, page-login .button.button-md {
   margin-top: 40px;
   display: block;

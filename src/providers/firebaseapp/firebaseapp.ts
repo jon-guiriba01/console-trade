@@ -1,21 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, take, first } from 'rxjs/operators';
-
+import { Message } from '../../models/Message';
+import { Profile } from '../../models/Profile';
 import * as firebase from 'firebase/app';
 import { AngularFireDatabase, AngularFireList  } from 'angularfire2/database';
-/*
-  Generated class for the FirebaseappProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class FirebaseappProvider {
 
   constructor(
   	public http: HttpClient
-		, public afdb: AngularFireDatabase) {
+		, public afdb: AngularFireDatabase
+		) {
     console.log('Hello FirebaseappProvider Provider');
   }
 
@@ -66,60 +63,53 @@ export class FirebaseappProvider {
 
 	}
 
-	getConversation(trader, user){
-		// console.log("get convo ", trader, user)
-	
-		if(!trader["conversations"] || !user["conversations"]) return;		
-
-		var conversationKey = this.getConversationKey(trader, user);
-		
-		var conversationRef = this.afdb.object('/conversations/'+conversationKey)
-		.valueChanges();
-
+	getConversation(key){
+		var conversationRef = this.afdb
+		.list('/conversations/'+key+"/messages")
+		.valueChanges(["child_added"])
 
 		return conversationRef;
 
 	}
 
-	getConversationKey(trader, user){
-		if(!trader["conversations"] || !user["conversations"]) return;		
+	getConversationKey(trader : Profile, user : Profile){
+		if(!trader.conversations || !user.conversations) return;		
+			console.log("getConversationKey trader", trader)
+			console.log("getConversationKey user", user)
 
 		for(var converKey of user.conversations){
-			console.log("cjecking " + converKey)
-			if(trader.conversations.includes(converKey))
+			console.log("cjecking ", converKey)
+			if(trader.conversations.indexOf(converKey) != -1)
 				return converKey;
 		}
 		return null;
 	}
 
-	pushConversation(trader, user, msg){
+	pushConversation(trader : Profile, user : Profile, msg){
 		// console.log("push convo " + msg, trader, user)
 		var members = {};
 		members[trader.key] = true;
 		members[user.key] = true;
 
+		var message = new Message(msg, user.name,  user.key, firebase.database.ServerValue.TIMESTAMP)
+
 		var converRef = this.afdb.list('/conversations').push({
-			messages: [msg],
+			messages: [message],
 			members: members
 		})
 		
-		var userSub = this.afdb.object('/users/'+user.key).snapshotChanges().subscribe((res)=>{
-			
-			console.log("users conv ", res.payload.val())
-			
-			var userObj = res.payload.val();
-			var conversations = userObj["conversations"] ? userObj["conversations"] : []
+		user.conversations = user.conversations ? user.conversations : []
+		user.conversations.push(converRef.key)
 
-			conversations.push(converRef.key);
+		var userConversationKey = this.afdb.list('/users').update(user.key, {
+			conversations : user.conversations
+		})
 
-			this.afdb.list('/users').update(user.key, {
-				conversations : conversations
-			})
-			this.afdb.list('/users').update(trader.key, {
-				conversations : conversations
-			})
+		trader.conversations = trader.conversations ? trader.conversations : []
+		trader.conversations.push(converRef.key)
 
-			userSub.unsubscribe();
+		var traderConversationKey = this.afdb.list('/users').update(trader.key, {
+			conversations : trader.conversations
 		})
 
 		return converRef
@@ -127,22 +117,35 @@ export class FirebaseappProvider {
 
 	updateConversation(key, trader, user, msg){
 		console.log("update convo " + key)
+
 		var conversationSub = this.afdb
 		.object('/conversations/' + key)
 		.snapshotChanges()
 		.subscribe((res)=>{
-			var conversation = res.payload.val();
+			try{
 
-			conversation["messages"] = conversation["messages"] || [];
+				var conversation = res.payload.val();
+				
+				if(!conversation) return;
+				
+				conversation["messages"] = conversation["messages"] || [];
 
-			conversation["messages"].push(msg)
+				var message = new Message(msg, user.name, user.key, firebase.database.ServerValue.TIMESTAMP)
 
-			this.afdb.list('/conversations').update(key, {
-				messages : conversation["messages"]
-			})
 
-			console.log("converRef update: " , res.payload.val())
-			conversationSub.unsubscribe();
+				conversation["messages"].push(message)
+
+				this.afdb.list('/conversations').update(key, {
+					messages : conversation["messages"]
+				})
+
+				console.log("converRef update: " , res.payload.val())
+				conversationSub.unsubscribe();
+
+			}catch(err){
+				console.log("Error updating conversation ", err)
+			}
+
 		})
 
 		// return this.afdb.list(

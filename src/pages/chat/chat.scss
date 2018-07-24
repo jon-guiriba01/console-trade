@@ -36,6 +36,22 @@ page-chat {
     margin-left: 5px;
 	}
 
+	.thread{
+		height: 86%;
+		overflow: auto;
+		overflow-x: hidden;
+	}
+
+	.chat-message h5{
+		background: #b4d7ff;
+		border-radius: 15px;
+		padding: 20px 10px;
+		max-width: 40%;
+		margin-bottom: 10px;
+		display: block;
+		font-size: 1.5rem;
+	}
+
 /*	.message-input .input.input-md{
 	}
 	.message-input input{

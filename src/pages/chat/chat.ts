@@ -12,7 +12,8 @@ export class ChatPage {
 
 	trader;
 	message = "";
-	chat = {};
+	chatSub;
+	thread = [];
 
 	converKey;
 
@@ -27,13 +28,24 @@ export class ChatPage {
   	this.trader = navParams.get('trader')
   }
 
-  ionViewDidLoad() {
-  	this.fbApp.getConversation(this.trader, this.profile.user);
-  	console.log("chat page load")
-
+  ionViewDidEnter() {
 	 	this.converKey =	this.fbApp.getConversationKey(this.trader, this.profile.user)
   	console.log("onLoad converKey: " + this.converKey)
 
+  	if(this.converKey){
+  		this.chatSub = this.fbApp.getConversation(this.converKey).subscribe((res)=>{
+  				console.log("thread ", res);
+  				this.thread = res;
+  		})
+  	}
+
+  }
+
+  ionViewDidLeave(){
+  	if(this.chatSub){
+  		console.log("ONLEAVE CHAT PAGE")
+  		this.chatSub.unsubscribe();
+  	}
   }
 
   send(){
@@ -46,6 +58,11 @@ export class ChatPage {
 		}else{
   		console.log("PUSH CHAT " + this.converKey)
 			this.converKey = this.fbApp.pushConversation(this.trader,this.profile.user,this.message).key	  			
+			
+  		this.chatSub = this.fbApp.getConversation(this.converKey).subscribe((res)=>{
+  				console.log("thread ", res);
+  				this.thread = res;
+  		})
 		}
 
   	// var converSub =	this.fbApp

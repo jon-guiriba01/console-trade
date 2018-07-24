@@ -14,6 +14,13 @@
 
 
 <ion-content class="ps4-bg" padding>
+
+	<div class="thread">
+		<div class="chat-message" *ngFor="let message of thread">
+			<h5>{{message.text}}</h5>
+		</div>
+	</div>
+
 	<div class="ps4-message-input message-input">
 			<ion-input [(ngModel)]="message" placeholder="Type a message..." (keyup.enter)="send()">
 			</ion-input>

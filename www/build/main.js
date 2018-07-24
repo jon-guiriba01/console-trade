@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 158:
+/***/ 159:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,10 @@ webpackJsonp([0],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_operators__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_Message__ = __webpack_require__(502);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase_app__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase_app___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase_app__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__ = __webpack_require__(91);
 var __assign = (this && this.__assign) || Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
         s = arguments[i];
@@ -30,12 +33,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-/*
-  Generated class for the FirebaseappProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
+
 var FirebaseappProvider = /** @class */ (function () {
     function FirebaseappProvider(http, afdb) {
         this.http = http;
@@ -74,48 +73,44 @@ var FirebaseappProvider = /** @class */ (function () {
             userSub.unsubscribe();
         });
     };
-    FirebaseappProvider.prototype.getConversation = function (trader, user) {
-        // console.log("get convo ", trader, user)
-        if (!trader["conversations"] || !user["conversations"])
-            return;
-        var conversationKey = this.getConversationKey(trader, user);
-        var conversationRef = this.afdb.object('/conversations/' + conversationKey)
-            .valueChanges();
+    FirebaseappProvider.prototype.getConversation = function (key) {
+        var conversationRef = this.afdb
+            .list('/conversations/' + key + "/messages")
+            .valueChanges(["child_added"]);
         return conversationRef;
     };
     FirebaseappProvider.prototype.getConversationKey = function (trader, user) {
-        if (!trader["conversations"] || !user["conversations"])
+        if (!trader.conversations || !user.conversations)
             return;
+        console.log("getConversationKey trader", trader);
+        console.log("getConversationKey user", user);
         for (var _i = 0, _a = user.conversations; _i < _a.length; _i++) {
             var converKey = _a[_i];
-            console.log("cjecking " + converKey);
-            if (trader.conversations.includes(converKey))
+            console.log("cjecking ", converKey);
+            if (trader.conversations.indexOf(converKey) != -1)
                 return converKey;
         }
         return null;
     };
     FirebaseappProvider.prototype.pushConversation = function (trader, user, msg) {
-        var _this = this;
         // console.log("push convo " + msg, trader, user)
         var members = {};
         members[trader.key] = true;
         members[user.key] = true;
+        var message = new __WEBPACK_IMPORTED_MODULE_3__models_Message__["a" /* Message */](msg, user.name, user.key, __WEBPACK_IMPORTED_MODULE_4_firebase_app__["database"].ServerValue.TIMESTAMP);
         var converRef = this.afdb.list('/conversations').push({
-            messages: [msg],
+            messages: [message],
             members: members
         });
-        var userSub = this.afdb.object('/users/' + user.key).snapshotChanges().subscribe(function (res) {
-            console.log("users conv ", res.payload.val());
-            var userObj = res.payload.val();
-            var conversations = userObj["conversations"] ? userObj["conversations"] : [];
-            conversations.push(converRef.key);
-            _this.afdb.list('/users').update(user.key, {
-                conversations: conversations
-            });
-            _this.afdb.list('/users').update(trader.key, {
-                conversations: conversations
-            });
-            userSub.unsubscribe();
+        user.conversations = user.conversations ? user.conversations : [];
+        user.conversations.push(converRef.key);
+        var userConversationKey = this.afdb.list('/users').update(user.key, {
+            conversations: user.conversations
+        });
+        trader.conversations = trader.conversations ? trader.conversations : [];
+        trader.conversations.push(converRef.key);
+        var traderConversationKey = this.afdb.list('/users').update(trader.key, {
+            conversations: trader.conversations
         });
         return converRef;
     };
@@ -126,14 +121,22 @@ var FirebaseappProvider = /** @class */ (function () {
             .object('/conversations/' + key)
             .snapshotChanges()
             .subscribe(function (res) {
-            var conversation = res.payload.val();
-            conversation["messages"] = conversation["messages"] || [];
-            conversation["messages"].push(msg);
-            _this.afdb.list('/conversations').update(key, {
-                messages: conversation["messages"]
-            });
-            console.log("converRef update: ", res.payload.val());
-            conversationSub.unsubscribe();
+            try {
+                var conversation = res.payload.val();
+                if (!conversation)
+                    return;
+                conversation["messages"] = conversation["messages"] || [];
+                var message = new __WEBPACK_IMPORTED_MODULE_3__models_Message__["a" /* Message */](msg, user.name, user.key, __WEBPACK_IMPORTED_MODULE_4_firebase_app__["database"].ServerValue.TIMESTAMP);
+                conversation["messages"].push(message);
+                _this.afdb.list('/conversations').update(key, {
+                    messages: conversation["messages"]
+                });
+                console.log("converRef update: ", res.payload.val());
+                conversationSub.unsubscribe();
+            }
+            catch (err) {
+                console.log("Error updating conversation ", err);
+            }
         });
         // return this.afdb.list(
         // 	'/conversations', 
@@ -144,17 +147,17 @@ var FirebaseappProvider = /** @class */ (function () {
     };
     FirebaseappProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_3_angularfire2_database__["a" /* AngularFireDatabase */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _b || Object])
     ], FirebaseappProvider);
     return FirebaseappProvider;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=firebaseapp.js.map
 
 /***/ }),
 
-/***/ 159:
+/***/ 160:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -201,7 +204,7 @@ var TradeProvider = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 193:
+/***/ 194:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -214,11 +217,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 193;
+webpackEmptyAsyncContext.id = 194;
 
 /***/ }),
 
-/***/ 236:
+/***/ 237:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -231,7 +234,7 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 236;
+webpackEmptyAsyncContext.id = 237;
 
 /***/ }),
 
@@ -272,7 +275,7 @@ var Profile = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_app_auth_app_auth__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_profile_profile__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_trade_trade__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_trade_trade__ = __webpack_require__(160);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_chat_chat__ = __webpack_require__(294);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -433,7 +436,7 @@ var TradePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_profile_profile__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_firebaseapp_firebaseapp__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_firebaseapp_firebaseapp__ = __webpack_require__(159);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_app_auth_app_auth__ = __webpack_require__(42);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -457,16 +460,28 @@ var ChatPage = /** @class */ (function () {
         this.fbApp = fbApp;
         this.auth = auth;
         this.message = "";
-        this.chat = {};
+        this.thread = [];
         this.trader = navParams.get('trader');
     }
-    ChatPage.prototype.ionViewDidLoad = function () {
-        this.fbApp.getConversation(this.trader, this.profile.user);
-        console.log("chat page load");
+    ChatPage.prototype.ionViewDidEnter = function () {
+        var _this = this;
         this.converKey = this.fbApp.getConversationKey(this.trader, this.profile.user);
         console.log("onLoad converKey: " + this.converKey);
+        if (this.converKey) {
+            this.chatSub = this.fbApp.getConversation(this.converKey).subscribe(function (res) {
+                console.log("thread ", res);
+                _this.thread = res;
+            });
+        }
+    };
+    ChatPage.prototype.ionViewDidLeave = function () {
+        if (this.chatSub) {
+            console.log("ONLEAVE CHAT PAGE");
+            this.chatSub.unsubscribe();
+        }
     };
     ChatPage.prototype.send = function () {
+        var _this = this;
         console.log("sent message: ", this.message);
         if (this.converKey) {
             console.log("UPDATE CHAT " + this.converKey);
@@ -475,6 +490,10 @@ var ChatPage = /** @class */ (function () {
         else {
             console.log("PUSH CHAT " + this.converKey);
             this.converKey = this.fbApp.pushConversation(this.trader, this.profile.user, this.message).key;
+            this.chatSub = this.fbApp.getConversation(this.converKey).subscribe(function (res) {
+                console.log("thread ", res);
+                _this.thread = res;
+            });
         }
         // var converSub =	this.fbApp
         // .getConversation(this.trader, this.profile.user)
@@ -495,15 +514,12 @@ var ChatPage = /** @class */ (function () {
     };
     ChatPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-chat',template:/*ion-inline-start:"C:\wamp64\www\console-trade\src\pages\chat\chat.html"*/'<!--\n  Generated template for the ChatPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{trader.first_name + " " + trader.last_name}}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content class="ps4-bg" padding>\n	<div class="ps4-message-input message-input">\n			<ion-input [(ngModel)]="message" placeholder="Type a message..." (keyup.enter)="send()">\n			</ion-input>\n			<button (click)="send()">Send</button>\n	</div>\n</ion-content>\n'/*ion-inline-end:"C:\wamp64\www\console-trade\src\pages\chat\chat.html"*/,
+            selector: 'page-chat',template:/*ion-inline-start:"C:\wamp64\www\console-trade\src\pages\chat\chat.html"*/'<!--\n  Generated template for the ChatPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{trader.first_name + " " + trader.last_name}}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content class="ps4-bg" padding>\n\n	<div class="thread">\n		<div class="chat-message" *ngFor="let message of thread">\n			<h5>{{message.text}}</h5>\n		</div>\n	</div>\n\n	<div class="ps4-message-input message-input">\n			<ion-input [(ngModel)]="message" placeholder="Type a message..." (keyup.enter)="send()">\n			</ion-input>\n			<button (click)="send()">Send</button>\n	</div>\n</ion-content>\n'/*ion-inline-end:"C:\wamp64\www\console-trade\src\pages\chat\chat.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_profile_profile__["a" /* ProfileProvider */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_firebaseapp_firebaseapp__["a" /* FirebaseappProvider */],
-            __WEBPACK_IMPORTED_MODULE_4__providers_app_auth_app_auth__["a" /* AppAuthProvider */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_profile_profile__["a" /* ProfileProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_profile_profile__["a" /* ProfileProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__providers_firebaseapp_firebaseapp__["a" /* FirebaseappProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_firebaseapp_firebaseapp__["a" /* FirebaseappProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__providers_app_auth_app_auth__["a" /* AppAuthProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_app_auth_app_auth__["a" /* AppAuthProvider */]) === "function" && _e || Object])
     ], ChatPage);
     return ChatPage;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=chat.js.map
@@ -555,7 +571,7 @@ var ContactPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_app_auth_app_auth__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_profile_profile__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_igdb_igdb__ = __webpack_require__(297);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_game__ = __webpack_require__(502);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_game__ = __webpack_require__(503);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__config__ = __webpack_require__(298);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -623,10 +639,12 @@ var ProfilePage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-profile',template:/*ion-inline-start:"C:\wamp64\www\console-trade\src\pages\profile\profile.html"*/'<ion-content class="ps4-bg" (click)="clearSearch()">\n\n\n\n<div class="profile">\n\n  <div class="profile-image">\n\n    <img class="circle-head" src="{{profile.user.profileImage}}">\n\n  </div>\n\n  <div class="profile-info-wrapper">\n\n    <div class="profile-info">\n\n        <h4>{{profile.user.name}}</h4>\n\n        <!-- <ion-icon name="create"></ion-icon> -->\n\n      <!-- <h5>{{profile.user.location}}</h5> -->\n\n    </div>\n\n  </div>\n\n</div>\n\n\n\n<hr inset padding-horizontal style="background-color: #fff;">\n\n\n\n<div class="trade-info" >\n\n  \n\n  <div class="game-input-wrapper">\n\n    <ion-item  inset >\n\n      <ion-input (ionChange)="searchtTitle()" type="text" [(ngModel)]="searchInput" placeholder="Add a game"></ion-input>\n\n    </ion-item>\n\n    <h5 float-right class="tip-text">*tap games to toggle, hold to delete</h5>\n\n    <div class="autocomplete">\n\n      <ion-list>\n\n        <ion-item class="autocomplete-item" *ngFor="let item of igdb.searchOptions" (click)="addGameToProfile(item)">\n\n          <!-- <img *ngIf="item.cover != null" src="{{item.cover.url}}"> -->\n\n          <h5>{{item.name}}</h5>\n\n        </ion-item>\n\n      </ion-list>\n\n    </div>\n\n  </div>\n\n  \n\n  <h5 class="divider" style="padding-top: 30px;">Looking for</h5>\n\n\n\n  <div class="display-grid">\n\n    <div class="trade-item" *ngFor="let item of profile.user.wishList">\n\n      <div ion-long-press class="trade-img" (tap)="toggleItemOwnership(item, false)" [interval]="400" (onPressing)="removeItem(item, false)">\n\n        <img class="fit-img" src="{{item.cover_url}}">\n\n      </div>\n\n      <div class="platforms">\n\n        <img (tap)="toggleItemPlatform(item, \'xbox1\', false)" [ngClass]="{\'faded\': item.platforms.indexOf(\'xbox1\') == -1}" src="assets/imgs/xbox_icon.png">\n\n        <img (tap)="toggleItemPlatform(item, \'ps4\', false)" [ngClass]="{\'faded\': item.platforms.indexOf(\'ps4\') == -1}" src="assets/imgs/ps4_icon.png">\n\n        <img (tap)="toggleItemPlatform(item, \'nintendo_switch\', false)" [ngClass]="{\'faded\': item.platforms.indexOf(\'nintendo_switch\') == -1}" src="assets/imgs/ns_icon.png">\n\n      </div>\n\n    </div>    \n\n  </div>\n\n\n\n  <h5 class="divider">Owned</h5>\n\n  \n\n  <div class="display-grid">\n\n    <div class="trade-item" *ngFor="let item of profile.user.ownedList">\n\n      <div ion-long-press class="trade-img" (tap)="toggleItemOwnership(item, true)" [interval]="400" (onPressing)="removeItem(item, true)">\n\n        <img class="fit-img" src="{{item.cover_url}}">\n\n      </div>\n\n      <div class="platforms">\n\n        <img (tap)="toggleItemPlatform(item, \'xbox1\', true)" [ngClass]="{\'faded\': item.platforms.indexOf(\'xbox1\') == -1}" src="assets/imgs/xbox_icon.png">\n\n        <img (tap)="toggleItemPlatform(item, \'ps4\', true)" [ngClass]="{\'faded\': item.platforms.indexOf(\'ps4\') == -1}" src="assets/imgs/ps4_icon.png">\n\n        <img (tap)="toggleItemPlatform(item, \'nintendo_switch\', true)" [ngClass]="{\'faded\': item.platforms.indexOf(\'nintendo_switch\') == -1}" src="assets/imgs/ns_icon.png">\n\n      </div>\n\n      \n\n    </div>    \n\n  </div>\n\n</div>\n\n\n\n\n\n</ion-content>\n\n\n\n'/*ion-inline-end:"C:\wamp64\www\console-trade\src\pages\profile\profile.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__providers_igdb_igdb__["a" /* IgdbProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_igdb_igdb__["a" /* IgdbProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_app_auth_app_auth__["a" /* AppAuthProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_app_auth_app_auth__["a" /* AppAuthProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__providers_profile_profile__["a" /* ProfileProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_profile_profile__["a" /* ProfileProvider */]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_4__providers_igdb_igdb__["a" /* IgdbProvider */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_app_auth_app_auth__["a" /* AppAuthProvider */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_profile_profile__["a" /* ProfileProvider */]])
     ], ProfilePage);
     return ProfilePage;
-    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=profile.js.map
@@ -965,8 +983,8 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppAuthProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_auth__ = __webpack_require__(280);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase_app__ = __webpack_require__(282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_auth__ = __webpack_require__(281);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase_app__ = __webpack_require__(156);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase_app___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase_app__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_profile__ = __webpack_require__(285);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angularfire2_database__ = __webpack_require__(91);
@@ -1082,12 +1100,12 @@ var AppAuthProvider = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(467);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(277);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__ = __webpack_require__(279);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(278);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__ = __webpack_require__(280);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angularfire2__ = __webpack_require__(155);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__ = __webpack_require__(280);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_angularfire2_auth__ = __webpack_require__(281);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__config__ = __webpack_require__(298);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ultimate_ngxerrors__ = __webpack_require__(503);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ultimate_ngxerrors__ = __webpack_require__(504);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_trade_trade__ = __webpack_require__(293);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_contact_contact__ = __webpack_require__(295);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_profile_profile__ = __webpack_require__(296);
@@ -1101,12 +1119,12 @@ var AppAuthProvider = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_angularfire2_database__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__providers_igdb_igdb__ = __webpack_require__(297);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__angular_common_http__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__providers_trade_trade__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__providers_trade_trade__ = __webpack_require__(160);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__providers_profile_profile__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pipes_replace_replace__ = __webpack_require__(516);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pipes_distance_distance__ = __webpack_require__(517);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__providers_firebaseapp_firebaseapp__ = __webpack_require__(158);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28_ionic_long_press__ = __webpack_require__(518);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pipes_replace_replace__ = __webpack_require__(517);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pipes_distance_distance__ = __webpack_require__(518);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__providers_firebaseapp_firebaseapp__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28_ionic_long_press__ = __webpack_require__(519);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1214,14 +1232,14 @@ var AppModule = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(277);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(279);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(278);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(280);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_app_auth_app_auth__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_operators__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_profile_profile__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_geolocation__ = __webpack_require__(92);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__providers_trade_trade__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__providers_trade_trade__ = __webpack_require__(160);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_tabs_tabs__ = __webpack_require__(93);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_login_login__ = __webpack_require__(300);
 var __assign = (this && this.__assign) || Object.assign || function(t) {
@@ -1302,15 +1320,15 @@ var MyApp = /** @class */ (function () {
                 if (!res[0] || !res[0]["key"])
                     return;
                 console.log("fb user", res);
-                _this.profile.user.profileImage = res[0]["profile_image"] ? res[0]["profile_image"] : "assets/imgs/temp_profile_img_1.png";
+                _this.profile.user.profileImage = res[0]["profile_image"] || "assets/imgs/temp_profile_img_1.png";
                 _this.profile.user.name = res[0]["first_name"] + " " + res[0]["last_name"];
-                _this.profile.user.first_name = res[0]["first_name"];
-                _this.profile.user.last_name = res[0]["last_name"];
-                _this.profile.user.email = res[0]["email"];
-                _this.profile.user.wishList = res[0]["wishList"] ? res[0]["wishList"] : [];
-                _this.profile.user.ownedList = res[0]["ownedList"] ? res[0]["ownedList"] : [];
-                _this.profile.user.key = res[0].key;
-                _this.profile.user.conversations = res[0]["conversations"];
+                _this.profile.user.first_name = res[0]["first_name"] || "";
+                _this.profile.user.last_name = res[0]["last_name"] || "";
+                _this.profile.user.email = res[0]["email"] || "";
+                _this.profile.user.wishList = res[0]["wishList"] || [];
+                _this.profile.user.ownedList = res[0]["ownedList"] || [];
+                _this.profile.user.key = res[0].key || "";
+                _this.profile.user.conversations = res[0]["conversations"] || [];
                 _this.geolocation.getCurrentPosition().then(function (geodata) {
                     userRef.update(res[0]["key"], {
                         last_location: {
@@ -1345,6 +1363,28 @@ var MyApp = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Message; });
+var Message = /** @class */ (function () {
+    function Message(text, sender, senderKey, createdAt) {
+        this.text = "";
+        this.sender = "";
+        this.senderKey = "";
+        this.text = text;
+        this.sender = sender;
+        this.senderKey = senderKey;
+        this.createdAt = createdAt;
+    }
+    return Message;
+}());
+
+//# sourceMappingURL=Message.js.map
+
+/***/ }),
+
+/***/ 503:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Game; });
 var Game = /** @class */ (function () {
     function Game(id, name, cover_url, platforms) {
@@ -1364,7 +1404,7 @@ var Game = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 516:
+/***/ 517:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1407,7 +1447,7 @@ var ReplacePipe = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 517:
+/***/ 518:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1460,7 +1500,7 @@ var DistancePipe = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_profile__ = __webpack_require__(285);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_underscore_underscore__ = __webpack_require__(500);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_underscore_underscore___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_underscore_underscore__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_firebaseapp_firebaseapp__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_firebaseapp_firebaseapp__ = __webpack_require__(159);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
