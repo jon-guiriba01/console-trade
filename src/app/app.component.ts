@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, ViewController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AppAuthProvider } from '../providers/app-auth/app-auth';
@@ -11,6 +11,9 @@ import { TradeProvider } from '../providers/trade/trade';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
+
+declare var cordova:any;
+declare var Keyboard: any;
 
 @Component({
   templateUrl: 'app.html'
@@ -92,7 +95,8 @@ export class MyApp {
         this.profile.user.key = res[0].key || "";
         this.profile.user.conversations = res[0]["conversations"] || [];
 
-        this.geolocation.getCurrentPosition().then((geodata) => {
+          console.log(">>geolocation ", this.profile.user)
+        this.geolocation.getCurrentPosition({timeout: 20000, enableHighAccuracy: true}).then((geodata) => {
           userRef.update(res[0]["key"], {
             last_location: {
               lat:geodata.coords.latitude, 
@@ -102,10 +106,10 @@ export class MyApp {
             resolve();
           })
 
-          console.log("user from component ", this.profile.user)
+          console.log(">>user from component ", this.profile.user)
           userSub.unsubscribe();
         }).catch((error) => {
-          reject( console.log('Error getting location', error) );
+          reject( console.log('>>Error getting location', error) );
         });
       })
 

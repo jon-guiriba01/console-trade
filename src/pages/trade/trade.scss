@@ -10,6 +10,13 @@ page-trade {
 		background: color($colors, ps4_dark_blue_2, base);
 		padding: 2px 5px;
 	}
+	.user-info{
+		display: flex;
+		justify-content: space-between;
+		background: color($colors, ps4_dark_blue_2, base);
+		padding: 2px 5px;
+		color: #fff;
+	}
 	.trader-info h5:first-child{
 		width: 38%;
 		padding-right: 10px;
@@ -28,10 +35,29 @@ page-trade {
 		padding-top: 2px;
 		background: rgba(0, 0, 0, 0.3);
 	}
+	.trade-grid.white{
+		background: rgba(160, 160, 160, 0.3);
+	}
+
 	div.trade-item{
 		display: inline-block;
 		width: 32%;
 		max-width: 100px;
 		padding-right: 1%;
 	}
+	ion-spinner{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		margin: auto;
+		width: 50px;
+		height: 50px;
+	}
+
+/*	ion-spinner *{
+		width: 50px;
+		height: 50px;
+	}*/
 }

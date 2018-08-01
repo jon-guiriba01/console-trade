@@ -31,23 +31,13 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-ionic-keyboard": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-ionic-keyboard@2.0.5"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova-plugin-geolocation": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-geolocation@4.0.1"
+      "id": "cordova-plugin-geolocation@latest"
     },
     "is_top_level": true,
-    "variables": {
-      "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
-    }
+    "variables": {}
   },
   "cordova-plugin-googlemaps": {
     "source": {

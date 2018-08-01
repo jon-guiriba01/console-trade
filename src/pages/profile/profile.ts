@@ -47,7 +47,7 @@ export class ProfilePage {
 
   		if(this.searchInput.length > 2)
   			this.igdb.search(this.searchInput)
-  	}, 500)
+  	}, 300)
   }
 
   clearSearch(){
@@ -68,8 +68,10 @@ export class ProfilePage {
 	  	if(item.platforms.includes(C.XBOX1_ID))
 	  		platforms.push("xbox1")
   	}
+    var url = null;
+    if(item.cover)
+  	  url = item.cover.url.replace("thumb","cover_big").replace("//","http://")
 
-  	var url = item.cover.url.replace("thumb","cover_big")
     var game = new Game(item.id, item.name, url, platforms);
   	this.profile.addGameToProfile(this.auth.user, game, false)
   	this.searchInput = null;

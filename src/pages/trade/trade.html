@@ -1,9 +1,11 @@
-<ion-content class="ps4-bg">
+<ion-content class="ps4">
 <!-- <div style="height: 100%;" (click)="getNearestPossibleTrades()">
 	
 </div> -->
  <!--  <div #map id="map" style="height: 100%;"></div> -->
+	<ion-spinner *ngIf="trade.loading" name="bubbles"></ion-spinner>
 
+	<h4 padding	>Matches found</h4>
  	<ion-item class="matching-trades" *ngFor="let trader of trade.matchingTraders" no-lines>
  		<div class="trader-info">
  			<ion-icon style="color: #fff;" name="chatbubbles" (click)="showChat(trader)"></ion-icon>
@@ -13,6 +15,14 @@
  		</div>
  		<div class="trade-grid">
 	 		<div class="trade-item" *ngFor="let item of trader.matchingTrades">
+	 			<img class="fit-img" src="{{item.cover_url | replace: 'cover_big':'thumb'}}">
+	 		</div>
+ 		</div>
+ 		<div class="user-info">
+	 		<h5>{{trader.first_name + " " + trader.last_name}} is interested in..</h5>
+ 		</div>
+ 		<div class="trade-grid white">
+	 		<div class="trade-item" *ngFor="let item of trader.matchingWishes">
 	 			<img class="fit-img" src="{{item.cover_url | replace: 'cover_big':'thumb'}}">
 	 		</div>
  		</div>

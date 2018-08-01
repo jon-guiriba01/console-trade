@@ -70676,6 +70676,10 @@ ion-navbar.toolbar {
   box-shadow: none !important;
 }
 
+.scroll-content {
+  padding-bottom: 0 !important;
+}
+
 h5, h4 {
   margin: 3px 0 5px 0;
 }
@@ -70710,10 +70714,30 @@ h4 {
   margin-right: 4px;
 }
 
-.ps4-bg {
+.ps4 {
   background: #00488a;
   background: -webkit-gradient(linear, left bottom, left top, from(#00488a), to(#66b1ff));
   background: linear-gradient(0deg, #00488a 0%, #66b1ff 100%);
+}
+
+.tabs-md div.tabbar {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.tab-button * {
+  color: #fff;
+}
+
+.tabs-md .tab-button-icon {
+  color: #fff;
+}
+
+.ps4-header * {
+  color: #f5f5f5;
+}
+
+.ps4-header .toolbar-background-md {
+  background: rgba(0, 0, 0, 0.5);
 }
 
 page-chat {
@@ -70788,14 +70812,31 @@ page-chat .thread {
   overflow-x: hidden;
 }
 
+page-chat .chat-message {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 page-chat .chat-message h5 {
   background: #b4d7ff;
   border-radius: 15px;
   padding: 20px 10px;
   max-width: 40%;
   margin-bottom: 10px;
-  display: block;
   font-size: 1.5rem;
+}
+
+page-chat .trader-message {
+  -webkit-box-align: end;
+  -webkit-align-items: end;
+  -ms-flex-align: end;
+  align-items: end;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
 }
 
 page-login ion-item.item-md, page-login .button.button-md {
@@ -70840,6 +70881,25 @@ page-login ion-content.content-md .scroll-content {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
+}
+
+page-messages div.trade-item {
+  display: inline-block;
+  max-width: 100px;
+}
+
+page-messages div.trade-item img {
+  margin-right: 2px;
+}
+
+page-messages ion-item.item {
+  margin-top: 5px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+page-messages .trader-name {
+  color: #fff;
+  font-size: 1.5rem;
 }
 
 ion-content .scroll-content {
@@ -70944,7 +71004,8 @@ page-profile .display-list .trade-item {
 
 page-profile .display-list .trade-img {
   width: 180px;
-  height: 100%;
+  /*height: 100%;*/
+  height: 160px;
   display: inline-block;
 }
 
@@ -70961,6 +71022,7 @@ page-profile .display-grid {
 }
 
 page-profile .display-grid .trade-item {
+  position: relative;
   display: inline-block;
   width: 110px;
   height: 160px;
@@ -70971,6 +71033,15 @@ page-profile .display-grid .trade-img {
   width: 100%;
   height: 100%;
   display: inline-block;
+}
+
+page-profile .trade-img-title {
+  position: absolute;
+  width: 100%;
+  padding: 10px 5px;
+  bottom: 0;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 page-profile .display-grid .platforms {
@@ -71042,6 +71113,11 @@ page-profile .autocomplete-item .label.label-md {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
+}
+
+page-profile .fit-img {
+  background-image: url("../assets/imgs/default_cover.png");
+  background-size: cover;
 }
 
 page-signup ion-item.item-md, page-signup .button.button-md {
@@ -71116,6 +71192,13 @@ page-tabs ion-icon.settings {
   padding-right: 20px;
 }
 
+page-trade {
+  /*	ion-spinner *{
+		width: 50px;
+		height: 50px;
+	}*/
+}
+
 page-trade .matching-trades {
   background: initial;
 }
@@ -71154,9 +71237,24 @@ page-trade .trade-grid {
   background: rgba(0, 0, 0, 0.3);
 }
 
+page-trade .trade-grid.white {
+  background: rgba(255, 255, 255, 0.3);
+}
+
 page-trade div.trade-item {
   display: inline-block;
   width: 32%;
   max-width: 100px;
   padding-right: 1%;
+}
+
+page-trade ion-spinner {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 50px;
+  height: 50px;
 }

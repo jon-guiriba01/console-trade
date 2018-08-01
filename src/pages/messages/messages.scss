@@ -1,0 +1,59 @@
+page-messages {
+
+	div.trade-item{
+		/*display: inline-block;*/
+		/*max-width: 100px;*/
+	}
+
+	.trader-img-container{
+		width: 70px;
+		height: 70px;
+		margin-right: 10px;
+		display: inline-block;
+	}
+
+	.trader-img-container img{
+		background-image: url('../assets/imgs/default_cover.png');
+		background-size: cover;
+	}
+
+
+	.trader-info{
+		display: inline-block;
+		justify-content: space-between;
+		align-items: center;
+		padding: 2px 5px;
+	}
+
+	.trader-name{
+		color: #fff;
+		font-size: 1.5rem;
+	}
+
+	.trade-item img{
+		margin-right: 2px;
+	}
+
+	.trade-item h5{
+		color: #fff;
+	}
+	ion-item.item{
+		margin-top: 15px;
+		background: initial;
+		padding: 0 0 0 5px;
+	}
+
+	.message-container{
+		background: rgba(0, 0, 0, 0.3);
+		display: flex;
+		align-items: center;
+	}
+
+	.matches{
+		padding: 5px;
+	}
+
+	ion-label.label-md{
+		margin: 0;
+	}
+}

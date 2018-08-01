@@ -10,7 +10,7 @@ import { firebaseConfig } from '../config';
 import { NgxErrorsModule } from '@ultimate/ngxerrors';
 
 import { TradePage } from '../pages/trade/trade';
-import { ContactPage } from '../pages/contact/contact';
+import { MessagesPage } from '../pages/messages/messages';
 import { ProfilePage } from '../pages/profile/profile';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
@@ -26,8 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TradeProvider } from '../providers/trade/trade';
 import { ProfileProvider } from '../providers/profile/profile';
 
-import { ReplacePipe } from '../pipes/replace/replace';
-import { DistancePipe } from '../pipes/distance/distance';
+import { PipesModule } from '../pipes/pipes.module';
 import { FirebaseappProvider } from '../providers/firebaseapp/firebaseapp';
 import { LongPressModule } from 'ionic-long-press';
 
@@ -36,14 +35,12 @@ import { LongPressModule } from 'ionic-long-press';
     MyApp,
     ChatPage,
     TradePage,
-    ContactPage,
+    MessagesPage,
     ProfilePage,
     LoginPage,
     SignupPage,
     OptionsPage,
     TabsPage,
-    ReplacePipe,
-    DistancePipe
   ],
   imports: [
     BrowserModule,
@@ -52,6 +49,7 @@ import { LongPressModule } from 'ionic-long-press';
     AngularFireDatabaseModule,
     HttpClientModule,
     LongPressModule,
+    PipesModule,
     NgxErrorsModule
   ],
   bootstrap: [IonicApp],
@@ -59,7 +57,7 @@ import { LongPressModule } from 'ionic-long-press';
     MyApp,
     ChatPage,
     TradePage,
-    ContactPage,
+    MessagesPage,
     ProfilePage,
     LoginPage,
     SignupPage,

@@ -1,3 +1,6 @@
+import { UserConversation } from './userConversation';
+
+
 export class Profile{
 
 	public profileImage = "";
@@ -11,7 +14,7 @@ export class Profile{
   public consoles = [];
   public tradeLocations = [];
   public last_location = {};
-  public conversations = [];
+  public conversations : Array<UserConversation>;
 
 	constructor(){
   }

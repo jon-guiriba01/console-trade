@@ -2,6 +2,7 @@ ion-content .scroll-content{
 	padding: 36px 0 0 0;
 }
 page-profile {
+
 	.profile{
 		display: flex;
 		align-items: center;
@@ -84,7 +85,8 @@ page-profile {
 	}
 	.display-list .trade-img{
 		width: 180px;
-    height: 100%;
+    /*height: 100%;*/
+    height: 160px;
     display: inline-block;
 	}
 
@@ -98,6 +100,7 @@ page-profile {
 	}
 
 	.display-grid .trade-item{
+		position: relative;
 		display: inline-block;
  		width: 110px;
     height: 160px;
@@ -108,6 +111,16 @@ page-profile {
 		width: 100%;
     height: 100%;
     display: inline-block;
+	}
+
+
+	.trade-img-title{
+		position: absolute;
+		width: 100%;
+		padding: 10px 5px;
+		bottom: 0;
+		color: #fff;
+    background: rgba(0, 0, 0, 0.5);
 	}
 
 	.display-grid .platforms{
@@ -163,4 +176,15 @@ page-profile {
 		display: flex;
 		align-items: center;
 	}
+
+	.fit-img{
+		background-image: url('../assets/imgs/default_cover.png');
+		background-size: cover;
+	}
+
+	.game-input{
+		background: #0c2034;
+		color: #fff;
+	}
+
 }

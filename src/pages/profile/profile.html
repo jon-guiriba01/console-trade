@@ -1,4 +1,4 @@
-<ion-content class="ps4-bg" (click)="clearSearch()">
+<ion-content class="ps4" (click)="clearSearch()">
 
 <div class="profile">
   <div class="profile-image">
@@ -18,7 +18,7 @@
 <div class="trade-info" >
   
   <div class="game-input-wrapper">
-    <ion-item  inset >
+    <ion-item  inset class="game-input" no-lines>
       <ion-input (ionChange)="searchtTitle()" type="text" [(ngModel)]="searchInput" placeholder="Add a game"></ion-input>
     </ion-item>
     <h5 float-right class="tip-text">*tap games to toggle, hold to delete</h5>
@@ -37,7 +37,9 @@
   <div class="display-grid">
     <div class="trade-item" *ngFor="let item of profile.user.wishList">
       <div ion-long-press class="trade-img" (tap)="toggleItemOwnership(item, false)" [interval]="400" (onPressing)="removeItem(item, false)">
-        <img class="fit-img" src="{{item.cover_url}}">
+        <img *ngIf="item.cover_url" class="fit-img" src="{{item.cover_url}}">
+        <img *ngIf="!item.cover_url" class="fit-img" >
+        <h5 *ngIf="!item.cover_url" class="trade-img-title" >{{item.name}}</h5>
       </div>
       <div class="platforms">
         <img (tap)="toggleItemPlatform(item, 'xbox1', false)" [ngClass]="{'faded': item.platforms.indexOf('xbox1') == -1}" src="assets/imgs/xbox_icon.png">
@@ -52,7 +54,9 @@
   <div class="display-grid">
     <div class="trade-item" *ngFor="let item of profile.user.ownedList">
       <div ion-long-press class="trade-img" (tap)="toggleItemOwnership(item, true)" [interval]="400" (onPressing)="removeItem(item, true)">
-        <img class="fit-img" src="{{item.cover_url}}">
+        <img *ngIf="item.cover_url" class="fit-img" src="{{item.cover_url}}">
+        <img *ngIf="!item.cover_url" class="fit-img" >
+        <h5 *ngIf="!item.cover_url" class="trade-img-title" >{{item.name}}</h5>
       </div>
       <div class="platforms">
         <img (tap)="toggleItemPlatform(item, 'xbox1', true)" [ngClass]="{'faded': item.platforms.indexOf('xbox1') == -1}" src="assets/imgs/xbox_icon.png">

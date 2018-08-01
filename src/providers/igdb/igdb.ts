@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { C } from '../../config';
+import { map, take, first } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class IgdbProvider {
@@ -20,9 +22,28 @@ export class IgdbProvider {
             .set("user-key", "5227ae6e46cee2806cf25779d4c97966")
             .set("Accept", "application/json")
 
+    var excludedPlatforms = "0";
+    var included = [
+      41 // wii
+      ,48 // xbox1
+      ,49 // ps4
+      ,130 // switch
+    ]
+
+    for(var i = 1; i < 150; i++){
+      if(included.indexOf(i) > -1) continue;
+      excludedPlatforms += ","+i;
+    }
 
 
-    var search = "https://api-endpoint.igdb.com/games/?search="+input+"&filter[release_dates.platform][any]=48,49,130&fields=*";
+    var search = 
+    "https://api-endpoint.igdb.com/games/"
+    + "?search="+input
+    + "&filter[release_dates.platform][not_in]="+excludedPlatforms
+    + "&filter[category][eq]="+"0"
+    + "&filter[release_dates.platform][exists]"
+    + "&filter[version_parent][not_exists]"
+    + "&fields=*";
     // var search = 'https://api-endpoint.igdb.com/games/?search=' + input +
   		// "&filter[release_dates.platform][any]=48,49,130" +
   		// "&filter[version_parent][not_exists]=1" +

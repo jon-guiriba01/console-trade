@@ -28,6 +28,7 @@
     "@ionic-native/status-bar": "4.8.0",
     "@ionic/pro": "1.0.20",
     "@ionic/storage": "2.1.3",
+    "@types/jquery": "^3.3.5",
     "@ultimate/ngxerrors": "^1.4.0",
     "angular": "^1.7.2",
     "angularfire2": "^5.0.0-rc.11",
@@ -35,7 +36,6 @@
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-geolocation": "^4.0.1",
     "cordova-plugin-googlemaps": "^2.3.6",
-    "cordova-plugin-ionic-keyboard": "^2.0.5",
     "cordova-plugin-ionic-webview": "^1.1.19",
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-whitelist": "^1.3.3",
@@ -43,7 +43,9 @@
     "ionic-angular": "3.9.2",
     "ionic-long-press": "^1.5.0",
     "ionicons": "3.0.0",
+    "jquery": "^3.3.1",
     "minimist": "^1.2.0",
+    "polyfills": "^2.1.1",
     "promise-polyfill": "^8.0.0",
     "rxjs": "^6.2.2",
     "rxjs-compat": "^6.2.2",
@@ -53,7 +55,7 @@
     "zone.js": "0.8.26"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "3.1.10",
+    "@ionic/app-scripts": "^3.1.11",
     "typescript": "~2.6.2"
   },
   "description": "An Ionic project",
@@ -63,7 +65,6 @@
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
-      "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-geolocation": {
         "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
       },

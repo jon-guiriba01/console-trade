@@ -7,19 +7,7 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.lemontree.console_trade"
-    },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "com.lemontree.console_trade"
-    },
-    "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "com.lemontree.console_trade"
-    },
-    "cordova-plugin-ionic-webview": {
-      "PACKAGE_NAME": "com.lemontree.console_trade"
-    },
-    "cordova-plugin-ionic-keyboard": {
       "PACKAGE_NAME": "com.lemontree.console_trade"
     },
     "cordova-plugin-geolocation": {
@@ -29,6 +17,15 @@
       "API_KEY_FOR_ANDROID": "AIzaSyBrBzqWMC1aPfPVTxDizR8qRFkwwhmrlPg",
       "PLAY_SERVICES_VERSION": "15.0.1",
       "ANDROID_SUPPORT_V4_VERSION": "26.1.0",
+      "PACKAGE_NAME": "com.lemontree.console_trade"
+    },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "com.lemontree.console_trade"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.lemontree.console_trade"
+    },
+    "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.lemontree.console_trade"
     }
   },

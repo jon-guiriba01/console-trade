@@ -1,19 +1,19 @@
 [
     {
-        "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-land-xhdpi_screen.png.flat",
-        "source": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\src\\main\\res\\drawable-land-xhdpi\\screen.png"
-    },
-    {
         "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media_narrow.xml.flat",
         "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\eb8929c9527d292fb80f593a0130cf57\\res\\layout\\notification_template_big_media_narrow.xml"
     },
     {
-        "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notification_bg_normal_pressed.9.png.flat",
-        "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\c966536fe3682786a2ac085113f13f27\\res\\drawable-mdpi-v4\\notification_bg_normal_pressed.9.png"
+        "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-land-xhdpi_screen.png.flat",
+        "source": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\src\\main\\res\\drawable-land-xhdpi\\screen.png"
     },
     {
         "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_media_custom.xml.flat",
         "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\eb8929c9527d292fb80f593a0130cf57\\res\\layout\\notification_template_media_custom.xml"
+    },
+    {
+        "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notification_bg_normal_pressed.9.png.flat",
+        "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\c966536fe3682786a2ac085113f13f27\\res\\drawable-mdpi-v4\\notification_bg_normal_pressed.9.png"
     },
     {
         "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21_notification_action.xml.flat",
@@ -44,12 +44,12 @@
         "source": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\src\\main\\res\\mipmap-mdpi\\icon.png"
     },
     {
-        "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout-v16_notification_template_custom_big.xml.flat",
-        "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\c966536fe3682786a2ac085113f13f27\\res\\layout-v16\\notification_template_custom_big.xml"
-    },
-    {
         "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_googleg_disabled_color_18.png.flat",
         "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\2445618130acb183885c92a5f54c30f5\\res\\drawable-hdpi-v4\\googleg_disabled_color_18.png"
+    },
+    {
+        "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout-v16_notification_template_custom_big.xml.flat",
+        "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\c966536fe3682786a2ac085113f13f27\\res\\layout-v16\\notification_template_custom_big.xml"
     },
     {
         "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media_narrow_custom.xml.flat",
@@ -88,12 +88,12 @@
         "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\c966536fe3682786a2ac085113f13f27\\res\\layout-v21\\notification_template_icon_group.xml"
     },
     {
-        "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_common_google_signin_btn_icon_light_normal_background.9.png.flat",
-        "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\2445618130acb183885c92a5f54c30f5\\res\\drawable-xxhdpi-v4\\common_google_signin_btn_icon_light_normal_background.9.png"
-    },
-    {
         "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notify_panel_notification_icon_bg.png.flat",
         "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\c966536fe3682786a2ac085113f13f27\\res\\drawable-xhdpi-v4\\notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_common_google_signin_btn_icon_light_normal_background.9.png.flat",
+        "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\2445618130acb183885c92a5f54c30f5\\res\\drawable-xxhdpi-v4\\common_google_signin_btn_icon_light_normal_background.9.png"
     },
     {
         "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_common_google_signin_btn_text_light_normal_background.9.png.flat",
@@ -176,12 +176,12 @@
         "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\2445618130acb183885c92a5f54c30f5\\res\\drawable\\common_google_signin_btn_icon_dark_focused.xml"
     },
     {
-        "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_icon.png.flat",
-        "source": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\icon.png"
-    },
-    {
         "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_googleg_standard_color_18.png.flat",
         "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\2445618130acb183885c92a5f54c30f5\\res\\drawable-xxhdpi-v4\\googleg_standard_color_18.png"
+    },
+    {
+        "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_icon.png.flat",
+        "source": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\icon.png"
     },
     {
         "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-land-hdpi_screen.png.flat",
@@ -320,12 +320,12 @@
         "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\c966536fe3682786a2ac085113f13f27\\res\\layout-v21\\notification_template_custom_big.xml"
     },
     {
-        "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-land-xxxhdpi_screen.png.flat",
-        "source": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\src\\main\\res\\drawable-land-xxxhdpi\\screen.png"
-    },
-    {
         "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notify_panel_notification_icon_bg.png.flat",
         "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\c966536fe3682786a2ac085113f13f27\\res\\drawable-hdpi-v4\\notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-land-xxxhdpi_screen.png.flat",
+        "source": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\src\\main\\res\\drawable-land-xxxhdpi\\screen.png"
     },
     {
         "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_media_cancel_action.xml.flat",
@@ -368,10 +368,6 @@
         "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\2445618130acb183885c92a5f54c30f5\\res\\drawable\\common_google_signin_btn_text_dark_normal.xml"
     },
     {
-        "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-port-ldpi_screen.png.flat",
-        "source": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\src\\main\\res\\drawable-port-ldpi\\screen.png"
-    },
-    {
         "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-land-ldpi_screen.png.flat",
         "source": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\src\\main\\res\\drawable-land-ldpi\\screen.png"
     },
@@ -382,6 +378,10 @@
     {
         "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_common_google_signin_btn_icon_light_normal_background.9.png.flat",
         "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\2445618130acb183885c92a5f54c30f5\\res\\drawable-hdpi-v4\\common_google_signin_btn_icon_light_normal_background.9.png"
+    },
+    {
+        "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-port-ldpi_screen.png.flat",
+        "source": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\src\\main\\res\\drawable-port-ldpi\\screen.png"
     },
     {
         "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
@@ -400,12 +400,12 @@
         "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\c966536fe3682786a2ac085113f13f27\\res\\layout\\notification_template_icon_group.xml"
     },
     {
-        "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-land-mdpi_screen.png.flat",
-        "source": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\src\\main\\res\\drawable-land-mdpi\\screen.png"
-    },
-    {
         "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_common_google_signin_btn_text_light_normal_background.9.png.flat",
         "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\2445618130acb183885c92a5f54c30f5\\res\\drawable-mdpi-v4\\common_google_signin_btn_text_light_normal_background.9.png"
+    },
+    {
+        "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-land-mdpi_screen.png.flat",
+        "source": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\src\\main\\res\\drawable-land-mdpi\\screen.png"
     },
     {
         "merged": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media.xml.flat",

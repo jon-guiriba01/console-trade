@@ -1,0 +1,26 @@
+<ion-content class="ps4">
+    <ion-item *ngFor="let trader of traders" (click)="showChat(trader)" no-lines>
+        <div class="message-container">
+            <div class="trader-img-container">
+                <img *ngIf="trader.profileImage" lass="fit-img" src="{{trader.profileImage}}"> 
+                <img *ngIf="!trader.profileImage" lass="fit-img" src="{{ui.getRandomProfileImage()}}"> 
+            </div>
+            <div class="trader-info">
+                <h5 class="trader-name">{{trader.first_name + " " + trader.last_name}} </h5>
+            </div>
+       
+        </div>
+<!--         <div class="message-container">
+            <div class="trader-info">
+                <h5 class="trader-name">{{trader.first_name + " " + trader.last_name}} </h5>
+            </div>
+            <div class="matches">
+                <div class="trade-item"  *ngFor="let item of trader.ownedList">
+                    <ng-container *ngIf="profile.isItemMatch(item)">
+                        <h5>{{item.name}}</h5>
+                    </ng-container>
+                </div>
+            </div>
+        </div> -->
+    </ion-item>
+</ion-content>

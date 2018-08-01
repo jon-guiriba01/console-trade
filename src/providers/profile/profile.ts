@@ -111,6 +111,15 @@ export class ProfileProvider {
 
   }
 
+  isItemMatch(item){
+    for(var wishItem of this.user.wishList){
+      if(wishItem.id === item.id)
+        return true;
+    }
+
+    return false;
+  }
+
   private startAllListsUpdateTImer(authUser){
 		clearTimeout(this.allListsUpdateTimeout)
 

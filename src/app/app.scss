@@ -53,6 +53,10 @@
   box-shadow: none !important;
 }
 
+.scroll-content {
+    padding-bottom: 0 !important;
+ }
+
 h5,h4{
 	margin: 3px 0 5px 0;
 }
@@ -83,7 +87,27 @@ h4{
 	margin-right: 4px;
 }
 
-.ps4-bg{
+.ps4{
 	background: rgb(0,72,138);
 	background: linear-gradient(0deg, rgba(0,72,138,1) 0%, rgba(102,177,255,1) 100%);
+}
+
+.tabs-md div.tabbar {
+  background: rgba(0,0,0,0.5);
+}
+
+.tab-button *{
+  color: #fff;
+}
+
+.tabs-md .tab-button-icon{
+  color: #fff;
+}
+
+.ps4-header *{
+  color: #f5f5f5;
+}
+
+.ps4-header .toolbar-background-md{
+  background: rgba(0,0,0,0.5);
 }

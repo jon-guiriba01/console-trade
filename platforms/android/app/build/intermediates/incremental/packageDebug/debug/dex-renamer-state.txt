@@ -1,4 +1,4 @@
-#Tue Jul 24 13:43:05 CST 2018
+#Mon Jul 30 23:19:27 CST 2018
 base.0=C\:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 renamed.0=classes.dex
 file.0=C\:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0\\classes.dex

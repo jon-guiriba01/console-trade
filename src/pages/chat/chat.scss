@@ -42,14 +42,21 @@ page-chat {
 		overflow-x: hidden;
 	}
 
+	.chat-message{
+    display: flex;
+	}
+
 	.chat-message h5{
 		background: #b4d7ff;
 		border-radius: 15px;
 		padding: 20px 10px;
 		max-width: 40%;
 		margin-bottom: 10px;
-		display: block;
 		font-size: 1.5rem;
+	}
+	.trader-message{
+    align-items: end;
+    justify-content: flex-end;
 	}
 
 /*	.message-input .input.input-md{

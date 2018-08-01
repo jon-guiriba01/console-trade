@@ -1,15 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.lemontree.console_trade" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <feature name="Whitelist">
-        <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
-        <param name="onload" value="true" />
-    </feature>
     <feature name="Device">
         <param name="android-package" value="org.apache.cordova.device.Device" />
-    </feature>
-    <feature name="SplashScreen">
-        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
-        <param name="onload" value="true" />
     </feature>
     <feature name="Geolocation">
         <param name="android-package" value="org.apache.cordova.geolocation.Geolocation" />
@@ -58,8 +50,13 @@
     <feature name="StreetViewPanorama">
         <param name="android-package" value="plugin.google.maps.PluginStreetViewPanorama" />
     </feature>
-    <feature name="Keyboard">
-        <param name="android-package" onload="true" value="io.ionic.keyboard.IonicKeyboard" />
+    <feature name="SplashScreen">
+        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Whitelist">
+        <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+        <param name="onload" value="true" />
     </feature>
     <name>console-trade</name>
     <description>Trade PS4, Xbox, Switch games with other players</description>

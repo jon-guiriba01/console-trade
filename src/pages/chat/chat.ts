@@ -14,7 +14,7 @@ export class ChatPage {
 	message = "";
 	chatSub;
 	thread = [];
-
+  threads = [];
 	converKey;
 
   constructor(
@@ -24,21 +24,24 @@ export class ChatPage {
   	, public fbApp: FirebaseappProvider
   	, public auth: AppAuthProvider
   	) {
-
   	this.trader = navParams.get('trader')
+
+    this.converKey =  this.fbApp.getTraderConversationKey(this.trader, this.profile.user)
+
+    if(this.converKey){
+      this.chatSub = this.fbApp.getConversationMessages(this.converKey).subscribe((res)=>{
+          console.log("thread ", res);
+          this.thread = res;
+          this.threads[this.trader.key] = res;
+       })
+     }
+
   }
 
-  ionViewDidEnter() {
-	 	this.converKey =	this.fbApp.getConversationKey(this.trader, this.profile.user)
-  	console.log("onLoad converKey: " + this.converKey)
+  ionViewDidLoad(){
+  }
 
-  	if(this.converKey){
-  		this.chatSub = this.fbApp.getConversation(this.converKey).subscribe((res)=>{
-  				console.log("thread ", res);
-  				this.thread = res;
-  		})
-  	}
-
+  ionViewWillEnter() {
   }
 
   ionViewDidLeave(){
@@ -56,10 +59,10 @@ export class ChatPage {
   		console.log("UPDATE CHAT " + this.converKey)
 			this.fbApp.updateConversation(this.converKey, this.trader, this.profile.user, this.message)
 		}else{
-  		console.log("PUSH CHAT " + this.converKey)
-			this.converKey = this.fbApp.pushConversation(this.trader,this.profile.user,this.message).key	  			
+			this.converKey = this.fbApp.createNewThread(this.trader,this.profile.user,this.message).key	  			
+      console.log("PUSH CHAT " + this.converKey)
 			
-  		this.chatSub = this.fbApp.getConversation(this.converKey).subscribe((res)=>{
+  		this.chatSub = this.fbApp.getConversationMessages(this.converKey).subscribe((res)=>{
   				console.log("thread ", res);
   				this.thread = res;
   		})

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map, take, first } from 'rxjs/operators';
 import { Message } from '../../models/Message';
 import { Profile } from '../../models/Profile';
+import { UserConversation } from '../../models/userConversation';
 import * as firebase from 'firebase/app';
 import { AngularFireDatabase, AngularFireList  } from 'angularfire2/database';
 
@@ -63,56 +64,87 @@ export class FirebaseappProvider {
 
 	}
 
-	getConversation(key){
+	getConversationMessages(key){
 		var conversationRef = this.afdb
-		.list('/conversations/'+key+"/messages")
+		.list('/conversations/'+key+"/messages/")
 		.valueChanges(["child_added"])
 
 		return conversationRef;
 
 	}
 
-	getConversationKey(trader : Profile, user : Profile){
-		if(!trader.conversations || !user.conversations) return;		
-			console.log("getConversationKey trader", trader)
-			console.log("getConversationKey user", user)
+	getTraderConversationKey(trader : Profile, user : Profile){
+		console.log("-fbapp getTraderConversationKey: ", trader.conversations, user.conversations)
+		if(!trader.conversations || !user.conversations){
+			console.log("r")
+			return;
+		} 		
 
-		for(var converKey of user.conversations){
-			console.log("cjecking ", converKey)
-			if(trader.conversations.indexOf(converKey) != -1)
-				return converKey;
+		for(let u in user.conversations){
+
+			for(let t in trader.conversations){
+				if(trader.conversations[t].key === user.conversations[u].key)
+					return user.conversations[u].key;
+			}
+
 		}
+
 		return null;
 	}
 
-	pushConversation(trader : Profile, user : Profile, msg){
-		// console.log("push convo " + msg, trader, user)
+	createNewThread(trader : Profile, user : Profile, msg){
+		console.log("push convo " + msg, trader, user)
+
 		var members = {};
 		members[trader.key] = true;
 		members[user.key] = true;
 
 		var message = new Message(msg, user.name,  user.key, firebase.database.ServerValue.TIMESTAMP)
 
-		var converRef = this.afdb.list('/conversations').push({
-			messages: [message],
+		var converRef = this.pushConversation([message], members)
+		
+		user.conversations = user.conversations ? user.conversations : [];
+
+		var userConversation = new UserConversation(
+			converRef.key, 
+			trader.key,
+			trader.first_name + " " + trader.last_name
+		);
+		user.conversations[converRef.key] = userConversation;
+
+		console.log("uckey:", user.conversations)
+
+		this.updateUserConversation(user.key, converRef.key, userConversation)
+
+		trader.conversations = trader.conversations ? trader.conversations : [];
+		var traderConversation = new UserConversation(
+			converRef.key, 
+			user.key,
+			user.first_name + " " + user.last_name
+		);
+
+		trader.conversations[converRef.key] = traderConversation;
+
+		var traderConversationKey = this.afdb.list('/users/'+trader.key+'/conversations/').update(converRef.key, traderConversation)
+
+		return converRef
+	}
+
+	updateUserConversation(userKey, converKey, conversation){
+		return this.afdb
+		.list('/users/'+userKey+'/conversations/')
+		.update(converKey, conversation)
+
+	}
+
+
+	pushConversation(messages, members){
+
+		return this.afdb.list('/conversations').push({
+			messages: messages,
 			members: members
 		})
 		
-		user.conversations = user.conversations ? user.conversations : []
-		user.conversations.push(converRef.key)
-
-		var userConversationKey = this.afdb.list('/users').update(user.key, {
-			conversations : user.conversations
-		})
-
-		trader.conversations = trader.conversations ? trader.conversations : []
-		trader.conversations.push(converRef.key)
-
-		var traderConversationKey = this.afdb.list('/users').update(trader.key, {
-			conversations : trader.conversations
-		})
-
-		return converRef
 	}
 
 	updateConversation(key, trader, user, msg){
@@ -147,13 +179,35 @@ export class FirebaseappProvider {
 			}
 
 		})
+	}
 
-		// return this.afdb.list(
-		// 	'/conversations', 
-		// 	ref=> ref.orderByChild('members').equalTo(user.key)
-		// ).valueChanges().subscribe((res)=>{
-		// 	console.log("updateConversation ",res)
-		// })
+	getUserConversations(user : Profile){
+		return this.afdb
+		.object('/users/'+user.key+'/conversations/')
+		.snapshotChanges()
+	}
+
+	getMessages(user){
+		var conversations;
+		var subscription = this.getUserConversations(user).subscribe((res)=>{
+			conversations = res.payload.val()
+			subscription.unsubscribe();
+		});
+	}
+
+	getProfile(key){
+		return new Promise((resolve,reject)=>{
+
+			var subscription = this.afdb
+			.object('/users/'+key)
+			.snapshotChanges()
+			.subscribe((res)=>{
+				resolve(res.payload.val());
+				subscription.unsubscribe();
+			});
+
+
+		})
 	}
 
 }
