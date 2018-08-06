@@ -25,12 +25,15 @@ export class IgdbProvider {
     var excludedPlatforms = "0";
     var included = [
       41 // wii
+      ,6 // windows pc
+      ,9 // ps3
+      ,12 // xbox 360
       ,48 // xbox1
       ,49 // ps4
       ,130 // switch
     ]
 
-    for(var i = 1; i < 150; i++){
+    for(var i = 1; i < 164; i++){
       if(included.indexOf(i) > -1) continue;
       excludedPlatforms += ","+i;
     }
@@ -48,27 +51,45 @@ export class IgdbProvider {
   		// "&filter[release_dates.platform][any]=48,49,130" +
   		// "&filter[version_parent][not_exists]=1" +
   		// "&fields=*";
+  return new Promise((resolve,reject)=>{
 
-  	var httpSub = this.http.get( search, {headers}).subscribe((res:Array<object>)=>{
-  		var gameIds = "";
-			console.log("res", res)
+    var httpSub = this.http.get( search, {headers}).subscribe((res:Array<object>)=>{
+      var gameIds = "";
+      console.log("[igdb] search raw: ", res)
 
-  		var first = true;
+      var first = true;
 
-  		for( var r of res){
+      for( var r of res){
 
-  				if(first)
-  					gameIds += r["id"];
-  				else
-  					gameIds += ","+r["id"];
+          if(first)
+            gameIds += r["id"];
+          else
+            gameIds += ","+r["id"];
 
-  				first = false;
-  		}
+          first = false;
+      }
 
-  		this.searchOptions = res;
+      var filteredSearch = this.removeUnsupportedPlatforms(res);
+      console.log("[igdb] search clean: ", filteredSearch)
+
+      resolve(filteredSearch);
       httpSub.unsubscribe();
-  	});
+    });
 
+  })
+
+  }
+
+  removeUnsupportedPlatforms(games : Array<any>){
+    return games.filter((game)=>{
+      if(game.platforms)
+
+       return game.platforms.indexOf(48) != -1
+        || game.platforms.indexOf(49) != -1 
+        || game.platforms.indexOf(139) != -1;
+
+       
+    });
   }
 
 }

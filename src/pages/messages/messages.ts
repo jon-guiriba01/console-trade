@@ -4,6 +4,7 @@ import { ProfileProvider } from '../../providers/profile/profile';
 import { FirebaseappProvider } from '../../providers/firebaseapp/firebaseapp';
 import { map, take, first } from 'rxjs/operators';
 import { ChatPage } from '../../pages/chat/chat';
+import { Profile } from '../../models/profile';
 
 @Component({
   selector: 'page-messages',
@@ -11,7 +12,7 @@ import { ChatPage } from '../../pages/chat/chat';
 })
 export class MessagesPage {
 
-	traders = [];
+	traders : any = [];
 
   constructor(
   	public navCtrl: NavController
@@ -26,8 +27,22 @@ export class MessagesPage {
   		for(var convo in res.payload.val()){
         var conversation = res.payload.val()[convo];
 
-        this.fbApp.getProfile(conversation.traderKey).then((res)=>{
+        this.fbApp.getProfile(conversation.traderKey).then((res:Profile)=>{
+          if(res.profileImage == null || res.profileImage == ""){
+            res.profileImage = this.getRandomPic();
+          }
+
+          var matchingTrades = [];
+          for(var traderOwned of res.ownedList){
+            for(var userOwned of profile.user.wishList){
+                if(userOwned.id === traderOwned.id){
+                   matchingTrades.push(traderOwned);
+                }
+            }
+          }
+          res["matchingTrades"] = matchingTrades;
           this.traders.push(res)
+
         })
 
   			
@@ -46,7 +61,13 @@ export class MessagesPage {
   	
   }
 
+  getRandomPic(){
+    return 'assets/imgs/temp_profile_img_'+this.getRandomInt(1,2)+'.png';
+  }
 
+  getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
   
 
 }

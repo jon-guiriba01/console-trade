@@ -9,10 +9,8 @@
   <ion-navbar>
     <ion-title>{{trader.first_name + " " + trader.last_name}}</ion-title>
   </ion-navbar>
-
 </ion-header>
-
-
+<ion-icon style="color: #fff;" name="menu" menuToggle class="menu-toggle-forced"></ion-icon>
 <ion-content class="ps4" padding>
 
 	<div class="thread">
@@ -27,3 +25,27 @@
 			<button (click)="send()">Send</button>
 	</div>
 </ion-content>
+
+
+<ion-nav #mycontent [root]="rootPage">
+</ion-nav>
+
+<ion-menu class="chat-menu" side="right" [content]="mycontent">
+  <ion-content>
+  	<ion-header>
+  		Preferred Trading Locations
+  	</ion-header>
+  	<ion-list>
+  		<ion-item *ngFor="let tradeLocation of trader.trade_locations">
+  			{{tradeLocation}}
+  		</ion-item>
+  	</ion-list>
+
+ 		<div class="trade-grid">
+	 		<div class="trade-item" *ngFor="let item of trader.matchingTrades">
+	 			<img-loader class="fit-img" src="{{item.cover_url | replace: 'cover_big':'thumb'}}"></img-loader>
+	 		</div>
+ 		</div>
+ 		
+  </ion-content>
+</ion-menu>

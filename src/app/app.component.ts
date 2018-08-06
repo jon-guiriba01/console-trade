@@ -94,6 +94,7 @@ export class MyApp {
         this.profile.user.ownedList = res[0]["ownedList"] || [];
         this.profile.user.key = res[0].key || "";
         this.profile.user.conversations = res[0]["conversations"] || [];
+        this.profile.user.trade_locations = res[0]["trade_locations"] || [];
 
           console.log(">>geolocation ", this.profile.user)
         this.geolocation.getCurrentPosition({timeout: 20000, enableHighAccuracy: true}).then((geodata) => {
@@ -115,4 +116,5 @@ export class MyApp {
 
     });
   }
+
 }

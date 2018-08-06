@@ -2,7 +2,7 @@
 
 <div class="profile">
   <div class="profile-image">
-    <img class="circle-head" src="{{profile.user.profileImage}}">
+    <img-loader class="circle-head" src="{{profile.user.profileImage}}"></img-loader>
   </div>
   <div class="profile-info-wrapper">
     <div class="profile-info">
@@ -11,6 +11,9 @@
       <!-- <h5>{{profile.user.location}}</h5> -->
     </div>
   </div>
+  <button class="set-location-btn" ion-button (click)="navToMap()">
+    Set Trade Locations
+  </button>
 </div>
 
 <hr inset padding-horizontal style="background-color: #fff;">
@@ -18,13 +21,15 @@
 <div class="trade-info" >
   
   <div class="game-input-wrapper">
+    <ion-spinner *ngIf="searchIsLoading" class="search-spinner" name="dots"></ion-spinner>        
     <ion-item  inset class="game-input" no-lines>
-      <ion-input (ionChange)="searchtTitle()" type="text" [(ngModel)]="searchInput" placeholder="Add a game"></ion-input>
+      <ion-input (ionChange)="searchtTitle()" type="text" [(ngModel)]="searchInput" placeholder="Add a game">
+      </ion-input>
     </ion-item>
     <h5 float-right class="tip-text">*tap games to toggle, hold to delete</h5>
     <div class="autocomplete">
       <ion-list>
-        <ion-item class="autocomplete-item" *ngFor="let item of igdb.searchOptions" (click)="addGameToProfile(item)">
+        <ion-item class="autocomplete-item" *ngFor="let item of searchOptions" (click)="addGameToProfile(item)">
           <!-- <img *ngIf="item.cover != null" src="{{item.cover.url}}"> -->
           <h5>{{item.name}}</h5>
         </ion-item>
@@ -37,7 +42,7 @@
   <div class="display-grid">
     <div class="trade-item" *ngFor="let item of profile.user.wishList">
       <div ion-long-press class="trade-img" (tap)="toggleItemOwnership(item, false)" [interval]="400" (onPressing)="removeItem(item, false)">
-        <img *ngIf="item.cover_url" class="fit-img" src="{{item.cover_url}}">
+        <img-loader *ngIf="item.cover_url" class="fit-img" src="{{item.cover_url}}" ></img-loader>
         <img *ngIf="!item.cover_url" class="fit-img" >
         <h5 *ngIf="!item.cover_url" class="trade-img-title" >{{item.name}}</h5>
       </div>
@@ -54,7 +59,7 @@
   <div class="display-grid">
     <div class="trade-item" *ngFor="let item of profile.user.ownedList">
       <div ion-long-press class="trade-img" (tap)="toggleItemOwnership(item, true)" [interval]="400" (onPressing)="removeItem(item, true)">
-        <img *ngIf="item.cover_url" class="fit-img" src="{{item.cover_url}}">
+        <img-loader *ngIf="item.cover_url" class="fit-img" src="{{item.cover_url}}" ></img-loader>
         <img *ngIf="!item.cover_url" class="fit-img" >
         <h5 *ngIf="!item.cover_url" class="trade-img-title" >{{item.name}}</h5>
       </div>

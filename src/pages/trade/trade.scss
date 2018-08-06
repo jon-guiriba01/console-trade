@@ -10,10 +10,10 @@ page-trade {
 		background: color($colors, ps4_dark_blue_2, base);
 		padding: 2px 5px;
 	}
-	.user-info{
+	.info-row{
 		display: flex;
 		justify-content: space-between;
-		background: color($colors, ps4_dark_blue_2, base);
+		background: color($colors, ps4_dark_blue_3, base);
 		padding: 2px 5px;
 		color: #fff;
 	}
@@ -22,7 +22,7 @@ page-trade {
 		padding-right: 10px;
 		text-align: left;
 	}
-	.trader-info h5{
+	.info-matches{
 		display: inline-block;
 		width: 30%;
 		white-space: nowrap;
@@ -33,7 +33,7 @@ page-trade {
 	}
 	.trade-grid{
 		padding-top: 2px;
-		background: rgba(0, 0, 0, 0.3);
+		background: rgba(0, 0, 0, 0.2);
 	}
 	.trade-grid.white{
 		background: rgba(160, 160, 160, 0.3);
@@ -42,6 +42,7 @@ page-trade {
 	div.trade-item{
 		display: inline-block;
 		width: 32%;
+		height: 90px;
 		max-width: 100px;
 		padding-right: 1%;
 	}

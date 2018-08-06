@@ -1,5 +1,8 @@
 // http://ionicframework.com/docs/theming/
 
+.display-none{
+  display: none;
+}
 
 // App Global Sass
 // --------------------------------------------------
@@ -106,6 +109,7 @@ h4{
 
 .ps4-header *{
   color: #f5f5f5;
+  font-size: 1.3rem;
 }
 
 .ps4-header .toolbar-background-md{

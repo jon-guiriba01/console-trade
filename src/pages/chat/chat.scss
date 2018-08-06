@@ -58,6 +58,51 @@ page-chat {
     align-items: end;
     justify-content: flex-end;
 	}
+	.trade-info-btn{
+		font-size: 1.5rem;
+	}
+
+	ion-title{
+		display: inline-block;
+	}
+
+	.menu-toggle-forced{
+		color: #fff;
+    position: absolute;
+    z-index: 10;
+    right: 0;
+    font-size: 2.5rem;
+    top: 7px;
+    right: 15px;
+	}
+
+	.chat-menu .menu-inner {
+		background: initial;
+	}
+	.chat-menu .content-md{
+    background: #06122a;
+	}
+
+	.chat-menu ion-item{
+		background: initial;
+		color: #fff;
+		font-size: 1.4rem;
+	}
+
+	.chat-menu ion-header{
+		text-align: center;
+		padding-top: 10px;
+		font-size: 1.4rem;
+		color: #fff;
+	}
+
+	.trade-item img-loader{
+		background-size: initial !important;
+	}
+
+	.trade-item{
+		height: 90px;
+	}
 
 /*	.message-input .input.input-md{
 	}

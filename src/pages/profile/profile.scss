@@ -4,10 +4,10 @@ ion-content .scroll-content{
 page-profile {
 
 	.profile{
-		display: flex;
-		align-items: center;
-		padding-left: 5px;
-		padding-top: 10px;
+		/*display: flex;*/
+		/*justify-content: space-between;*/
+		/*align-items: center;*/
+		padding: 10px;
 	}
 	.profile-image{
 		width: 65px;
@@ -16,6 +16,7 @@ page-profile {
 		border-radius: 100%;
 		position: relative;
 		display: inline-block;
+		vertical-align: middle;
 	}
 	.circle-head{
 		width: 100%;
@@ -32,11 +33,16 @@ page-profile {
     font-size: 1.4rem;
     color: #fff;
     line-height: 150%;
+    text-overflow: ellipsis;
+    word-wrap: normal;
+    white-space: nowrap;
 	}
 
 	.profile-info-wrapper{
 		display: inline-block;
-		width: 200px;
+		width: 120px;
+    vertical-align: middle;
+
 	}
 
 	.profile-info{
@@ -162,8 +168,12 @@ page-profile {
 
 	.autocomplete{
 		position: absolute;
-		width: 87.5%;
+		width: 89%;
 		z-index: 2;
+	}
+
+	.autocomplete-item.item{
+		background: rgba(12,32,52, 0.9);
 	}
 	.autocomplete img{
 		width: 50px;
@@ -171,6 +181,7 @@ page-profile {
 	.autocomplete h5{
 		display: inline-block;
 		padding-left: 20px;
+		color: #fff;
 	}
 	.autocomplete-item .label.label-md{
 		display: flex;
@@ -179,12 +190,41 @@ page-profile {
 
 	.fit-img{
 		background-image: url('../assets/imgs/default_cover.png');
-		background-size: cover;
+		background-size: cover !important;
 	}
 
 	.game-input{
-		background: #0c2034;
+		background: rgba(12,32,52, 1);
 		color: #fff;
 	}
 
+	.search-spinner{
+		position: absolute;
+		right: 10%;
+		padding: 24px 0;
+		z-index: 9;
+	}
+
+	.search-spinner *{
+		fill: #fff;
+	}
+
+	.set-location-btn{
+		background: #032748;
+		box-shadow: initial;
+		padding: 6px;
+		display: inline-block;
+		height: 2.6em;
+		font-size: 0.9em;
+		float: right;
+		margin-top: 16px;
+		vertical-align: middle;
+		text-transform: initial;
+	}
+
+	@media only screen and (max-width: 340px) {
+		.set-location-btn{
+			float: initial;
+		}
+	}
 }

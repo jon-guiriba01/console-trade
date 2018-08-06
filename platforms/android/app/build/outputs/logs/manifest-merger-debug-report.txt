@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:1-22:12
-INJECTED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:1-22:12
-INJECTED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:1-22:12
-INJECTED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:1-22:12
+ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:1-23:12
+INJECTED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:1-23:12
+INJECTED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:1-23:12
+INJECTED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:1-23:12
 MERGED from [:tbxml-android:] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\tbxml-android.aar\f0a5af5b0b959d71725c46f6cab97247\AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.android.gms:play-services-maps:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-maps-15.0.1.aar\6f63edce1e7f5a6ef93278058fc2ce61\AndroidManifest.xml:17:1-32:12
 MERGED from [com.google.android.gms:play-services-location:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-location-15.0.1.aar\a9762acd7bebf157953e0833baca937f\AndroidManifest.xml:2:1-9:12
@@ -19,9 +19,9 @@ MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Jon\.grad
 MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\9ff581dde6dcc0d3a389b6fcf8570363\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\c966536fe3682786a2ac085113f13f27\AndroidManifest.xml:17:1-31:12
 MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\b1ebefa83fdec4b1100cc83c9142d1f2\AndroidManifest.xml:17:1-30:12
-INJECTED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:1-22:12
-INJECTED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:1-22:12
-INJECTED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:1-22:12
+INJECTED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:1-23:12
+INJECTED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:1-23:12
+INJECTED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:1-23:12
 	package
 		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:98-135
 		INJECTED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml
@@ -202,6 +202,10 @@ uses-feature#android.hardware.location
 ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:21:5-62
 	android:name
 		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:21:19-59
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:22:5-81
+	android:name
+		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:22:22-78
 activity#com.google.android.gms.common.api.GoogleApiActivity
 ADDED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\2445618130acb183885c92a5f54c30f5\AndroidManifest.xml:23:9-26:75
 	android:exported

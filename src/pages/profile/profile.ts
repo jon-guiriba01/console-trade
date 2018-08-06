@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { NavController } from 'ionic-angular';
+import { NavController, App } from 'ionic-angular';
 import { AppAuthProvider } from '../../providers/app-auth/app-auth';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { IgdbProvider } from '../../providers/igdb/igdb';
 import { Game } from '../../models/game';
 import { C } from '../../config';
 import * as _ from 'underscore/underscore';
+import { IonicImageLoader, ImageLoaderConfig } from 'ionic-image-loader';
+import { MapPage } from '../../pages/map/map';
 
 @Component({
   selector: 'page-profile',
@@ -14,13 +16,18 @@ import * as _ from 'underscore/underscore';
 })
 export class ProfilePage {
 	searchInput
+  searchIsLoading = false;
+  searchOptions : any = [];
 
   constructor(
-  	public navCtrl: NavController,
-  	public igdb: IgdbProvider,
-    private auth: AppAuthProvider,
-  	private profile: ProfileProvider
+  	public navCtrl: NavController
+    , public igdb: IgdbProvider
+    , private auth: AppAuthProvider
+    , private profile: ProfileProvider
+    , private imgLoader: ImageLoaderConfig
+    , private app: App
 	) {
+    imgLoader.setBackgroundSize('cover');
 
   }
 
@@ -40,21 +47,36 @@ export class ProfilePage {
 
   timeout
   searchtTitle(){
+    this.searchIsLoading = true;
   	clearTimeout(this.timeout);
   	
   	this.timeout = setTimeout(()=>{
-  		if(!this.searchInput) return;
 
-  		if(this.searchInput.length > 2)
-  			this.igdb.search(this.searchInput)
+  		if(!this.searchInput || this.searchInput.length < 2){
+        this.clearSearch();
+      }
+      else{ 
+        this.igdb.search(this.searchInput).then((res: Array<any>)=>{
+          this.searchOptions = res;
+
+          if(res.length == 0){
+            this.searchOptions.push({id: "err", name: "No Games Found"})
+          }
+
+          this.searchIsLoading = false;
+        });
+      }
+
   	}, 300)
   }
 
   clearSearch(){
-  	this.igdb.searchOptions = [];
+    this.searchIsLoading = false;
+  	this.searchOptions = [];
   }
 
   addGameToProfile(item){
+    if(item.id === "err") return;
 
   	var platforms = [""];
   	
@@ -75,9 +97,12 @@ export class ProfilePage {
     var game = new Game(item.id, item.name, url, platforms);
   	this.profile.addGameToProfile(this.auth.user, game, false)
   	this.searchInput = null;
-  	this.igdb.searchOptions = [];
+  	this.searchOptions = [];
   }
 
+  navToMap(){
+      this.app.getRootNavs()[0].push(MapPage);
+  }
 
 
 }

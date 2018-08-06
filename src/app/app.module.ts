@@ -17,6 +17,8 @@ import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { OptionsPage } from '../pages/options/options';
 import { ChatPage } from '../pages/chat/chat';
+import { MapPage } from '../pages/map/map';
+import { DealPage } from '../pages/deal/deal';
 import { AppAuthProvider } from '../providers/app-auth/app-auth';
 import { Geolocation } from '@ionic-native/geolocation';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
@@ -29,6 +31,8 @@ import { ProfileProvider } from '../providers/profile/profile';
 import { PipesModule } from '../pipes/pipes.module';
 import { FirebaseappProvider } from '../providers/firebaseapp/firebaseapp';
 import { LongPressModule } from 'ionic-long-press';
+import { UiProvider } from '../providers/ui/ui';
+import { IonicImageLoader } from 'ionic-image-loader';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,9 @@ import { LongPressModule } from 'ionic-long-press';
     LoginPage,
     SignupPage,
     OptionsPage,
-    TabsPage,
+    MapPage,
+    DealPage,
+    TabsPage
   ],
   imports: [
     BrowserModule,
@@ -50,6 +56,7 @@ import { LongPressModule } from 'ionic-long-press';
     HttpClientModule,
     LongPressModule,
     PipesModule,
+    IonicImageLoader.forRoot(),
     NgxErrorsModule
   ],
   bootstrap: [IonicApp],
@@ -62,6 +69,8 @@ import { LongPressModule } from 'ionic-long-press';
     LoginPage,
     SignupPage,
     OptionsPage,
+    MapPage,
+    DealPage,
     TabsPage
   ],
   providers: [
@@ -76,7 +85,8 @@ import { LongPressModule } from 'ionic-long-press';
     IgdbProvider,
     TradeProvider,
     ProfileProvider,
-    FirebaseappProvider
+    FirebaseappProvider,
+    UiProvider
   ]
 })
 export class AppModule {}

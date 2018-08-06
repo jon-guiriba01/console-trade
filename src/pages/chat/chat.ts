@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { FirebaseappProvider } from '../../providers/firebaseapp/firebaseapp';
 import { AppAuthProvider } from '../../providers/app-auth/app-auth';
+import 'rxjs/add/observable/fromEvent';
+import { IonicImageLoader, ImageLoaderConfig } from 'ionic-image-loader';
 
 @Component({
   selector: 'page-chat',
@@ -25,7 +27,7 @@ export class ChatPage {
   	, public auth: AppAuthProvider
   	) {
   	this.trader = navParams.get('trader')
-
+    console.log("[chat] trader: ", this.trader)
     this.converKey =  this.fbApp.getTraderConversationKey(this.trader, this.profile.user)
 
     if(this.converKey){

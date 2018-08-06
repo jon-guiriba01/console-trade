@@ -27,6 +27,9 @@
     },
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.lemontree.console_trade"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.lemontree.console_trade"
     }
   },
   "dependent_plugins": {}

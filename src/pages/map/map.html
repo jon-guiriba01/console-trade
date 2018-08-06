@@ -1,0 +1,22 @@
+<ion-header class="ps4-header">
+
+  <ion-navbar>
+    <ion-title>Pick preferred trade locations</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="ps4">
+	<input id="autocomplete" class="display-none" type="text" [ngModel]="searchInput" (ionChange)="searchLocation">
+  <div #map id="map" style="height: 100%;"></div>
+
+  <ion-list class="trade-locations-container">
+  	<h5 class="trade-location-header">Trade Locations</h5>
+  	<ion-item class="trade-location" *ngFor="let tradeLocation of profile.user.trade_locations">
+  		<h5>{{tradeLocation}}</h5>
+  	</ion-item>
+  </ion-list>
+
+</ion-content>
+

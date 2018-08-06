@@ -2,8 +2,7 @@
     <ion-item *ngFor="let trader of traders" (click)="showChat(trader)" no-lines>
         <div class="message-container">
             <div class="trader-img-container">
-                <img *ngIf="trader.profileImage" lass="fit-img" src="{{trader.profileImage}}"> 
-                <img *ngIf="!trader.profileImage" lass="fit-img" src="{{ui.getRandomProfileImage()}}"> 
+                <img class="fit-img" src="{{trader.profileImage}}"> 
             </div>
             <div class="trader-info">
                 <h5 class="trader-name">{{trader.first_name + " " + trader.last_name}} </h5>

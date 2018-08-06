@@ -6,8 +6,8 @@ page-messages {
 	}
 
 	.trader-img-container{
-		width: 70px;
-		height: 70px;
+		width: 60px;
+		height: 60px;
 		margin-right: 10px;
 		display: inline-block;
 	}
@@ -44,9 +44,10 @@ page-messages {
 	}
 
 	.message-container{
-		background: rgba(0, 0, 0, 0.3);
+		background: rgba(100, 100, 100, 0.1);
 		display: flex;
 		align-items: center;
+		border: 1px solid #fff;
 	}
 
 	.matches{

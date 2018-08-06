@@ -17,6 +17,10 @@ export class FirebaseappProvider {
     console.log('Hello FirebaseappProvider Provider');
   }
 
+  updateUserTradeLocations(userKey, trade_locations){
+  	var userRef = this.afdb.list(`/users/${userKey}/`).set('trade_locations',trade_locations);
+  }
+
 	updateUserWishList(user, wishList){
 		var userRef = this.afdb.list('/users', ref=> ref.orderByChild('email').equalTo(user.email))
 		var userSub = userRef.snapshotChanges().pipe(

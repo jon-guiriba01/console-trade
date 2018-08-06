@@ -12,7 +12,7 @@ export class Profile{
   public wishList = [];
   public ownedList= [];
   public consoles = [];
-  public tradeLocations = [];
+  public trade_locations: Array<any> = [];
   public last_location = {};
   public conversations : Array<UserConversation>;
 
