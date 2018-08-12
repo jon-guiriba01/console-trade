@@ -84,9 +84,9 @@ export class IgdbProvider {
     return games.filter((game)=>{
       if(game.platforms)
 
-       return game.platforms.indexOf(48) != -1
-        || game.platforms.indexOf(49) != -1 
-        || game.platforms.indexOf(139) != -1;
+       return game.platforms.indexOf(C.PS4_ID) != -1
+        || game.platforms.indexOf(C.XBOX1_ID) != -1 
+        || game.platforms.indexOf(C.NS_ID) != -1;
 
        
     });

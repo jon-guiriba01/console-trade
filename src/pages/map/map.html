@@ -1,13 +1,14 @@
-<ion-header class="ps4-header">
+<ion-header >
 
   <ion-navbar>
-    <ion-title>Pick preferred trade locations</ion-title>
+    <ion-title *ngIf="canEdit">Pick preferred trade locations</ion-title>
+    <ion-title *ngIf="!canEdit">{{target.first_name + " " + target.last_name}}'s preferred trade locations</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content class="ps4">
+<ion-content >
 	<input id="autocomplete" class="display-none" type="text" [ngModel]="searchInput" (ionChange)="searchLocation">
   <div #map id="map" style="height: 100%;"></div>
 

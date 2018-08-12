@@ -82,13 +82,13 @@ export class ProfilePage {
   	
   	if(item.platforms){
 	  	if(item.platforms.includes(C.PS4_ID))
-	  		platforms.push("ps4")
+	  		platforms.push(C.PS4)
 
 	  	if(item.platforms.includes(C.NS_ID))
-	  		platforms.push("nintendo_switch")
+	  		platforms.push(C.NS)
 
 	  	if(item.platforms.includes(C.XBOX1_ID))
-	  		platforms.push("xbox1")
+	  		platforms.push(C.XBOX1)
   	}
     var url = null;
     if(item.cover)

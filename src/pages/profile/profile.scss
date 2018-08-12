@@ -4,10 +4,12 @@ ion-content .scroll-content{
 page-profile {
 
 	.profile{
+		background: color($colors, app_main_bg, base);
 		/*display: flex;*/
 		/*justify-content: space-between;*/
 		/*align-items: center;*/
 		padding: 10px;
+    margin-top: -1px;
 	}
 	.profile-image{
 		width: 65px;
@@ -42,7 +44,6 @@ page-profile {
 		display: inline-block;
 		width: 120px;
     vertical-align: middle;
-
 	}
 
 	.profile-info{
@@ -55,8 +56,21 @@ page-profile {
 		width: 90%;
 		padding: 20px 0 15px 0;
 		margin: 0 auto;
+    position: relative;
 	}
 
+	.text-input::-moz-placeholder {
+	  color: white;
+	}
+
+	.text-input:-ms-input-placeholder {
+	  color: white;
+	}
+
+	.text-input::-webkit-input-placeholder {
+	  text-indent: 0;
+	  color: white;
+	}
 
 	.profile-info ion-icon{
 		display: inline-block;
@@ -110,7 +124,7 @@ page-profile {
 		display: inline-block;
  		width: 110px;
     height: 160px;
-    margin: 25px 0;
+    margin: 25px auto;
 	}
 
 	.display-grid .trade-img{
@@ -150,8 +164,12 @@ page-profile {
 
 	.divider{
 		color: #fff;
-    border-bottom: 1px solid #fff;
-    width: 72%;
+		background: color($colors, app_main_bg, base);
+		padding: 5px 15px;
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    margin-left: -5px;
 	}
 
 	.trade-list .platforms{
@@ -168,7 +186,7 @@ page-profile {
 
 	.autocomplete{
 		position: absolute;
-		width: 89%;
+		width: 100%;
 		z-index: 2;
 	}
 
@@ -188,13 +206,8 @@ page-profile {
 		align-items: center;
 	}
 
-	.fit-img{
-		background-image: url('../assets/imgs/default_cover.png');
-		background-size: cover !important;
-	}
-
 	.game-input{
-		background: rgba(12,32,52, 1);
+		background: color($colors, app_alt_bg, base);
 		color: #fff;
 	}
 
@@ -210,7 +223,7 @@ page-profile {
 	}
 
 	.set-location-btn{
-		background: #032748;
+		background: color($colors, app_alt_bg, base);
 		box-shadow: initial;
 		padding: 6px;
 		display: inline-block;

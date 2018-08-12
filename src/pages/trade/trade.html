@@ -1,4 +1,4 @@
-<ion-content class="ps4">
+<ion-content >
 <!-- <div style="height: 100%;" (click)="getNearestPossibleTrades()">
 	
 </div> -->
@@ -11,7 +11,8 @@
  		</div>
  		<div class="trade-grid">
 	 		<div class="trade-item" *ngFor="let item of trader.matchingTrades">
-	 			<img-loader class="fit-img" src="{{item.cover_url | replace: 'cover_big':'thumb'}}"></img-loader>
+	 			<img-loader *ngIf="item.cover_url" class="fit-img" src="{{item.cover_url | replace: 'cover_big':'thumb'}}"></img-loader>
+        <img *ngIf="!item.cover_url" class="fit-img" >
 	 		</div>
  		</div>
  		<div class="info-row">
@@ -19,7 +20,8 @@
  		</div>
  		<div class="trade-grid ">
 	 		<div class="trade-item" *ngFor="let item of trader.matchingWishes">
-	 			<img-loader class="fit-img" src="{{item.cover_url | replace: 'cover_big':'thumb'}}"></img-loader>
+	 			<img-loader *ngIf="item.cover_url"  class="fit-img" src="{{item.cover_url | replace: 'cover_big':'thumb'}}"></img-loader>
+        <img *ngIf="!item.cover_url" class="fit-img" >
 	 		</div>
  		</div>
  		<div class="info-row">

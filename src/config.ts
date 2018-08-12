@@ -12,7 +12,7 @@ export const firebaseConfig = {
 export const C = {
 	PS4 : "ps4",
 	XBOX1 : "xbox1",
-	NS : "nintendo_switch",
+	NS : "ns",
 	PS4_ID : 48,
 	NS_ID : 130,
 	XBOX1_ID : 49,

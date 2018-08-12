@@ -1,4 +1,4 @@
-<ion-content padding>
+<ion-content class="page-content" padding>
   <form [formGroup]="loginForm">
       <ion-list inset>
         <ion-item [ngClass]="{ invalid: emailErrors.hasError('*', ['touched', 'dirty']) }">
@@ -21,7 +21,7 @@
       <div padding-horizontal>
         <div class="form-error">{{loginError}}</div>
 
-        <button ion-button full type="submit" [disabled]="!loginForm.valid" (click)="login()" >Log in</button>
+        <button class="login-btn" ion-button full type="submit" [disabled]="!loginForm.valid" (click)="login()" >Log in</button>
         <div class="login-footer">
           <p>
             <a href="#">Forgot password?</a>
@@ -30,7 +30,7 @@
         </div>
       </div>
 
-        <ion-list>
+        <ion-list class="login-options-list">
           <button ion-button icon-start block clear (click)="loginWithGoogle()">
             <ion-icon name="logo-google"></ion-icon>
             Log in with Google

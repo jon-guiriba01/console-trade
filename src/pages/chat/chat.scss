@@ -19,21 +19,22 @@ page-chat {
 		color: #fff;
 	}
 
-	.ps4-message-input .input.input-md{
-		border: 1px solid #fff;
-		color: #fff;
+	.message-input .input.input-md{
+		border: 1px solid color($colors, app_main_bg, base);
 	}
-	.ps4-message-input .text-input-md{
-		color: #fff;
+	.message-input .text-input-md{
+		color: color($colors, app_main_bg, base);
     margin: 8px 8px;
 	}
 
-	.ps4-message-input button{
-		padding: 10px 20px;
+	.message-input button{
+		padding: 11px 20px;
 		border: 0.5px solid #fff;
-		background: rgba(48,73,158, 0.8);
+		/*background: rgba(48,73,158, 0.8);*/
+		background: color($colors, app_main_bg, base);
 		color: #fff;
     margin-left: 5px;
+    border-radius: 6px;
 	}
 
 	.thread{
@@ -47,12 +48,14 @@ page-chat {
 	}
 
 	.chat-message h5{
-		background: #b4d7ff;
-		border-radius: 15px;
-		padding: 20px 10px;
+		background: color($colors, app_alt_bg, base);
+		color: #fff;
+		border-radius: 10px;
+		padding: 12px 10px;
 		max-width: 40%;
-		margin-bottom: 10px;
-		font-size: 1.5rem;
+		margin: 10px;
+		font-size: 1.3rem;
+    font-weight: 100;
 	}
 	.trader-message{
     align-items: end;
@@ -76,11 +79,17 @@ page-chat {
     right: 15px;
 	}
 
+	.chat-menu ion-header h5{
+		display: inline-block;
+		vertical-align: middle;
+	}
+
 	.chat-menu .menu-inner {
 		background: initial;
 	}
 	.chat-menu .content-md{
-    background: #06122a;
+		background: color($colors, app_main_bg, base);
+    /*background: #06122a;*/
 	}
 
 	.chat-menu ion-item{
@@ -91,7 +100,7 @@ page-chat {
 
 	.chat-menu ion-header{
 		text-align: center;
-		padding-top: 10px;
+		padding: 10px 0;
 		font-size: 1.4rem;
 		color: #fff;
 	}
@@ -99,9 +108,17 @@ page-chat {
 	.trade-item img-loader{
 		background-size: initial !important;
 	}
-
+	.trade-grid{
+		padding: 5px;
+	}
 	.trade-item{
+		width: 90px;
 		height: 90px;
+		display: inline-block;
+		margin-right: 2px;
+	}
+	.location-list{
+		margin-top: 35px;
 	}
 
 /*	.message-input .input.input-md{
@@ -120,4 +137,9 @@ page-chat {
 		font-size: 2.5rem;
 		color: #6d6d6d;
 	}*/
+
+	.location-btn{
+		background: color($colors, app_alt_bg, base);
+    vertical-align: middle;
+	}
 }

@@ -4,14 +4,14 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header class="ps4-header">
+<ion-header >
 
   <ion-navbar>
     <ion-title>{{trader.first_name + " " + trader.last_name}}</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-icon style="color: #fff;" name="menu" menuToggle class="menu-toggle-forced"></ion-icon>
-<ion-content class="ps4" padding>
+<ion-content cpadding>
 
 	<div class="thread">
 		<div class="chat-message" [ngClass]="{'trader-message': message.senderKey !== profile.user.key}" *ngFor="let message of thread">
@@ -19,7 +19,7 @@
 		</div>
 	</div>
 
-	<div class="ps4-message-input message-input">
+	<div class="message-input message-input">
 			<ion-input [(ngModel)]="message" placeholder="Type a message..." (keyup.enter)="send()">
 			</ion-input>
 			<button (click)="send()">Send</button>
@@ -33,9 +33,12 @@
 <ion-menu class="chat-menu" side="right" [content]="mycontent">
   <ion-content>
   	<ion-header>
-  		Preferred Trading Locations
+  		<h5>Preferred Trading Locations</h5>
+      <button ion-button class="location-btn" (click)="navToMap()">
+        <ion-icon name="compass"></ion-icon>
+      </button>
   	</ion-header>
-  	<ion-list>
+  	<ion-list class="location-list">
   		<ion-item *ngFor="let tradeLocation of trader.trade_locations">
   			{{tradeLocation}}
   		</ion-item>
@@ -43,7 +46,8 @@
 
  		<div class="trade-grid">
 	 		<div class="trade-item" *ngFor="let item of trader.matchingTrades">
-	 			<img-loader class="fit-img" src="{{item.cover_url | replace: 'cover_big':'thumb'}}"></img-loader>
+	 			<img-loader *ngIf="item.cover_url" class="fit-img" src="{{item.cover_url | replace: 'cover_big':'thumb'}}"></img-loader>
+        <img *ngIf="!item.cover_url" class="fit-img" >
 	 		</div>
  		</div>
  		

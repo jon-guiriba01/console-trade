@@ -28,4 +28,17 @@ page-login {
 		justify-content: center;
 		align-items: center;
 	}
+
+	.page-content{
+  	background: color($colors, app_alt_bg, base);
+	}
+	.page-content form{
+  	background: #fff;
+	}
+	.login-btn{
+  	background: color($colors, app_main_bg, base);
+	}
+	.login-options-list button{ 
+  	/*color: color($colors, app_main_bg, base);*/
+	}
 }

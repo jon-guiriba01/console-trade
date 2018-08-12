@@ -13,6 +13,7 @@ export class ReplacePipe implements PipeTransform {
    * Takes a value and makes it lowercase.
    */
   transform(value: string, ...args) {
+  	if(!value) return "";
     return value.replace(args[0], args[1]);
   }
 }

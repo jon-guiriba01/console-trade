@@ -9,6 +9,7 @@ page-signup {
     justify-content: center;
 	}
 	.btn-container .button{
+  	background: color($colors, app_main_bg, base);
 		width: 160px;
 	}
 
@@ -31,5 +32,12 @@ page-signup {
 		display: flex;
 		justify-content: center;
 		align-items: center;
+	}
+
+	.page-content{
+  	background: color($colors, app_alt_bg, base);
+	}
+	.page-content form{
+  	background: #fff;
 	}
 }

@@ -44,7 +44,7 @@ page-messages {
 	}
 
 	.message-container{
-		background: rgba(100, 100, 100, 0.1);
+		background: color($colors, app_main_bg, base);;
 		display: flex;
 		align-items: center;
 		border: 1px solid #fff;

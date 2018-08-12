@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { FirebaseappProvider } from '../../providers/firebaseapp/firebaseapp';
 import { AppAuthProvider } from '../../providers/app-auth/app-auth';
 import 'rxjs/add/observable/fromEvent';
 import { IonicImageLoader, ImageLoaderConfig } from 'ionic-image-loader';
+import { MapPage } from '../../pages/map/map';
 
 @Component({
   selector: 'page-chat',
@@ -25,6 +26,7 @@ export class ChatPage {
   	, public profile: ProfileProvider
   	, public fbApp: FirebaseappProvider
   	, public auth: AppAuthProvider
+    , private app: App
   	) {
   	this.trader = navParams.get('trader')
     console.log("[chat] trader: ", this.trader)
@@ -93,5 +95,12 @@ export class ChatPage {
 
   	this.message = "";
   }
+
+  navToMap(){
+      this.app.getRootNavs()[0].push(MapPage, {
+        target : this.trader
+      });
+  }
+
 
 }

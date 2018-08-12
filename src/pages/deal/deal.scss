@@ -1,3 +1,123 @@
 page-deal {
 
+	.game-input{
+		background: color($colors, app_alt_bg, base);
+		color: #fff;
+		margin-top: 50px;
+	}
+
+
+	.autocomplete{
+		position: absolute;
+		width: 100%;
+		z-index: 2;
+		top: 96px;
+	}
+
+	.autocomplete-item.item{
+		background: rgba(12,32,52, 0.9);
+	}
+	.autocomplete img{
+		width: 50px;
+	}
+	.autocomplete h5{
+		display: inline-block;
+		padding-left: 20px;
+		color: #fff;
+	}
+	.autocomplete-item .label.label-md{
+		display: flex;
+		align-items: center;
+	}
+
+	.game-input-wrapper{
+		position: relative;
+	}
+
+
+	.search-spinner{
+		position: absolute;
+		right: 10%;
+		padding: 24px 0;
+		z-index: 9;
+		top: 50px;
+	}
+
+	.search-spinner *{
+		fill: #fff;
+	}
+
+	.display-grid{
+    display: grid;
+    grid-auto-columns: auto;
+    grid-template-columns: repeat( auto-fill, minmax(110px, 1fr) );
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 35px;
+	}
+
+	.display-grid .trade-item{
+		position: relative;
+		display: inline-block;
+ 		width: 110px;
+    height: 160px;
+    margin: 25px auto;
+	}
+
+	.display-grid .trade-img{
+		width: 100%;
+    height: 100%;
+    display: inline-block;
+	}
+
+
+	.trade-img-title{
+		position: absolute;
+		width: 100%;
+		padding: 10px 5px;
+		bottom: 0;
+		color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+	}
+
+	.display-grid .platforms{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    overflow: auto;
+    justify-content: space-between;
+    margin: -4px 0 0 0px;
+	}
+	.display-grid .platforms img{
+		display: inline-block;
+		width: 32.5%;
+	}
+
+	.tip-text{
+		/*color: color($colors, white, base);*/
+		color: #fff;
+		font-weight: 100;
+	}
+
+	.no-games-text{
+		padding: 30px;
+		font-size: 2.5rem;
+	}
+
+	.submit-btn{
+		background: color($colors, app_main_bg, base);
+	}
+	
+	.text-input::-moz-placeholder {
+	  color: white;
+	}
+
+	.text-input:-ms-input-placeholder {
+	  color: white;
+	}
+
+	.text-input::-webkit-input-placeholder {
+	  text-indent: 0;
+	  color: white;
+	}
 }

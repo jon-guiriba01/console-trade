@@ -20,6 +20,8 @@ export class MapPage {
 	markers = [];
 	sessionToken;
 	searchInput = "";
+	target;
+	canEdit = true;
 
   constructor(
   	public navCtrl: NavController
@@ -38,6 +40,15 @@ export class MapPage {
   }
 
   ionViewWillEnter(){
+  	this.target = this.profile.user;
+  	let customTarget = this.navParams.get('target');
+
+  	if(customTarget){
+  		this.canEdit = false;
+  		this.target = customTarget;
+  	}
+
+
     this.platform.ready().then(() => {
 			if(google){
 	  		this.geocoder = new google.maps.Geocoder();
@@ -84,7 +95,7 @@ export class MapPage {
   		this.initAutoComplete(resp);
   		this.initClickEvent();
 
-	    for(let tradeLocation of this.profile.user.trade_locations){
+	    for(let tradeLocation of this.target.trade_locations){
 		    	this.geocoder.geocode({'address': tradeLocation}, function(res,status){
 		        if (status === 'OK') {
 				    		self.addMarker(
@@ -185,7 +196,9 @@ export class MapPage {
 	}
 
 	initClickEvent(){
+		if(!this.canEdit) return;
     this.map.addListener("click", (event)=>{
+
 		    var latitude = event.latLng.lat();
 		    var longitude = event.latLng.lng();
 
@@ -200,27 +213,28 @@ export class MapPage {
 
 	dbTimeout;
 	addTradeLocation(location){
+		if(!this.canEdit) return;
 		clearTimeout(this.dbTimeout);
 
 
-			this.profile.user.trade_locations.push(location);
+			this.target.trade_locations.push(location);
 
-			if(this.profile.user.trade_locations.length > 3){
+			if(this.target.trade_locations.length > 3){
 				this.removeLastTradeLocation();
 			}
 
-	  	console.log("[map] addTradeLocation ", this.profile.user)
+	  	console.log("[map] addTradeLocation ", this.target)
 
 		this.dbTimeout = setTimeout(()=>{
-			this.fbApp.updateUserTradeLocations(this.profile.user.key, this.profile.user.trade_locations)
+			this.fbApp.updateUserTradeLocations(this.target.key, this.target.trade_locations)
 		},500);
 
 	}
 
 	removeLastTradeLocation(){
-  	let tradeLocation = this.profile.user.trade_locations.shift();
+  	let tradeLocation = this.target.trade_locations.shift();
   	let marker = this.markers[0];
-		console.log("removing ", this.markers, this.profile.user.trade_locations)
+		console.log("removing ", this.markers, this.target.trade_locations)
 		marker.setMap(null)
   	this.markers.shift();
 	}
