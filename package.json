@@ -59,11 +59,11 @@
     "sw-toolbox": "3.6.0",
     "underscore": "^1.9.1",
     "xml2js": "^0.4.19",
-    "zone.js": "0.8.26"
-  },
-  "devDependencies": {
+    "zone.js": "0.8.26",
     "@ionic/app-scripts": "^3.1.11",
     "typescript": "~2.6.2"
+  },
+  "devDependencies": {
   },
   "description": "An Ionic project",
   "cordova": {

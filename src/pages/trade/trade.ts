@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController, Platform, App } from 'ionic-angular';
+import { NavController, Platform, App, Events } from 'ionic-angular';
 import { AppAuthProvider } from '../../providers/app-auth/app-auth';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { TradeProvider } from '../../providers/trade/trade';
@@ -16,19 +16,34 @@ import { IonicImageLoader, ImageLoaderConfig } from 'ionic-image-loader';
 })
 export class TradePage {
 
+  refresh = true;
+
   constructor(
   	public navCtrl: NavController
 		, public platform: Platform
 		, private trade: TradeProvider
 		, private profile: ProfileProvider
-		, private app: App
+    , private app: App
+		, private events: Events
   	) {
 
+    this.getNearestPossibleTrades();
+
+    this.events.subscribe("profile:changed", (res)=>{
+      this.refresh = true;
+    })
 
   }
 
   ionViewDidLoad() {
 
+  }
+
+  ionViewWillEnter() {
+    if(this.refresh){
+      this.refresh = false;
+      this.trade.getNearestPossibleTrades(this.profile.user.key);
+    }
   }
 
   getNearestPossibleTrades(){

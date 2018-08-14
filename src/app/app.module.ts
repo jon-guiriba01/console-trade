@@ -19,6 +19,9 @@ import { OptionsPage } from '../pages/options/options';
 import { ChatPage } from '../pages/chat/chat';
 import { MapPage } from '../pages/map/map';
 import { DealPage } from '../pages/deal/deal';
+import { ShopPage } from '../pages/shop/shop';
+
+
 import { AppAuthProvider } from '../providers/app-auth/app-auth';
 import { Geolocation } from '@ionic-native/geolocation';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
@@ -46,6 +49,7 @@ import { IonicImageLoader } from 'ionic-image-loader';
     OptionsPage,
     MapPage,
     DealPage,
+    ShopPage,
     TabsPage
   ],
   imports: [
@@ -71,6 +75,7 @@ import { IonicImageLoader } from 'ionic-image-loader';
     OptionsPage,
     MapPage,
     DealPage,
+    ShopPage,
     TabsPage
   ],
   providers: [

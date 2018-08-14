@@ -1,0 +1,46 @@
+page-shop {
+	.row-1{
+		margin-top: 70px;
+		background: color($colors, app_main_bg, base);
+		padding: 15px 8px 8px 8px;
+	}
+	.row-2{
+		margin-top: 40px;
+		background: color($colors, app_main_bg, base);
+		padding: 15px 8px 8px 8px;
+	}
+	.device-container{
+		width: 100%;
+		margin: auto;
+		text-align: center;
+	}
+	.device{
+		width: 28%;
+		display: inline-block;
+		margin-left: 10px;
+		max-width: 200px;
+	}
+	.prices{
+		margin-top: 20px;
+		background: color($colors, app_alt_bg, base);
+		color: #fff;
+	}
+	.prices h5{
+		text-align: center;
+		padding: 5px 0;
+	}
+
+	.games{
+	}
+	.games img{
+		width: 90px;
+		height: 115px;
+		display: inline-block;
+	}
+	.order-btn{
+		background: color($colors, app_main_bg, base);
+		display: block;
+		margin: 20px auto;
+
+	}
+}

@@ -30,4 +30,7 @@
  			<ion-icon style="color: #fff;" name="chatbubbles" (click)="showChat(trader)"></ion-icon>
  		</div>
  	</ion-item>
+ 	<h5 class="status-msg" *ngIf="trade.matchingTraders.length == 0 && !trade.loading">
+ 		No matching trader found near your area. Check again in a while.
+ 	</h5>
 </ion-content>

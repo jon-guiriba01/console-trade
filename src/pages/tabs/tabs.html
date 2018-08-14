@@ -2,7 +2,7 @@
   <ion-navbar>
     <ion-title></ion-title>
 
-    <ion-icon class="settings" name="settings" (click)="navTo('options')"></ion-icon>
+    <ion-icon class="settings" name="settings" (click)="navTo(OptionsPage)"></ion-icon>
    
   </ion-navbar>
 </ion-header>
@@ -12,5 +12,5 @@
   <ion-tab [root]="tab2Root" tabTitle="Trade" tabIcon="contacts"></ion-tab>
   <ion-tab [root]="tab3Root" tabTitle="Messages" tabIcon="chatbubbles"></ion-tab>
   <ion-tab [root]="tab4Root" tabTitle="Deal" tabIcon="logo-usd"></ion-tab>
+  <ion-tab [root]="tab5Root" tabTitle="Buy/Rent" tabIcon="cart"></ion-tab>
 </ion-tabs>
-

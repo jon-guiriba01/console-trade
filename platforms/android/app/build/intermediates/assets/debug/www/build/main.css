@@ -87993,7 +87993,7 @@ page-chat .message-input button {
   background: #353535;
   color: #fff;
   margin-left: 5px;
-  border-radius: 6px;
+  /*border-radius: 6px;*/
 }
 
 page-chat .thread {
@@ -88335,6 +88335,16 @@ page-map .trade-location-header {
   padding-top: 10px;
 }
 
+page-map .status-msg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 40%;
+  margin: auto auto;
+  font-size: 2.5rem;
+  text-align: center;
+}
+
 page-messages div.trade-item {
   /*display: inline-block;*/
   /*max-width: 100px;*/
@@ -88584,7 +88594,7 @@ page-profile .display-grid .platforms img {
 
 page-profile .tip-text {
   /*color: color($colors, white, base);*/
-  color: #fff;
+  color: #353535;
   font-weight: 100;
 }
 
@@ -88676,6 +88686,52 @@ page-profile .set-location-btn {
   page-profile .set-location-btn {
     float: initial;
   }
+}
+
+page-shop .row-1 {
+  margin-top: 70px;
+  background: #353535;
+  padding: 15px 8px 8px 8px;
+}
+
+page-shop .row-2 {
+  margin-top: 40px;
+  background: #353535;
+  padding: 15px 8px 8px 8px;
+}
+
+page-shop .device-container {
+  width: 100%;
+  margin: auto;
+}
+
+page-shop .device {
+  width: 28%;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+page-shop .prices {
+  margin-top: 20px;
+  background: #616e7e;
+  color: #fff;
+}
+
+page-shop .prices h5 {
+  text-align: center;
+  padding: 5px 0;
+}
+
+page-shop .games img {
+  width: 90px;
+  height: 115px;
+  display: inline-block;
+}
+
+page-shop .order-btn {
+  background: #353535;
+  display: block;
+  margin: 20px auto;
 }
 
 page-signup ion-item.item-md, page-signup .button.button-md {
@@ -88840,4 +88896,14 @@ page-trade ion-spinner {
   margin: auto;
   width: 50px;
   height: 50px;
+}
+
+page-trade .status-msg {
+  position: absolute;
+  top: 40%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  font-size: 2.5rem;
+  text-align: center;
 }

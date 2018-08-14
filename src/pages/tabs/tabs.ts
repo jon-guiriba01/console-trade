@@ -6,6 +6,7 @@ import { MessagesPage } from '../messages/messages';
 import { ProfilePage } from '../profile/profile';
 import { OptionsPage } from '../options/options';
 import { DealPage } from '../deal/deal';
+import { ShopPage } from '../shop/shop';
 import { AppAuthProvider } from '../../providers/app-auth/app-auth';
 
 
@@ -21,13 +22,20 @@ export class TabsPage {
   tab2Root = TradePage;
   tab3Root = MessagesPage;
   tab4Root = DealPage;
+  tab5Root = ShopPage;
 
-  constructor(public navCtrl: NavController
+  constructor(
+    public navCtrl: NavController
+    , public auth: AppAuthProvider
   	) {
   
   }
 
   navTo(page){
   	this.navCtrl.push(OptionsPage, {}, {animate:true, direction: 'forward'})
+  }
+
+  logout(){
+    this.auth.logout();
   }
 }

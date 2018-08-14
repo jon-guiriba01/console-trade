@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { NavController, App } from 'ionic-angular';
+import { NavController, App, Events } from 'ionic-angular';
 import { AppAuthProvider } from '../../providers/app-auth/app-auth';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { IgdbProvider } from '../../providers/igdb/igdb';
@@ -26,23 +26,27 @@ export class ProfilePage {
     , private profile: ProfileProvider
     , private imgLoader: ImageLoaderConfig
     , private app: App
+    , private events: Events
 	) {
     imgLoader.setBackgroundSize('cover');
 
   }
 
   toggleItemOwnership(item, owned){
-     this.profile.toggleItemOwnership(this.auth.user, item, owned);
+    this.profile.toggleItemOwnership(this.auth.user, item, owned);
+    this.events.publish("profile:changed")
   }
 
   toggleItemPlatform(item, platform, owned){
     this.profile.toggleItemPlatform(this.auth.user, item, platform, owned);
+    this.events.publish("profile:changed")
   }
 
   removeItem(item, owned){
     console.log("pressing")
     this.profile.removeItem(this.auth.user, item, owned);
 
+    this.events.publish("profile:changed")
   }
 
   timeout
@@ -98,6 +102,8 @@ export class ProfilePage {
   	this.profile.addGameToProfile(this.auth.user, game, false)
   	this.searchInput = null;
   	this.searchOptions = [];
+
+    this.events.publish("profile:changed")
   }
 
   navToMap(){

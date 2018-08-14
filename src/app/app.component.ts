@@ -50,7 +50,6 @@ export class MyApp {
               let users: any;
 
                 this.initProfile(user).then((e)=>{
-                  return this.initTrades(user)
                 })
 
 
@@ -64,10 +63,6 @@ export class MyApp {
           
       });
       
-  }
-
-  initTrades(user){
-    this.trade.getNearestPossibleTrades(this.profile.user.key);
   }
 
   initProfile(user){
