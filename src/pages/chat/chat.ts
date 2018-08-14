@@ -19,6 +19,7 @@ export class ChatPage {
 	thread = [];
   threads = [];
 	converKey;
+  selectedGames = [];
 
   constructor(
   	public navCtrl: NavController
@@ -102,5 +103,15 @@ export class ChatPage {
       });
   }
 
+  selectGame(game){
+    console.log(game)
+    
+    if(!game.isSelected)
+      game.isSelected = true;
+    else 
+      game.isSelected = false;
 
+  }
+
+  
 }

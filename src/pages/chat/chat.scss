@@ -116,11 +116,42 @@ page-chat {
 		height: 90px;
 		display: inline-block;
 		margin-right: 2px;
+    position: relative;
+	}
+
+	.select-icon{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		margin: auto;
+		width: 45px;
+		height: 45px;
+
 	}
 	.location-list{
 		margin-top: 35px;
 	}
 
+	.action-row{
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+	}
+	.action-row h5{
+		width: 50%;
+		margin: 0;
+		padding: 15px 20px;
+		display: inline-block;
+		background: color($colors, app_alt_bg, base);
+		text-align: center;
+		color: #fff;
+	}
+	.action-row h5:nth-child(2){
+		background: color($colors, app_compliment, base);
+
+	}
 /*	.message-input .input.input-md{
 	}
 	.message-input input{

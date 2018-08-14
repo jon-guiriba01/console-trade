@@ -91,6 +91,7 @@ var ChatPage = /** @class */ (function () {
         this.message = "";
         this.thread = [];
         this.threads = [];
+        this.selectedGames = [];
         this.trader = navParams.get('trader');
         console.log("[chat] trader: ", this.trader);
         this.converKey = this.fbApp.getTraderConversationKey(this.trader, this.profile.user);
@@ -149,9 +150,16 @@ var ChatPage = /** @class */ (function () {
             target: this.trader
         });
     };
+    ChatPage.prototype.selectGame = function (game) {
+        console.log(game);
+        if (!game.isSelected)
+            game.isSelected = true;
+        else
+            game.isSelected = false;
+    };
     ChatPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-chat',template:/*ion-inline-start:"C:\wamp64\www\console-trade\src\pages\chat\chat.html"*/'<!--\n  Generated template for the ChatPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header >\n\n  <ion-navbar>\n    <ion-title>{{trader.first_name + " " + trader.last_name}}</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-icon style="color: #fff;" name="menu" menuToggle class="menu-toggle-forced"></ion-icon>\n<ion-content cpadding>\n\n	<div class="thread">\n		<div class="chat-message" [ngClass]="{\'trader-message\': message.senderKey !== profile.user.key}" *ngFor="let message of thread">\n			<h5>{{message.text}}</h5>\n		</div>\n	</div>\n\n	<div class="message-input message-input">\n			<ion-input [(ngModel)]="message" placeholder="Type a message..." (keyup.enter)="send()">\n			</ion-input>\n			<button (click)="send()">Send</button>\n	</div>\n</ion-content>\n\n\n<ion-nav #chatMenu [root]="rootPage">\n</ion-nav>\n\n<ion-menu class="chat-menu" side="right" [content]="chatMenu">\n  <ion-content>\n  	<ion-header>\n  		<h5>Preferred Trading Locations</h5>\n      <button ion-button class="location-btn" (click)="navToMap()">\n        <ion-icon name="compass"></ion-icon>\n      </button>\n  	</ion-header>\n  	<ion-list class="location-list">\n  		<ion-item *ngFor="let tradeLocation of trader.trade_locations">\n  			{{tradeLocation}}\n  		</ion-item>\n  	</ion-list>\n\n 		<div class="trade-grid">\n	 		<div class="trade-item" *ngFor="let item of trader.matchingTrades">\n	 			<img-loader *ngIf="item.cover_url" class="fit-img" src="{{item.cover_url | replace: \'cover_big\':\'thumb\'}}"></img-loader>\n        <img *ngIf="!item.cover_url" class="fit-img" >\n	 		</div>\n 		</div>\n 		\n  </ion-content>\n</ion-menu>'/*ion-inline-end:"C:\wamp64\www\console-trade\src\pages\chat\chat.html"*/,
+            selector: 'page-chat',template:/*ion-inline-start:"C:\wamp64\www\console-trade\src\pages\chat\chat.html"*/'<!--\n  Generated template for the ChatPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header >\n\n  <ion-navbar>\n    <ion-title>{{trader.first_name + " " + trader.last_name}}</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-icon style="color: #fff;" name="menu" menuToggle class="menu-toggle-forced"></ion-icon>\n<ion-content cpadding>\n\n	<div class="thread">\n		<div class="chat-message" [ngClass]="{\'trader-message\': message.senderKey !== profile.user.key}" *ngFor="let message of thread">\n			<h5>{{message.text}}</h5>\n		</div>\n	</div>\n\n	<div class="message-input message-input">\n			<ion-input [(ngModel)]="message" placeholder="Type a message..." (keyup.enter)="send()">\n			</ion-input>\n			<button (click)="send()">Send</button>\n	</div>\n</ion-content>\n\n\n<ion-nav #chatMenu [root]="rootPage">\n</ion-nav>\n\n<ion-menu class="chat-menu" side="right" [content]="chatMenu">\n  <ion-content>\n  	<ion-header>\n  		<h5>Preferred Trading Locations</h5>\n      <button ion-button class="location-btn" (click)="navToMap()">\n        <ion-icon name="compass"></ion-icon>\n      </button>\n  	</ion-header>\n  	<ion-list class="location-list">\n  		<ion-item *ngFor="let tradeLocation of trader.trade_locations">\n  			{{tradeLocation}}\n  		</ion-item>\n  	</ion-list>\n\n 		<div class="trade-grid">\n	 		<div class="trade-item" *ngFor="let item of trader.matchingTrades" (click)="selectGame(item)">\n	 			<img-loader *ngIf="item.cover_url" class="fit-img" src="{{item.cover_url | replace: \'cover_big\':\'thumb\'}}"></img-loader>\n        <img *ngIf="!item.cover_url" class="fit-img" >\n        <img class="select-icon" *ngIf="item.isSelected" src="assets/imgs/icon.png">\n	 		</div>\n 		</div>\n 		\n    <div class="action-row">\n      <h5>MEETUP</h5><h5>COURIER</h5>\n    </div>\n  </ion-content>\n</ion-menu>'/*ion-inline-end:"C:\wamp64\www\console-trade\src\pages\chat\chat.html"*/,
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_profile_profile__["a" /* ProfileProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_profile_profile__["a" /* ProfileProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__providers_firebaseapp_firebaseapp__["a" /* FirebaseappProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_firebaseapp_firebaseapp__["a" /* FirebaseappProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__providers_app_auth_app_auth__["a" /* AppAuthProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_app_auth_app_auth__["a" /* AppAuthProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */]) === "function" && _f || Object])
     ], ChatPage);
@@ -686,14 +694,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var MessagesPage = /** @class */ (function () {
-    function MessagesPage(navCtrl, profile, fbApp, app) {
+    function MessagesPage(navCtrl, profile, fbApp, app, events) {
         var _this = this;
         this.navCtrl = navCtrl;
         this.profile = profile;
         this.fbApp = fbApp;
         this.app = app;
+        this.events = events;
         this.traders = [];
-        this.fbApp.getUserConversations(profile.user)
+        this.pendingLoad = true;
+        this.events.subscribe("profile:changed", function (res) {
+            _this.pendingLoad = true;
+        });
+    }
+    MessagesPage.prototype.ionViewWillEnter = function () {
+        var _this = this;
+        if (!this.profile.user || !this.pendingLoad)
+            return;
+        this.pendingLoad = false;
+        this.traders = [];
+        this.fbApp.getUserConversations(this.profile.user)
             .subscribe(function (res) {
             if (!res)
                 return;
@@ -706,7 +726,7 @@ var MessagesPage = /** @class */ (function () {
                     var matchingTrades = [];
                     for (var _i = 0, _a = res.ownedList; _i < _a.length; _i++) {
                         var traderOwned = _a[_i];
-                        for (var _b = 0, _c = profile.user.wishList; _b < _c.length; _b++) {
+                        for (var _b = 0, _c = _this.profile.user.wishList; _b < _c.length; _b++) {
                             var userOwned = _c[_b];
                             if (userOwned.id === traderOwned.id) {
                                 matchingTrades.push(traderOwned);
@@ -719,7 +739,7 @@ var MessagesPage = /** @class */ (function () {
             }
             console.log("conversations: ", _this.traders);
         });
-    }
+    };
     MessagesPage.prototype.showChat = function (trader) {
         this.app.getRootNavs()[0].push(__WEBPACK_IMPORTED_MODULE_4__pages_chat_chat__["a" /* ChatPage */], {
             trader: trader
@@ -735,12 +755,10 @@ var MessagesPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-messages',template:/*ion-inline-start:"C:\wamp64\www\console-trade\src\pages\messages\messages.html"*/'<ion-content >\n    <ion-item *ngFor="let trader of traders" (click)="showChat(trader)" no-lines>\n        <div class="message-container">\n            <div class="trader-img-container">\n                <img class="fit-img" src="{{trader.profileImage}}"> \n            </div>\n            <div class="trader-info">\n                <h5 class="trader-name">{{trader.first_name + " " + trader.last_name}} </h5>\n            </div>\n       \n        </div>\n<!--         <div class="message-container">\n            <div class="trader-info">\n                <h5 class="trader-name">{{trader.first_name + " " + trader.last_name}} </h5>\n            </div>\n            <div class="matches">\n                <div class="trade-item"  *ngFor="let item of trader.ownedList">\n                    <ng-container *ngIf="profile.isItemMatch(item)">\n                        <h5>{{item.name}}</h5>\n                    </ng-container>\n                </div>\n            </div>\n        </div> -->\n    </ion-item>\n</ion-content>\n'/*ion-inline-end:"C:\wamp64\www\console-trade\src\pages\messages\messages.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_profile_profile__["a" /* ProfileProvider */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_firebaseapp_firebaseapp__["a" /* FirebaseappProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_profile_profile__["a" /* ProfileProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_profile_profile__["a" /* ProfileProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_firebaseapp_firebaseapp__["a" /* FirebaseappProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_firebaseapp_firebaseapp__["a" /* FirebaseappProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */]) === "function" && _e || Object])
     ], MessagesPage);
     return MessagesPage;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=messages.js.map

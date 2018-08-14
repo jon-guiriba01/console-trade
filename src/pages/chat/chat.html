@@ -45,11 +45,15 @@
   	</ion-list>
 
  		<div class="trade-grid">
-	 		<div class="trade-item" *ngFor="let item of trader.matchingTrades">
+	 		<div class="trade-item" *ngFor="let item of trader.matchingTrades" (click)="selectGame(item)">
 	 			<img-loader *ngIf="item.cover_url" class="fit-img" src="{{item.cover_url | replace: 'cover_big':'thumb'}}"></img-loader>
         <img *ngIf="!item.cover_url" class="fit-img" >
+        <img class="select-icon" *ngIf="item.isSelected" src="assets/imgs/icon.png">
 	 		</div>
  		</div>
  		
+    <div class="action-row">
+      <h5>MEETUP</h5><h5>COURIER</h5>
+    </div>
   </ion-content>
 </ion-menu>
