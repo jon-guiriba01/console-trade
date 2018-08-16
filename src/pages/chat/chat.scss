@@ -74,9 +74,12 @@ page-chat {
     position: absolute;
     z-index: 10;
     right: 0;
-    font-size: 2.5rem;
-    top: 7px;
-    right: 15px;
+    font-size: 1.1rem;
+    top: 0px;
+    right: 0;
+    padding: 13.5px;
+    margin: 0;
+		background: color($colors, app_alt_bg, base);
 	}
 
 	.chat-menu ion-header h5{
@@ -112,7 +115,7 @@ page-chat {
 		padding: 5px;
 	}
 	.trade-item{
-		width: 90px;
+		width: 89px;
 		height: 90px;
 		display: inline-block;
 		margin-right: 2px;
@@ -121,13 +124,10 @@ page-chat {
 
 	.select-icon{
 		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		margin: auto;
-		width: 45px;
-		height: 45px;
+		top: 5px;
+		right: 5px;
+		width: 25px;
+		height: 25px;
 
 	}
 	.location-list{
@@ -152,6 +152,15 @@ page-chat {
 		background: color($colors, app_compliment, base);
 
 	}
+	.divider{
+		color: #fff;
+		background: color($colors, app_main_bg, base);
+		padding: 5px 15px;
+    display: inline-block;
+    text-align: center;
+    margin-left: -5px;
+	}
+
 /*	.message-input .input.input-md{
 	}
 	.message-input input{

@@ -94298,9 +94298,12 @@ page-chat .menu-toggle-forced {
   position: absolute;
   z-index: 10;
   right: 0;
-  font-size: 2.5rem;
-  top: 7px;
-  right: 15px;
+  font-size: 1.1rem;
+  top: 0px;
+  right: 0;
+  padding: 13.5px;
+  margin: 0;
+  background: #616e7e;
 }
 
 page-chat .chat-menu ion-header h5 {
@@ -94339,7 +94342,7 @@ page-chat .trade-grid {
 }
 
 page-chat .trade-item {
-  width: 90px;
+  width: 89px;
   height: 90px;
   display: inline-block;
   margin-right: 2px;
@@ -94348,13 +94351,10 @@ page-chat .trade-item {
 
 page-chat .select-icon {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  width: 45px;
-  height: 45px;
+  top: 5px;
+  right: 5px;
+  width: 25px;
+  height: 25px;
 }
 
 page-chat .location-list {
@@ -94379,6 +94379,15 @@ page-chat .action-row h5 {
 
 page-chat .action-row h5:nth-child(2) {
   background: #f07818;
+}
+
+page-chat .divider {
+  color: #fff;
+  background: #353535;
+  padding: 5px 15px;
+  display: inline-block;
+  text-align: center;
+  margin-left: -5px;
 }
 
 page-chat .location-btn {

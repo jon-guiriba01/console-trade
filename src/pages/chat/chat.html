@@ -10,7 +10,7 @@
     <ion-title>{{trader.first_name + " " + trader.last_name}}</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-icon style="color: #fff;" name="menu" menuToggle class="menu-toggle-forced"></ion-icon>
+  <h5 name="menu" menuToggle class="menu-toggle-forced">TRADE DETAILS</h5>
 <ion-content cpadding>
 
 	<div class="thread">
@@ -44,8 +44,18 @@
   		</ion-item>
   	</ion-list>
 
+    <h5 class="divider" >{{trader.first_name + " " + trader.last_name}} is offering</h5>
+    <div class="trade-grid">
+      <div class="trade-item" *ngFor="let item of trader.matchingTrades">
+        <img-loader *ngIf="item.cover_url" class="fit-img" src="{{item.cover_url | replace: 'cover_big':'thumb'}}"></img-loader>
+        <img *ngIf="!item.cover_url" class="fit-img" >
+        <img class="select-icon" *ngIf="item.isSelected" src="assets/imgs/icon.png">
+      </div>
+    </div>
+
+    <h5 class="divider">{{profile.user.first_name + " " + profile.user.last_name}} is offering</h5>
  		<div class="trade-grid">
-	 		<div class="trade-item" *ngFor="let item of trader.matchingTrades" (click)="selectGame(item)">
+	 		<div class="trade-item" *ngFor="let item of trader.matchingWishes" (click)="selectGame(item)">
 	 			<img-loader *ngIf="item.cover_url" class="fit-img" src="{{item.cover_url | replace: 'cover_big':'thumb'}}"></img-loader>
         <img *ngIf="!item.cover_url" class="fit-img" >
         <img class="select-icon" *ngIf="item.isSelected" src="assets/imgs/icon.png">

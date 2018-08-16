@@ -28,7 +28,7 @@ export class MessagesPage {
   }
 
   ionViewWillEnter(){
-    if(!this.profile.user || !this.pendingLoad) return;
+    if(this.profile.user.email == "" || !this.pendingLoad) return;
 
     this.pendingLoad = false;
     this.traders = [];
