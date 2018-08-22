@@ -4,7 +4,7 @@
             "outputFile": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-port\\values-port.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\c966536fe3682786a2ac085113f13f27\\res\\values-port\\values-port.xml",
+                    "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb8d852306161309098dbe932749c6cc\\res\\values-port\\values-port.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

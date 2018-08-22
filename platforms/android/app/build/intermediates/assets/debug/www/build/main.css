@@ -94334,7 +94334,7 @@ page-chat .chat-menu ion-header {
 }
 
 page-chat .trade-item img-loader {
-  background-size: initial !important;
+  background-size: cover !important;
 }
 
 page-chat .trade-grid {
@@ -94351,10 +94351,10 @@ page-chat .trade-item {
 
 page-chat .select-icon {
   position: absolute;
-  top: 5px;
-  right: 5px;
-  width: 25px;
-  height: 25px;
+  top: 0px;
+  /*	right: 5px;
+		width: 25px;
+		height: 25px;*/
 }
 
 page-chat .location-list {
@@ -94365,20 +94365,33 @@ page-chat .action-row {
   position: absolute;
   bottom: 0;
   width: 100%;
+  bottom: 15px;
+  text-align: center;
 }
 
-page-chat .action-row h5 {
-  width: 50%;
+page-chat .methodText {
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  margin: 10px 0;
+}
+
+page-chat .action-row .action-option {
+  /*width: 50%;*/
   margin: 0;
   padding: 15px 20px;
   display: inline-block;
   background: #616e7e;
   text-align: center;
   color: #fff;
+  -webkit-transition: width 2s;
+  transition: width 2s;
 }
 
-page-chat .action-row h5:nth-child(2) {
-  background: #f07818;
+page-chat .action-row .courier {
+  width: 75%;
+  background: #fff;
+  color: #353535;
 }
 
 page-chat .divider {
@@ -94393,6 +94406,52 @@ page-chat .divider {
 page-chat .location-btn {
   background: #616e7e;
   vertical-align: middle;
+}
+
+@media only screen and (max-height: 650px) {
+  page-chat .action-row {
+    margin-top: 20px;
+    position: initial;
+    bottom: 0;
+    width: 100%;
+  }
+}
+
+page-courier-popover ion-content {
+  padding: 4px;
+}
+
+page-courier-popover .list {
+  margin: 0;
+}
+
+page-courier-popover .content-md .scroll-content {
+  overflow-y: hidden;
+  padding: 0;
+}
+
+page-courier-popover .courier-item {
+  padding-left: 0;
+  height: 75px;
+}
+
+page-courier-popover .courier-item.item .item-inner {
+  padding-right: 0;
+}
+
+page-courier-popover .courier-item img {
+  width: 80%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+page-courier-popover .courier-item h5 {
+  width: 20%;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 10px 5px;
+  color: #fff;
+  background: #353535;
 }
 
 page-deal .game-input {
@@ -95151,6 +95210,10 @@ page-trade .info-row {
   color: #fff;
 }
 
+page-trade .info-row h5 {
+  font-size: 1.2rem;
+}
+
 page-trade .trader-info h5:first-child {
   width: 38%;
   padding-right: 10px;
@@ -95203,4 +95266,8 @@ page-trade .status-msg {
   margin: auto;
   font-size: 2.5rem;
   text-align: center;
+}
+
+page-trade .trader-distance {
+  font-size: 1.1rem;
 }

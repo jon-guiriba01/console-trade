@@ -14,11 +14,32 @@ export class FirebaseappProvider {
   	public http: HttpClient
 		, public afdb: AngularFireDatabase
 		) {
-    console.log('Hello FirebaseappProvider Provider');
+  }
+
+  getOfferedGames(userKey, conversationKey){
+		var offeredGamesRef = this.afdb
+		.list(`/conversations/${conversationKey}/deal/${userKey}/offer`)
+		.valueChanges()
+
+		return offeredGamesRef;
+
+  }
+
+  updateUserProfileImage(userKey, profileImage){
+  	var selectedRef = this.afdb.list(`/users/${userKey}/`)
+  	.set('profileImage',profileImage)
+  }
+
+  updateConversationOffers(userKey, conversationKey, selectedGames){
+    console.log("[FBAPP] updateSelectedGames : ", selectedGames)
+  	var selectedRef = this.afdb.list(`/conversations/${conversationKey}/deal/${userKey}/`)
+  	.set('offer',selectedGames)
+
   }
 
   updateUserTradeLocations(userKey, trade_locations){
-  	var userRef = this.afdb.list(`/users/${userKey}/`).set('trade_locations',trade_locations);
+  	var userRef = this.afdb.list(`/users/${userKey}/`)
+  	.set('trade_locations',trade_locations);
   }
 
 	updateUserWishList(user, wishList){

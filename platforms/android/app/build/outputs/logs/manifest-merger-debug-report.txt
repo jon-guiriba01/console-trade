@@ -1,16 +1,30 @@
 -- Merging decision tree log ---
+provider#org.apache.cordova.camera.FileProvider
+INJECTED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:15:9-17:20
+	android:grantUriPermissions
+		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:15:92-126
+	android:authorities
+		INJECTED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml
+		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:15:19-66
+	android:exported
+		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:15:67-91
+	android:name
+		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:15:127-180
 manifest
-ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:1-23:12
-INJECTED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:1-23:12
-INJECTED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:1-23:12
-INJECTED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:1-23:12
+ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:1-27:12
 MERGED from [:tbxml-android:] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\tbxml-android.aar\f0a5af5b0b959d71725c46f6cab97247\AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.android.gms:play-services-maps:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-maps-15.0.1.aar\6f63edce1e7f5a6ef93278058fc2ce61\AndroidManifest.xml:17:1-32:12
 MERGED from [com.google.android.gms:play-services-location:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-location-15.0.1.aar\a9762acd7bebf157953e0833baca937f\AndroidManifest.xml:2:1-9:12
+MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\bb8d852306161309098dbe932749c6cc\AndroidManifest.xml:17:1-27:12
 MERGED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\2445618130acb183885c92a5f54c30f5\AndroidManifest.xml:17:1-29:12
 MERGED from [com.google.android.gms:play-services-places-placereport:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-places-placereport-15.0.1.aar\0c76f6465115a5c2d2f365833ad33c3a\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-tasks:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-tasks-15.0.1.aar\cbe597d329e0996c97342693bf71c742\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-basement:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-basement-15.0.1.aar\572dc22a3745f2a2733b84e6d2b51e5d\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-23.4.0.aar\fa3da5ce44222ccb3970a88e6255d60a\AndroidManifest.xml:2:1-9:12
+MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-23.4.0.aar\52792608e841e8fe8a4089059fb4f221\AndroidManifest.xml:2:1-9:12
 MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\f9f1cd79766950b3f4b547f0426fdb8d\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\cb74795205a8f0fae26b5090adba9b0a\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\5458b432916709884ce3f687f4a0538a\AndroidManifest.xml:17:1-31:12
@@ -19,9 +33,9 @@ MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Jon\.grad
 MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\9ff581dde6dcc0d3a389b6fcf8570363\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\c966536fe3682786a2ac085113f13f27\AndroidManifest.xml:17:1-31:12
 MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\b1ebefa83fdec4b1100cc83c9142d1f2\AndroidManifest.xml:17:1-30:12
-INJECTED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:1-23:12
-INJECTED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:1-23:12
-INJECTED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:1-23:12
+INJECTED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:1-27:12
 	package
 		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:2:98-135
 		INJECTED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml
@@ -59,11 +73,13 @@ MERGED from [com.google.android.gms:play-services-maps:15.0.1] C:\Users\Jon\.gra
 	android:name
 		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:4:22-64
 application
-ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:5:5-14:19
+ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:5:5-18:19
 MERGED from [com.google.android.gms:play-services-maps:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-maps-15.0.1.aar\6f63edce1e7f5a6ef93278058fc2ce61\AndroidManifest.xml:30:5-20
 MERGED from [com.google.android.gms:play-services-maps:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-maps-15.0.1.aar\6f63edce1e7f5a6ef93278058fc2ce61\AndroidManifest.xml:30:5-20
 MERGED from [com.google.android.gms:play-services-location:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-location-15.0.1.aar\a9762acd7bebf157953e0833baca937f\AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-location:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-location-15.0.1.aar\a9762acd7bebf157953e0833baca937f\AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\bb8d852306161309098dbe932749c6cc\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\bb8d852306161309098dbe932749c6cc\AndroidManifest.xml:25:5-20
 MERGED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\2445618130acb183885c92a5f54c30f5\AndroidManifest.xml:22:5-27:19
 MERGED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\2445618130acb183885c92a5f54c30f5\AndroidManifest.xml:22:5-27:19
 MERGED from [com.google.android.gms:play-services-places-placereport:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-places-placereport-15.0.1.aar\0c76f6465115a5c2d2f365833ad33c3a\AndroidManifest.xml:22:5-20
@@ -72,6 +88,10 @@ MERGED from [com.google.android.gms:play-services-tasks:15.0.1] C:\Users\Jon\.gr
 MERGED from [com.google.android.gms:play-services-tasks:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-tasks-15.0.1.aar\cbe597d329e0996c97342693bf71c742\AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-basement:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-basement-15.0.1.aar\572dc22a3745f2a2733b84e6d2b51e5d\AndroidManifest.xml:22:5-26:19
 MERGED from [com.google.android.gms:play-services-basement:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-basement-15.0.1.aar\572dc22a3745f2a2733b84e6d2b51e5d\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-23.4.0.aar\fa3da5ce44222ccb3970a88e6255d60a\AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-23.4.0.aar\fa3da5ce44222ccb3970a88e6255d60a\AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-23.4.0.aar\52792608e841e8fe8a4089059fb4f221\AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-23.4.0.aar\52792608e841e8fe8a4089059fb4f221\AndroidManifest.xml:7:5-20
 MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\f9f1cd79766950b3f4b547f0426fdb8d\AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\f9f1cd79766950b3f4b547f0426fdb8d\AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\cb74795205a8f0fae26b5090adba9b0a\AndroidManifest.xml:25:5-29:19
@@ -134,14 +154,24 @@ MERGED from [com.google.android.gms:play-services-basement:15.0.1] C:\Users\Jon\
 		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:13:66-119
 	android:name
 		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:13:20-65
+activity#com.synconset.MultiImageChooserActivity
+ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:14:9-160
+	android:label
+		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:14:19-57
+	android:theme
+		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:14:113-157
+	android:name
+		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:14:58-112
 uses-sdk
-ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:15:5-74
+ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:19:5-74
 MERGED from [:tbxml-android:] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\tbxml-android.aar\f0a5af5b0b959d71725c46f6cab97247\AndroidManifest.xml:7:5-9:41
 MERGED from [:tbxml-android:] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\tbxml-android.aar\f0a5af5b0b959d71725c46f6cab97247\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.android.gms:play-services-maps:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-maps-15.0.1.aar\6f63edce1e7f5a6ef93278058fc2ce61\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-maps:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-maps-15.0.1.aar\6f63edce1e7f5a6ef93278058fc2ce61\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-location:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-location-15.0.1.aar\a9762acd7bebf157953e0833baca937f\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-location:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-location-15.0.1.aar\a9762acd7bebf157953e0833baca937f\AndroidManifest.xml:5:5-44
+MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\bb8d852306161309098dbe932749c6cc\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\bb8d852306161309098dbe932749c6cc\AndroidManifest.xml:21:5-23:78
 MERGED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\2445618130acb183885c92a5f54c30f5\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\2445618130acb183885c92a5f54c30f5\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-places-placereport:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-places-placereport-15.0.1.aar\0c76f6465115a5c2d2f365833ad33c3a\AndroidManifest.xml:20:5-44
@@ -150,6 +180,10 @@ MERGED from [com.google.android.gms:play-services-tasks:15.0.1] C:\Users\Jon\.gr
 MERGED from [com.google.android.gms:play-services-tasks:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-tasks-15.0.1.aar\cbe597d329e0996c97342693bf71c742\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-basement:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-basement-15.0.1.aar\572dc22a3745f2a2733b84e6d2b51e5d\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-basement:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-basement-15.0.1.aar\572dc22a3745f2a2733b84e6d2b51e5d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-23.4.0.aar\fa3da5ce44222ccb3970a88e6255d60a\AndroidManifest.xml:5:5-44
+MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-23.4.0.aar\fa3da5ce44222ccb3970a88e6255d60a\AndroidManifest.xml:5:5-44
+MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-23.4.0.aar\52792608e841e8fe8a4089059fb4f221\AndroidManifest.xml:5:5-43
+MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-23.4.0.aar\52792608e841e8fe8a4089059fb4f221\AndroidManifest.xml:5:5-43
 MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\f9f1cd79766950b3f4b547f0426fdb8d\AndroidManifest.xml:21:5-23:54
 MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\f9f1cd79766950b3f4b547f0426fdb8d\AndroidManifest.xml:21:5-23:54
 MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\cb74795205a8f0fae26b5090adba9b0a\AndroidManifest.xml:21:5-23:60
@@ -167,45 +201,51 @@ MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Jon\.gradle\cac
 MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\b1ebefa83fdec4b1100cc83c9142d1f2\AndroidManifest.xml:20:5-22:41
 MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\b1ebefa83fdec4b1100cc83c9142d1f2\AndroidManifest.xml:20:5-22:41
 	tools:overrideLibrary
-		ADDED from [com.android.support:support-v4:26.1.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\f9f1cd79766950b3f4b547f0426fdb8d\AndroidManifest.xml:23:9-51
+		ADDED from [com.android.support:appcompat-v7:23.4.0] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\bb8d852306161309098dbe932749c6cc\AndroidManifest.xml:23:9-75
 	android:targetSdkVersion
-		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:15:42-71
+		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:19:42-71
 	android:minSdkVersion
-		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:15:15-41
+		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:19:15-41
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:20:5-81
+	android:name
+		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:20:22-78
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:16:5-81
+ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:21:5-81
 	android:name
-		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:16:22-78
+		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:21:22-78
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:17:5-79
+ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:22:5-79
 	android:name
-		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:17:22-76
+		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:22:22-76
 uses-feature#android.hardware.location.gps
-ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:18:5-66
+ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:23:5-66
 	android:name
-		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:18:19-63
+		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:23:19-63
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:19:5-79
+ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:24:5-79
 MERGED from [com.google.android.gms:play-services-maps:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-maps-15.0.1.aar\6f63edce1e7f5a6ef93278058fc2ce61\AndroidManifest.xml:23:5-79
 MERGED from [com.google.android.gms:play-services-maps:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-maps-15.0.1.aar\6f63edce1e7f5a6ef93278058fc2ce61\AndroidManifest.xml:23:5-79
 	android:name
-		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:19:22-76
+		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:24:22-76
 uses-feature#0x00020000
-ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:20:5-78
+ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:25:5-78
 MERGED from [com.google.android.gms:play-services-maps:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-maps-15.0.1.aar\6f63edce1e7f5a6ef93278058fc2ce61\AndroidManifest.xml:26:5-28:35
 MERGED from [com.google.android.gms:play-services-maps:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-maps-15.0.1.aar\6f63edce1e7f5a6ef93278058fc2ce61\AndroidManifest.xml:26:5-28:35
 	android:glEsVersion
-		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:20:19-51
+		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:25:19-51
 	android:required
-		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:20:52-75
+		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:25:52-75
 uses-feature#android.hardware.location
-ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:21:5-62
+ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:26:5-62
 	android:name
-		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:21:19-59
-uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:22:5-81
+		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:26:19-59
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:16:13-123
+	android:resource
+		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:16:75-120
 	android:name
-		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:22:22-78
+		ADDED from C:\wamp64\www\console-trade\platforms\android\app\src\main\AndroidManifest.xml:16:24-74
 activity#com.google.android.gms.common.api.GoogleApiActivity
 ADDED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\Jon\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\2445618130acb183885c92a5f54c30f5\AndroidManifest.xml:23:9-26:75
 	android:exported

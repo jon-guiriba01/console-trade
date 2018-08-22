@@ -42,15 +42,19 @@ export class MyApp {
          auth.afAuth.authState
           .subscribe(
             user => {
-            console.log("app component subscription")
+
+            this.auth.user = user;
+
             if (user) {
+              console.log("[fb user]", user)
+
               this.rootPage = TabsPage;
 
-              let usersRef : AngularFireList<any>;
-              let users: any;
+              let usersRef : AngularFireList<any>,
+                  users: any;
 
-                this.initProfile(user).then((e)=>{
-                })
+              this.initProfile(user).then((e)=>{
+              })
 
 
             }else {
@@ -76,11 +80,14 @@ export class MyApp {
           changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
         )
        ).subscribe((res)=>{
-        if(!res[0] || !res[0]["key"]) return;
+        console.log("[initProfile]", res)
+        
+        if(!res[0] || !res[0]["key"]){
+          return;
+        } 
 
-        console.log("fb user", res)
 
-        this.profile.user.profileImage = res[0]["profile_image"] || "assets/imgs/temp_profile_img_1.png";
+        this.profile.user.profileImage = res[0]["profileImage"] || "assets/imgs/temp_profile_img_1.png";
         this.profile.user.name = res[0]["first_name"] + " " + res[0]["last_name"];
         this.profile.user.first_name = res[0]["first_name"] || "";
         this.profile.user.last_name = res[0]["last_name"] || "";
@@ -91,7 +98,7 @@ export class MyApp {
         this.profile.user.conversations = res[0]["conversations"] || [];
         this.profile.user.trade_locations = res[0]["trade_locations"] || [];
 
-          console.log(">>geolocation ", this.profile.user)
+        console.log(">>geolocation ", this.profile.user)
         this.geolocation.getCurrentPosition({timeout: 20000, enableHighAccuracy: true}).then((geodata) => {
           userRef.update(res[0]["key"], {
             last_location: {
@@ -100,7 +107,7 @@ export class MyApp {
             }
           }).then((e)=>{
             resolve();
-          })
+        })
 
           console.log(">>user from component ", this.profile.user)
           userSub.unsubscribe();

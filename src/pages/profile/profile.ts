@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { NavController, App, Events } from 'ionic-angular';
+import { NavController, App, Platform, Events, LoadingController} from 'ionic-angular';
 import { AppAuthProvider } from '../../providers/app-auth/app-auth';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { IgdbProvider } from '../../providers/igdb/igdb';
@@ -9,6 +9,15 @@ import { C } from '../../config';
 import * as _ from 'underscore/underscore';
 import { IonicImageLoader, ImageLoaderConfig } from 'ionic-image-loader';
 import { MapPage } from '../../pages/map/map';
+
+import { FileTransfer, FileUploadOptions, FileTransferObject  } from '@ionic-native/file-transfer';
+import { File, FileEntry  } from '@ionic-native/file';
+import { FileChooser } from '@ionic-native/file-chooser';
+import { ImagePicker } from '@ionic-native/image-picker';
+import * as $ from 'jquery'
+import { StorageProvider } from '../../providers/storage/storage';
+import { FirebaseappProvider } from '../../providers/firebaseapp/firebaseapp';
+import { ImageResizer, ImageResizerOptions } from '@ionic-native/image-resizer';
 
 @Component({
   selector: 'page-profile',
@@ -27,6 +36,15 @@ export class ProfilePage {
     , private imgLoader: ImageLoaderConfig
     , private app: App
     , private events: Events
+    , private transfer: FileTransfer
+    , private file: File
+    , private fileChooser: FileChooser
+    , private imagePicker: ImagePicker
+    , public platform: Platform
+    , public fbApp: FirebaseappProvider
+    , public fbStorage: StorageProvider
+    , public loadingCtrl: LoadingController
+    , private imageResizer: ImageResizer
 	) {
     imgLoader.setBackgroundSize('cover');
 
@@ -110,5 +128,109 @@ export class ProfilePage {
       this.app.getRootNavs()[0].push(MapPage);
   }
 
+  uploadImage(){
+
+    if(this.platform.is('core')){
+      this.uploadImage_web()
+    }else if(this.platform.is('android')){
+      this.uploadImage_and()
+    }
+
+  }
+
+  uploadImage_and(){
+    return new Promise((resolve,reject)=>{
+
+      this.imagePicker.getPictures({
+        maximumImagesCount:1,
+        outputType:0
+      }).then(res =>{
+        if(!res){
+          return
+        }
+        let file = res[0];
+        return this.file.resolveLocalFilesystemUrl(file)
+      }).then((file : FileEntry)=>{
+          return this.imageResizer
+          .resize({
+             uri: file.nativeURL,
+             quality: 100,
+             width: 90,
+             height: 180,
+          })
+      }).then((filePath)=>{
+          return this.file.resolveLocalFilesystemUrl(filePath)
+      }).then( (file : FileEntry)=>{
+         return this.file.readAsDataURL(file.filesystem.root.nativeURL, file.name)
+      }).then(res=>{
+        this.storeImage(res)
+      })      
+      .catch(e => console.log(e));
+
+
+
+
+    });
+  }
+
+  uploadImage_web(){
+    return new Promise((resolve,reject)=>{
+
+      $('#fileInput').trigger("click")
+      $('#fileInput').change(()=> {
+
+
+        let file = $('#fileInput')[0]['files'][0];
+        
+        if(!file) return;
+        this.getBase64(file).then(res=>{
+          //TODO resize image
+          this.storeImage(res)
+        })
+
+      });
+
+    })
+  }
+
+  private storeImage(base64){
+    console.log("[storeImage]",base64)
+
+    let loading = this.loadingCtrl.create({
+      content: 'Uploading image...'
+    });
+
+    loading.present();
+
+    this.fbStorage.uploadImage(base64, this.profile.user.email)
+    .then( (res:string)=>{
+       console.log("upload image",res)
+       this.fbApp.updateUserProfileImage(this.profile.user.key, res);
+       this.profile.user.profileImage = res;
+
+       loading.dismiss();
+    }).catch(()=>{
+     loading.dismiss();
+    })
+  }
+
+  private getBase64(file) : Promise<any> {
+    return new Promise((resolve,reject)=>{
+     var reader = new FileReader();
+     reader.readAsDataURL(file);
+     reader.onload = function () {
+       resolve(reader.result)
+     };
+     reader.onerror = function (error) {
+       reject(error);
+     };
+    })
+  
+  }
+
+  private getExt(filename){
+    var idx = filename.lastIndexOf('.');
+    return (idx < 1) ? "" : filename.substr(idx + 1);
+  }
 
 }

@@ -1,0 +1,35 @@
+page-courier-popover {
+	ion-content{
+		padding: 4px;
+	}
+	.list{
+		margin: 0;
+	}
+	.content-md .scroll-content{
+		overflow-y: hidden;
+		padding: 0;
+	}
+
+	.courier-item{
+		padding-left: 0;
+		height: 75px;
+	}
+	.courier-item.item .item-inner{
+		padding-right: 0;
+	}
+
+	.courier-item img{
+		width: 80%;
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+	.courier-item h5{
+		width: 20%;
+		display: inline-block;
+		vertical-align: middle;
+    padding: 10px 5px;
+    color: #fff;
+		background: color($colors, app_main_bg, base);
+	}
+}

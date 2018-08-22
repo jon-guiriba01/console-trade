@@ -47,23 +47,25 @@
     <h5 class="divider" >{{trader.first_name + " " + trader.last_name}} is offering</h5>
     <div class="trade-grid">
       <div class="trade-item" *ngFor="let item of trader.matchingTrades">
-        <img-loader *ngIf="item.cover_url" class="fit-img" src="{{item.cover_url | replace: 'cover_big':'thumb'}}"></img-loader>
+        <img-loader *ngIf="item.cover_url" class="fit-img" src="{{item.cover_url}}"></img-loader>
         <img *ngIf="!item.cover_url" class="fit-img" >
-        <img class="select-icon" *ngIf="item.isSelected" src="assets/imgs/icon.png">
+        <img class="select-icon" *ngIf="item.isSelected" src="assets/imgs/selector_green.png">
       </div>
     </div>
 
     <h5 class="divider">{{profile.user.first_name + " " + profile.user.last_name}} is offering</h5>
  		<div class="trade-grid">
 	 		<div class="trade-item" *ngFor="let item of trader.matchingWishes" (click)="selectGame(item)">
-	 			<img-loader *ngIf="item.cover_url" class="fit-img" src="{{item.cover_url | replace: 'cover_big':'thumb'}}"></img-loader>
+	 			<img-loader *ngIf="item.cover_url" class="fit-img" src="{{item.cover_url}}"></img-loader>
         <img *ngIf="!item.cover_url" class="fit-img" >
-        <img class="select-icon" *ngIf="item.isSelected" src="assets/imgs/icon.png">
+        <img class="select-icon" *ngIf="item.isSelected" src="assets/imgs/selector_orange.png">
 	 		</div>
  		</div>
- 		
-    <div class="action-row">
-      <h5>MEETUP</h5><h5>COURIER</h5>
+    <div class="action-row" style="display: none;">
+      <h5 class="methodText">{{courier.name}} <span *ngIf="courier.price">&#8369;</span>{{courier.price}}</h5>
+      <!-- <h5 class="action-option meetup" (click)="selectMeetup()">MEETUP</h5> -->
+      <button ion-button class="action-option courier" (click)="selectCourier()"> SELECT COURIER</button>
+      <!-- <h5 class="action-option courier" (click)="selectCourier()">SELECT COURIER</h5> -->
     </div>
   </ion-content>
 </ion-menu>

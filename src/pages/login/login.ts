@@ -47,9 +47,12 @@ export class LoginPage {
   }
 
   loginWithGoogle() {
-	  this.auth.logInWithGoogle()
+	  this.auth.logInWithGoogleRedirect()
 	    .then(
-	      () => this.navCtrl.setRoot(TabsPage),
+	      (res) =>{
+	      	console.log(10101,res)
+	      	this.navCtrl.setRoot(TabsPage)
+	      },
 	      error => console.log(error.message)
 	    );
   }

@@ -1,0 +1,7 @@
+<ion-content>
+	<ion-list>
+		<ion-item class="courier-item" *ngFor="let courier of couriers">
+			<img src="{{courier.logo}}" (click)="selectCourier(courier.id)"><h5 >&#8369; {{courier.price}}</h5>
+		</ion-item>
+	</ion-list>
+</ion-content>

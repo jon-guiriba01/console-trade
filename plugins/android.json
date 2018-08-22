@@ -10,6 +10,15 @@
     "cordova-plugin-device": {
       "PACKAGE_NAME": "com.lemontree.console_trade"
     },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.lemontree.console_trade"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "com.lemontree.console_trade"
+    },
+    "cordova-plugin-filechooser": {
+      "PACKAGE_NAME": "com.lemontree.console_trade"
+    },
     "cordova-plugin-geolocation": {
       "PACKAGE_NAME": "com.lemontree.console_trade"
     },
@@ -25,10 +34,16 @@
     "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "com.lemontree.console_trade"
     },
+    "cordova-plugin-telerik-imagepicker": {
+      "PACKAGE_NAME": "com.lemontree.console_trade"
+    },
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.lemontree.console_trade"
     },
-    "cordova-plugin-file": {
+    "info.protonet.imageresizer": {
+      "PACKAGE_NAME": "com.lemontree.console_trade"
+    },
+    "cordova-plugin-camera": {
       "PACKAGE_NAME": "com.lemontree.console_trade"
     }
   },

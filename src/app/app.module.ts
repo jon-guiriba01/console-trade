@@ -20,6 +20,7 @@ import { ChatPage } from '../pages/chat/chat';
 import { MapPage } from '../pages/map/map';
 import { DealPage } from '../pages/deal/deal';
 import { ShopPage } from '../pages/shop/shop';
+import { CourierPopoverPage } from '../pages/courier-popover/courier-popover';
 
 
 import { AppAuthProvider } from '../providers/app-auth/app-auth';
@@ -36,6 +37,12 @@ import { FirebaseappProvider } from '../providers/firebaseapp/firebaseapp';
 import { LongPressModule } from 'ionic-long-press';
 import { UiProvider } from '../providers/ui/ui';
 import { IonicImageLoader } from 'ionic-image-loader';
+import { FileTransfer } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
+import { FileChooser } from '@ionic-native/file-chooser';
+import { ImagePicker } from '@ionic-native/image-picker';
+import { StorageProvider } from '../providers/storage/storage';
+import { ImageResizer } from '@ionic-native/image-resizer';
 
 @NgModule({
   declarations: [
@@ -50,6 +57,7 @@ import { IonicImageLoader } from 'ionic-image-loader';
     MapPage,
     DealPage,
     ShopPage,
+    CourierPopoverPage,
     TabsPage
   ],
   imports: [
@@ -76,6 +84,7 @@ import { IonicImageLoader } from 'ionic-image-loader';
     MapPage,
     DealPage,
     ShopPage,
+    CourierPopoverPage,
     TabsPage
   ],
   providers: [
@@ -91,7 +100,13 @@ import { IonicImageLoader } from 'ionic-image-loader';
     TradeProvider,
     ProfileProvider,
     FirebaseappProvider,
-    UiProvider
+    UiProvider,
+    FileTransfer,
+    File,
+    FileChooser,
+    ImagePicker,
+    ImageResizer,
+    StorageProvider
   ]
 })
 export class AppModule {}

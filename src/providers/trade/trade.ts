@@ -24,7 +24,7 @@ export class TradeProvider {
 
     var httpSub = this.http.get(url, {headers}).subscribe((res)=>{
       
-      this.matchingTraders = res;
+      this.matchingTraders = res ? res : [];
       console.log("get getNearestPossibleTrades: ", this.matchingTraders)
       
       this.loading = false;

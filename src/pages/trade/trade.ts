@@ -4,7 +4,7 @@ import { AppAuthProvider } from '../../providers/app-auth/app-auth';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { TradeProvider } from '../../providers/trade/trade';
 import { ChatPage } from '../../pages/chat/chat';
-
+import * as $ from 'jquery'
 import { Profile } from '../../models/profile';
 import { C } from '../../config';
 import 'rxjs/add/observable/fromEvent';
@@ -55,6 +55,12 @@ export class TradePage {
   	this.app.getRootNavs()[0].push(ChatPage, {
   		trader : trader
   	});
+  }
+
+  expandToggle(trader){
+    if(trader.expanded)
+      trader.expanded = false;
+    else trader.expanded = true;
   }
 
 }

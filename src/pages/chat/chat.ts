@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App, PopoverController  } from 'ionic-angular';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { FirebaseappProvider } from '../../providers/firebaseapp/firebaseapp';
 import { AppAuthProvider } from '../../providers/app-auth/app-auth';
 import 'rxjs/add/observable/fromEvent';
 import { IonicImageLoader, ImageLoaderConfig } from 'ionic-image-loader';
 import { MapPage } from '../../pages/map/map';
+import { CourierPopoverPage } from '../../pages/courier-popover/courier-popover';
+import * as $ from 'jquery'
 
 @Component({
   selector: 'page-chat',
@@ -17,9 +19,14 @@ export class ChatPage {
 	message = "";
 	chatSub;
 	thread = [];
-  threads = [];
 	converKey;
-  selectedGames = [];
+  userOfferedGamesSub;
+  traderOfferedGamesSub;
+  userOfferedGames = [];
+  traderOfferedGames = [];
+  courier ={
+    name: "No Courier Selected"
+  } 
 
   constructor(
   	public navCtrl: NavController
@@ -28,17 +35,55 @@ export class ChatPage {
   	, public fbApp: FirebaseappProvider
   	, public auth: AppAuthProvider
     , private app: App
+    , public popoverCtrl: PopoverController
   	) {
   	this.trader = navParams.get('trader')
     console.log("[chat] trader: ", this.trader)
     this.converKey =  this.fbApp.getTraderConversationKey(this.trader, this.profile.user)
 
     if(this.converKey){
-      this.chatSub = this.fbApp.getConversationMessages(this.converKey).subscribe((res)=>{
+      this.chatSub = this.fbApp.getConversationMessages(this.converKey)
+        .subscribe((res)=>{
           console.log("thread ", res);
           this.thread = res;
-          this.threads[this.trader.key] = res;
        })
+
+      this.traderOfferedGamesSub = this.fbApp.getOfferedGames(
+        this.trader.key,
+        this.converKey
+      ).subscribe( (res)=>{
+        this.traderOfferedGames = res;
+
+        for(var game of res){
+          for(var traderGame of this.trader.matchingTrades){
+            if(game["id"] === traderGame.id){
+              traderGame.isSelected = true;
+            }
+          }
+        }
+
+        console.log(">>> traderrOG",res)
+      });
+
+      this.userOfferedGamesSub = this.fbApp.getOfferedGames(
+        this.profile.user.key,
+        this.converKey
+      ).subscribe( (res)=>{
+        this.userOfferedGames = res;
+
+        if(!this.trader.matchingWishes)
+          this.trader.matchingWishes = [];
+
+        for(var game of res){
+          for(var traderGame of this.trader.matchingWishes){
+            if(game["id"] === traderGame.id){
+              traderGame.isSelected = true;
+            }
+          }
+        }
+      
+        console.log(">>> userOG",res)
+      });
      }
 
   }
@@ -50,9 +95,15 @@ export class ChatPage {
   }
 
   ionViewDidLeave(){
-  	if(this.chatSub){
-  		console.log("ONLEAVE CHAT PAGE")
-  		this.chatSub.unsubscribe();
+    if(this.chatSub){
+      console.log("ONLEAVE CHAT PAGE")
+      this.chatSub.unsubscribe();
+    }
+    if(this.userOfferedGamesSub){
+      this.userOfferedGamesSub.unsubscribe();
+    }
+  	if(this.traderOfferedGamesSub){
+  		this.traderOfferedGamesSub.unsubscribe();
   	}
   }
 
@@ -103,15 +154,42 @@ export class ChatPage {
       });
   }
 
+  saveTimeout;
   selectGame(game){
-    console.log(game)
-    
-    if(!game.isSelected)
+    clearTimeout(this.saveTimeout)
+
+    if(!game.isSelected){
       game.isSelected = true;
-    else 
+      this.userOfferedGames.push(game)
+    }
+    else{ 
       game.isSelected = false;
+      this.userOfferedGames = this.userOfferedGames.filter( (e)=>{
+        return e.id != game.id
+      } )
+    }
+
+    setTimeout(()=>{
+      this.fbApp.updateConversationOffers(this.profile.user.key, this.converKey, this.userOfferedGames);
+    },500);
+
 
   }
 
+  selectCourier(){
+    // this.courierStatus = "waiting for confirmation";
+    // console.log(222)
+    // $('.meetup').css('width','25%')
+    // $('.meetup').css('padding','15px 0')
+    // $('.courier').css('width','75%')
+
+    let popover = this.popoverCtrl.create(CourierPopoverPage)
+    popover.present();
+
+    popover.onDidDismiss((courier)=>{
+      if(!courier) return
+        this.courier = courier;
+    })
+  }
   
 }

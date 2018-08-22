@@ -1,8 +1,8 @@
 <ion-content (click)="clearSearch()">
-
+<input id="fileInput" type="file" style="display: none" accept="image/*"/>
 <div class="profile">
   <div class="profile-image">
-    <img-loader class="circle-head" src="{{profile.user.profileImage}}"></img-loader>
+    <img-loader class="circle-head" src="{{profile.user.profileImage}}" (click)="uploadImage()"></img-loader>
   </div>
   <div class="profile-info-wrapper">
     <div class="profile-info">
@@ -23,7 +23,7 @@
   <div class="game-input-wrapper">
     <ion-spinner *ngIf="searchIsLoading" class="search-spinner" name="dots"></ion-spinner>        
     <ion-item  inset class="game-input" no-lines>
-      <ion-input (ionChange)="searchtTitle()" type="text" [(ngModel)]="searchInput" placeholder="Game title">
+      <ion-input (ionChange)="searchtTitle()" type="text" [(ngModel)]="searchInput" placeholder="Search game titles">
       </ion-input>
     </ion-item>
     <h5 float-right class="tip-text">*tap games to toggle, hold to delete</h5>

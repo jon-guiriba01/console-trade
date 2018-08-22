@@ -24,12 +24,15 @@ export class IgdbProvider {
 
     var excludedPlatforms = "0";
     var included = [
-      41 // wii
+      3 // Linux
       ,6 // windows pc
       ,9 // ps3
       ,12 // xbox 360
+      ,14 // Mac
+      ,41 // wii
       ,48 // xbox1
       ,49 // ps4
+      ,92 // steamOs
       ,130 // switch
     ]
 

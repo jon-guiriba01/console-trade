@@ -44,16 +44,6 @@ export class MessagesPage {
           if(res.profileImage == null || res.profileImage == ""){
             res.profileImage = this.getRandomPic();
           }
-
-          var matchingTrades = [];
-          for(var traderOwned of res.ownedList){
-            for(var userOwned of this.profile.user.wishList){
-                if(userOwned.id === traderOwned.id){
-                   matchingTrades.push(traderOwned);
-                }
-            }
-          }
-          res["matchingTrades"] = matchingTrades;
           this.traders.push(res)
 
         })
@@ -68,6 +58,28 @@ export class MessagesPage {
   }
 
   showChat(trader){
+
+    var matchingTrades = [];
+    for(var traderOwned of trader.ownedList){
+      for(var userWish of this.profile.user.wishList){
+          if(userWish.id === traderOwned.id){
+             matchingTrades.push(traderOwned);
+          }
+      }
+    }
+
+    var matchingWishes = [];
+    for(var traderWish of trader.wishList){
+      for(var userOwned of this.profile.user.ownedList){
+          if(userOwned.id === traderWish.id){
+             matchingWishes.push(userOwned);
+          }
+      }
+    }
+    
+    trader.matchingTrades = matchingTrades;
+    trader.matchingWishes = matchingWishes;
+
     this.app.getRootNavs()[0].push(ChatPage, {
       trader : trader
     });

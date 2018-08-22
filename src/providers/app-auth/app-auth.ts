@@ -22,10 +22,6 @@ export class AppAuthProvider {
 		, public afdb: AngularFireDatabase
 		) {
 
-	 afAuth.authState.subscribe(user => {
-			console.log("user", user)
-			this.user = user;
-		});
 	}
 
 	signInWithEmail(credentials) {
@@ -40,7 +36,8 @@ export class AppAuthProvider {
 		 	var profile = new Profile();
 		 	profile.first_name = form.firstName,
 			profile.last_name = form.lastName,
-			profile.email = form.email
+			profile.email = form.email.toLowerCase()
+			profile.profileImage = C.DEFAULT_PROFILE_IMG
 
 
 	    this.geolocation.getCurrentPosition().then((geodata) => {
@@ -85,14 +82,16 @@ export class AppAuthProvider {
 
 	logInWithGoogleRedirect(){
 		return this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider())
-			.then(() => {
+			.then((res) => {
+					console.log("redir", res);
 				return this.afAuth.auth.getRedirectResult().then( result => {
+					console.log("redir2",result);
 					// This gives you a Google Access Token.
 					// You can use it to access the Google API.
 					let token = result.credential["accessToken"];
 					// The signed-in user info.
 					let user = result.user;
-					console.log(token, user);
+					console.log(220202,token, user);
 				}).catch(function(error) {
 					// Handle Errors here.
 					alert(error.message);
