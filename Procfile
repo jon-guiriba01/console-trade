@@ -1,1 +1,0 @@
-web: npm install ionic && npm install cordova && ionic cordova build android
