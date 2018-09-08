@@ -1,46 +1,115 @@
-<ion-content >
+<ion-content style="margin-top: 35px; padding-bottom: 90px;">
 <!-- <div style="height: 100%;" (click)="getNearestPossibleTrades()">
 	
 </div> -->
 	<ion-spinner *ngIf="trade.loading" name="bubbles"></ion-spinner>
+<div *ngIf="showDisclaimer">
+	<div class="warning-msg">
+		All games traded are expected to be working with no issues and within its proper casing.
+		If the game is not in good condition please return it immediately. Console Nation is not responsible for any damages regarding transactions. Compensatory, direct, incidental, consequential 	or otherwise.
+	</div>
+	<h5 class="iunderstand" (click)="confirmDisclaimer()"> I Understand</h5>
+</div>
 
 	<h4  style="padding: 5px 5px 0 16px;">Matches found</h4>
- 	<ion-item class="matching-trades" *ngFor="let trader of trade.matchingTraders" no-lines>
+	<button ion-button class="view-market-btn" (click)="toggleTraders()">
+		<span *ngIf="showMatchingOnly">Show All</span>
+		<span *ngIf="!showMatchingOnly">Show Matching Only</span>
+	</button>
+	<div style="position: relative; margin-bottom: 100px;">
 
- 		<div class="">
- 			
- 		</div>
+		<div >
+		 	<ion-item class="matching-trades" *ngFor="let trader of traders" no-lines>
 
- 		<div class="info-row">
-	 		<ion-icon *ngIf="!trader.expanded" name="arrow-dropdown" (click)="expandToggle(trader)"></ion-icon>
-	 		<ion-icon *ngIf="trader.expanded" name="arrow-dropup" (click)="expandToggle(trader)"></ion-icon>
-	 		<h5>{{trader.first_name + " " + trader.last_name}} is offering..</h5>
- 			<h5 class="trader-distance">{{trader.distance | ceil}}m away</h5>
- 			<ion-icon style="color: #fff;" name="chatbubbles" (click)="showChat(trader)"></ion-icon>
-	 		<!-- <h5 class="info-matches">{{trader.matchingTrades.length}} matches</h5> -->
- 		</div>
-	 		<div class="trade-grid">
-		 		<div class="trade-item" *ngFor="let item of trader.matchingTrades">
-		 			<img-loader *ngIf="item.cover_url" class="fit-img" src="{{item.cover_url | replace: 'cover_big':'thumb'}}"></img-loader>
-	        <img *ngIf="!item.cover_url" class="fit-img" >
+		 		<div class="info-row">
+			 		<ion-icon *ngIf="!trader.expanded" name="arrow-dropdown" (click)="expandToggle(trader)"></ion-icon>
+			 		<ion-icon *ngIf="trader.expanded" name="arrow-dropup" (click)="expandToggle(trader)"></ion-icon>
+			 		<h5>{{trader.first_name + " " + trader.last_name}} has</h5>
+		 			<h5 class="trader-distance">{{trader.distance | ceil}}m away</h5>
+		 			<ion-icon class="chat-icon" style="color: #fff;" name="chatbubbles" (click)="showChat(trader)"></ion-icon>
+			 		<!-- <h5 class="info-matches">{{trader.matchingTrades.length}} matches</h5> -->
 		 		</div>
-	 		</div>
- 		<div *ngIf="trader.expanded">
-	 		<div class="info-row">
-		 		<h5>{{trader.first_name + " " + trader.last_name}} is interested in..</h5>
-	 		</div>
-	 		<div class="trade-grid ">
-		 		<div class="trade-item" *ngFor="let item of trader.matchingWishes">
-		 			<img-loader *ngIf="item.cover_url"  class="fit-img" src="{{item.cover_url | replace: 'cover_big':'thumb'}}"></img-loader>
-	        <img *ngIf="!item.cover_url" class="fit-img" >
+			 		<div class="trade-grid">
+
+			 			<div *ngIf="showMatchingOnly">
+					 		<div class="trade-item" *ngFor="let item of trader.matchingTrades">
+					 			<img-loader *ngIf="item.cover_url" class="fit-img" src="{{item.cover_url }}"></img-loader>
+				        <img *ngIf="!item.cover_url" class="fit-img" >
+				        <h5 *ngIf="!item.cover_url" class="trade-img-title">{{item.name}}</h5>
+					 		</div>
+					 	</div>
+
+			 			<div *ngIf="!showMatchingOnly">
+					 		<div class="trade-item" *ngFor="let item of trader.ownedList">
+					 			<img-loader *ngIf="item.cover_url"  class="fit-img" src="{{item.cover_url }}"></img-loader>
+				        <img *ngIf="!item.cover_url" class="fit-img" >
+				        <h5 *ngIf="!item.cover_url" class="trade-img-title">{{item.name}}</h5>
+					 		</div>
+			 			</div>
+
+			 		</div>
+		 		<div *ngIf="trader.expanded">
+			 		<div class="info-row">
+				 		<h5>{{trader.first_name + " " + trader.last_name}} wants</h5>
+			 		</div>
+			 		<div class="trade-grid ">
+
+			 			<div *ngIf="showMatchingOnly">
+					 		<div class="trade-item" *ngFor="let item of trader.matchingWishes">
+					 			<img-loader *ngIf="item.cover_url"  class="fit-img" src="{{item.cover_url }}"></img-loader>
+				        <img *ngIf="!item.cover_url" class="fit-img" >
+				        <h5 *ngIf="!item.cover_url" class="trade-img-title">{{item.name}}</h5>
+					 		</div>
+			 			</div>
+
+			 			<div *ngIf="!showMatchingOnly">
+					 		<div class="trade-item" *ngFor="let item of trader.wishList">
+					 			<img-loader *ngIf="item.cover_url"  class="fit-img" src="{{item.cover_url }}"></img-loader>
+				        <img *ngIf="!item.cover_url" class="fit-img" >
+				        <h5 *ngIf="!item.cover_url" class="trade-img-title">{{item.name}}</h5>
+					 		</div>
+			 			</div>
+
+			 		</div>
+		 			
 		 		</div>
-	 		</div>
- 			
- 		</div>
- 		<!-- <div class="info-row"> -->
- 		<!-- </div> -->
- 	</ion-item>
- 	<h5 class="status-msg" *ngIf="trade.matchingTraders.length == 0 && !trade.loading">
+		 	</ion-item>
+		</div>
+		<button ion-button class="more-btn" *ngIf="hasMore" (click)="showMore()">Show more</button>
+
+	<!-- 	<div *ngIf="!showMatchingOnly">
+		 	<ion-item class="matching-trades" *ngFor="let trader of traders" no-lines>
+
+		 		<div class="info-row">
+			 		<ion-icon *ngIf="!trader.expanded" name="arrow-dropdown" (click)="expandToggle(trader)"></ion-icon>
+			 		<ion-icon *ngIf="trader.expanded" name="arrow-dropup" (click)="expandToggle(trader)"></ion-icon>
+			 		<h5>{{trader.first_name + " " + trader.last_name}} has</h5>
+		 			<h5 class="trader-distance">{{trader.distance | ceil}}m away</h5>
+		 			<ion-icon style="color: #fff;" name="chatbubbles" (click)="showChat(trader)"></ion-icon>
+		 		</div>
+			 		<div class="trade-grid">
+				 		<div class="trade-item" *ngFor="let item of trader.wishList">
+				 			<img-loader *ngIf="item.cover_url" class="fit-img" src="{{item.cover_url }}"></img-loader>
+			        <img *ngIf="!item.cover_url" class="fit-img" >
+				 		</div>
+			 		</div>
+		 		<div *ngIf="trader.expanded">
+			 		<div class="info-row">
+				 		<h5>{{trader.first_name + " " + trader.last_name}} wants</h5>
+			 		</div>
+			 		<div class="trade-grid ">
+				 		<div class="trade-item" *ngFor="let item of trader.ownedList">
+				 			<img-loader *ngIf="item.cover_url"  class="fit-img" src="{{item.cover_url }}"></img-loader>
+			        <img *ngIf="!item.cover_url" class="fit-img" >
+				 		</div>
+			 		</div>
+		 			
+		 		</div>
+		 	</ion-item>
+		</div -->
+
+	</div>
+ 	<h5 class="status-msg" *ngIf="traders.length == 0 && !trade.loading">
  		No matching trader found near your area. Check again in a while.
  	</h5>
 </ion-content>

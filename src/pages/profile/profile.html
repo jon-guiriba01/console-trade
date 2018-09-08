@@ -6,7 +6,7 @@
   </div>
   <div class="profile-info-wrapper">
     <div class="profile-info">
-        <h4>{{profile.user.name}}</h4>
+        <h4>{{profile.user.first_name + " " + profile.user.last_name}}</h4>
         <!-- <ion-icon name="create"></ion-icon> -->
       <!-- <h5>{{profile.user.location}}</h5> -->
     </div>
@@ -38,35 +38,37 @@
   </div>
   
   <h5 class="divider" style="margin-top: 30px;">Looking for</h5>
-
+  <h5 class="display-text" *ngIf="profile.user.wishList.length == 0">Add games you want to have</h5>
   <div class="display-grid">
     <div class="trade-item" *ngFor="let item of profile.user.wishList">
-      <div ion-long-press class="trade-img" (tap)="toggleItemOwnership(item, false)" [interval]="400" (onPressing)="removeItem(item, false)">
+      <div ion-long-press class="trade-img" (click)="toggleItemList(item, false)" [interval]="400" (onPressing)="removeItem(item, false)">
         <img-loader *ngIf="item.cover_url" class="fit-img" src="{{item.cover_url}}" ></img-loader>
         <img *ngIf="!item.cover_url" class="fit-img" >
         <h5 *ngIf="!item.cover_url" class="trade-img-title" >{{item.name}}</h5>
       </div>
       <div class="platforms">
-        <img (tap)="toggleItemPlatform(item, 'xbox1', false)" [ngClass]="{'faded': item.platforms.indexOf('xbox1') == -1}" src="assets/imgs/xbox_icon.png">
-        <img (tap)="toggleItemPlatform(item, 'ps4', false)" [ngClass]="{'faded': item.platforms.indexOf('ps4') == -1}" src="assets/imgs/ps4_icon.png">
-        <img (tap)="toggleItemPlatform(item, 'ns', false)" [ngClass]="{'faded': item.platforms.indexOf('ns') == -1}" src="assets/imgs/ns_icon.png">
+        <img (click)="toggleItemPlatform(item, 'xbox1', false)" [ngClass]="{'faded': item.platforms.indexOf('xbox1') == -1}" src="assets/imgs/xbox_icon.png">
+        <img (click)="toggleItemPlatform(item, 'ps4', false)" [ngClass]="{'faded': item.platforms.indexOf('ps4') == -1}" src="assets/imgs/ps4_icon.png">
+        <img (click)="toggleItemPlatform(item, 'ns', false)" [ngClass]="{'faded': item.platforms.indexOf('ns') == -1}" src="assets/imgs/ns_icon.png">
       </div>
     </div>    
   </div>
 
   <h5 class="divider">Owned</h5>
+
+  <h5 class="display-text" *ngIf="profile.user.ownedList.length == 0">Add games you want to trade</h5>
   
   <div class="display-grid">
     <div class="trade-item" *ngFor="let item of profile.user.ownedList">
-      <div ion-long-press class="trade-img" (tap)="toggleItemOwnership(item, true)" [interval]="400" (onPressing)="removeItem(item, true)">
+      <div ion-long-press class="trade-img" (click)="toggleItemList(item, true)" [interval]="400" (onPressing)="removeItem(item, true)">
         <img-loader *ngIf="item.cover_url" class="fit-img" src="{{item.cover_url}}" ></img-loader>
         <img *ngIf="!item.cover_url" class="fit-img" >
         <h5 *ngIf="!item.cover_url" class="trade-img-title" >{{item.name}}</h5>
       </div>
       <div class="platforms">
-        <img (tap)="toggleItemPlatform(item, 'xbox1', true)" [ngClass]="{'faded': item.platforms.indexOf('xbox1') == -1}" src="assets/imgs/xbox_icon.png">
-        <img (tap)="toggleItemPlatform(item, 'ps4', true)" [ngClass]="{'faded': item.platforms.indexOf('ps4') == -1}" src="assets/imgs/ps4_icon.png">
-        <img (tap)="toggleItemPlatform(item, 'ns', true)" [ngClass]="{'faded': item.platforms.indexOf('ns') == -1}" src="assets/imgs/ns_icon.png">
+        <img (click)="toggleItemPlatform(item, 'xbox1', true)" [ngClass]="{'faded': item.platforms.indexOf('xbox1') == -1}" src="assets/imgs/xbox_icon.png">
+        <img (click)="toggleItemPlatform(item, 'ps4', true)" [ngClass]="{'faded': item.platforms.indexOf('ps4') == -1}" src="assets/imgs/ps4_icon.png">
+        <img (click)="toggleItemPlatform(item, 'ns', true)" [ngClass]="{'faded': item.platforms.indexOf('ns') == -1}" src="assets/imgs/ns_icon.png">
       </div>
       
     </div>    

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NavController } from 'ionic-angular';
 import { SignupPage } from '../signup/signup';
+import { ResetpasswordPage } from '../resetpassword/resetpassword';
 import { TabsPage } from '../tabs/tabs';
 import { AppAuthProvider } from '../../providers/app-auth/app-auth';
 
@@ -20,7 +21,7 @@ export class LoginPage {
 	) {
 		this.loginForm = fb.group({
 			email: ['', Validators.compose([Validators.required, Validators.email])],
-			password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
+			password: ['', Validators.compose([Validators.required, Validators.minLength(3)])]
 		});
 	}
 
@@ -47,14 +48,21 @@ export class LoginPage {
   }
 
   loginWithGoogle() {
-	  this.auth.logInWithGoogleRedirect()
-	    .then(
-	      (res) =>{
-	      	console.log(10101,res)
-	      	this.navCtrl.setRoot(TabsPage)
-	      },
-	      error => console.log(error.message)
-	    );
+	  let gl = this.auth.googleLogin()
+	    // .then(
+	    //   (res) =>{
+	    //   	console.log(10101,res)
+	    //   	this.navCtrl.setRoot(TabsPage)
+	    //   },
+	    //   error => console.log(error.message)
+	    // )
+  }
+  onSignIn(){
+
+  }
+
+  navToPassword(){
+  	this.navCtrl.push(ResetpasswordPage);
   }
 
 }

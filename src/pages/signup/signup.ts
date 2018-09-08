@@ -14,13 +14,13 @@ export class SignupPage {
 	validation_messages = {
 		'first_name': [
 				{ type: 'required', message: 'first name is required.' },
-				{ type: 'minlength', message: 'first name must be at least 3 characters long.' },
+				{ type: 'minlength', message: 'first name must be at least 2 characters long.' },
 				{ type: 'maxlength', message: 'first name cannot be more than 20 characters long.' },
 				{ type: 'validUsername', message: 'Your username has already been taken.' }
 			],
 		'last_name': [
 				{ type: 'required', message: 'last name is required.' },
-				{ type: 'minlength', message: 'last name must be at least 3 characters long.' },
+				{ type: 'minlength', message: 'last name must be at least 2 characters long.' },
 				{ type: 'maxlength', message: 'last name cannot be more than 20 characters long.' },
 				{ type: 'validUsername', message: 'Your username has already been taken.' }
 			],
@@ -48,13 +48,14 @@ export class SignupPage {
   	, public auth: AppAuthProvider
   	, fb: FormBuilder) {
 
-  	var passwordRegex = '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$';
+  	var passwordRegex = '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).+$';
 
 		this.signupForm = fb.group({
-			first_name: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(20)])],
-			last_name: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(20)])],
+			first_name: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(20)])],
+			last_name: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(20)])],
 			email: ['', Validators.compose([Validators.required, Validators.email])],
 			password: ['', Validators.compose([Validators.required, Validators.pattern(passwordRegex), Validators.minLength(8), Validators.maxLength(20)])],
+			gender: ['', Validators.compose([Validators.required])],
 		});
 
   }
@@ -81,14 +82,15 @@ export class SignupPage {
 			firstName: this.signupForm.value.first_name,
 			lastName: this.signupForm.value.last_name,
 			email: this.signupForm.value.email,
-			password: this.signupForm.value.password
+			password: this.signupForm.value.password,
+			gender: this.signupForm.value.gender
 		};
 
-		this.auth.signUp(form).then(
-			() => this.navCtrl.setRoot(TabsPage),
+		this.auth.signUp(form).then( () => this.navCtrl.setRoot(TabsPage),
 			error => console.log("signup error", error)
 		);
 
 
   }
+
 }

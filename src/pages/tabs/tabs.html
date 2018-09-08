@@ -7,10 +7,12 @@
   </ion-navbar>
 </ion-header>
 
+<h5 class="msg-notification" *ngIf="messages.unreadMsgCnt > 0">{{messages.unreadMsgCnt}}</h5>
 <ion-tabs tabsPlacement="bottom" selectedIndex="0">
   <ion-tab [root]="tab1Root" tabTitle="Profile" tabIcon="contact"></ion-tab>
   <ion-tab [root]="tab2Root" tabTitle="Trade" tabIcon="contacts"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="Messages" tabIcon="chatbubbles"></ion-tab>
+  <ion-tab [root]="tab3Root" tabTitle="Messages" tabIcon="chatbubbles">
+  </ion-tab>
   <!-- <ion-tab [root]="tab4Root" tabTitle="Sell" tabIcon="logo-usd"></ion-tab> -->
   <!-- <ion-tab [root]="tab5Root" tabTitle="Buy/Rent" tabIcon="cart"></ion-tab> -->
 </ion-tabs>

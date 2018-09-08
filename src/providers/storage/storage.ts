@@ -12,19 +12,20 @@ export class StorageProvider {
 
   uploadImage(image, userEmail){
   	return new Promise((resolve, reject) =>{
-
-  	let storageRef = firebase.storage().ref(`images/${userEmail}/profile`);
+  	let storageRef = firebase.storage().ref().child(`images/${userEmail}/profile`);
  		let parseUpload = storageRef.putString(image, 'data_url');
 
     parseUpload.on('state_changed', (_snapshot) =>{
-       console.log('snapshot progess ',_snapshot);
+       // console.log('snapshot progess ',_snapshot);
 
     },
     (_err) =>{
+       console.log('snapshot err ',_err);
        reject(_err);
     },
     () =>{
     	storageRef.getDownloadURL().then((res)=>{
+       // console.log('getDownloadURL ',res);
        resolve(res);
      })
     });

@@ -48,14 +48,19 @@ page-chat {
 	}
 
 	.chat-message h5{
-		background: color($colors, app_alt_bg, base);
+		background: color($colors, app_main_bg, base);
 		color: #fff;
-		border-radius: 10px;
+		border-radius: 5px;
 		padding: 12px 10px;
 		max-width: 40%;
 		margin: 10px;
 		font-size: 1.3rem;
     font-weight: 100;
+	}
+
+	.trader-message h5{
+    background: color($colors, app_alt_bg, base);;
+		color: #fff;
 	}
 	.trader-message{
     align-items: end;
@@ -131,7 +136,7 @@ page-chat {
 
 	}
 	.location-list{
-		margin-top: 35px;
+		margin-top: 75px;
 	}
 
 	.action-row{

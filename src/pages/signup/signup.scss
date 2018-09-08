@@ -1,4 +1,13 @@
 page-signup {
+	.gender-row ion-item.item{
+		display: inline-block;
+		width: 49%;
+	}
+
+	.gender-row .item{
+		font-size: 1.4rem;
+	}
+
 	ion-item.item-md, .button.button-md{
 		margin-top: 40px;
 		display: block;

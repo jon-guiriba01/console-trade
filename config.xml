@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.lemontree.console_trade" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>console-trade</name>
+<widget android-versionCode="15" id="com.lemontree.console_trade" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Console Nation</name>
     <description>Trade PS4, Xbox, Switch games with other players</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Jon</author>
     <content src="index.html" />
@@ -18,9 +18,11 @@
     <preference name="FadeSplashScreenDuration" value="300" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
-    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="SplashScreenDelay" value="5000" />
     <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="AndroidLaunchMode" value="singleTask" />
     <platform name="android">
+        <hook src="fixFirebasePlugin.js" type="before_build" />
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
@@ -40,6 +42,12 @@
         <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
         <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
+        <universal-links>
+            <host name="consoletrade.page.link" scheme="https" />
+            <host name="console-trade.firebaseapp.com" scheme="https">
+                <path url="/__/auth/callback" />
+            </host>
+        </universal-links>
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
@@ -98,5 +106,20 @@
     </plugin>
     <plugin name="info.protonet.imageresizer" spec="^0.1.1" />
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />
+    <plugin name="cordova-plugin-buildinfo" spec="^2.0.2" />
+    <plugin name="cordova-universal-links-plugin" spec="^1.2.1" />
+    <plugin name="cordova-plugin-browsertab" spec="^0.2.0" />
+    <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
+    <plugin name="cordova-plugin-customurlscheme" spec="^4.3.0">
+        <variable name="URL_SCHEME" value="com.firebase.cordova" />
+        <variable name="ANDROID_SCHEME" value=" " />
+        <variable name="ANDROID_HOST" value=" " />
+        <variable name="ANDROID_PATHPREFIX" value="/" />
+    </plugin>
+    <plugin name="cordova-plugin-googleplus" spec="^5.3.0">
+        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.670922071182-2b2jbracdfh2rtsme0ir1p99pv96q4pf" />
+    </plugin>
+    <plugin name="cordova-sqlite-storage" spec="^2.4.0" />
+    <plugin name="cordova-plugin-email-composer" spec="^0.8.15" />
     <engine name="android" spec="7.0.0" />
 </widget>

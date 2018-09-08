@@ -1,0 +1,1 @@
+web: ionic build --prod

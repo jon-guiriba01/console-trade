@@ -1,7 +1,16 @@
-ion-content .scroll-content{
-	padding: 36px 0 0 0;
-}
+
 page-profile {
+
+	ion-content .scroll-content{
+		padding: 36px 0 0 0;
+	}
+
+	.display-text{
+		margin-top: 15px;
+		font-size: 2rem;
+		width: 100%;
+		text-align: center;
+	}
 
 	.profile{
 		background: color($colors, app_main_bg, base);

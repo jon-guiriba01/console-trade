@@ -6,7 +6,6 @@
         </ion-item>
 
         <div ngxErrors="email" #emailErrors="ngxErrors">
-          <div [ngxError]="['email', 'required']" [when]="['touched', 'dirty']">It should be a valid email</div>
         </div>
 
         <ion-item [ngClass]="{ invalid: passwordErrors.hasError('*', ['touched']) }">
@@ -14,27 +13,26 @@
         </ion-item>
 
         <div ngxErrors="password" #passwordErrors="ngxErrors">
-          <div [ngxError]="['minlength', 'required']" [when]="['touched']">It should be at least 5 characters</div>
+         
         </div>
       </ion-list>
 
       <div padding-horizontal>
-        <div class="form-error">{{loginError}}</div>
+        <div class="form-error" *ngIf="loginError" style="color: #cc0000;">Unable to login with username / password</div>
 
         <button class="login-btn" ion-button full type="submit" [disabled]="!loginForm.valid" (click)="login()" >Log in</button>
         <div class="login-footer">
-          <p>
+          <p (click)="navToPassword()">
             <a href="#">Forgot password?</a>
-            If you're a new user, please sign up.
           </p>
         </div>
       </div>
 
         <ion-list class="login-options-list">
-          <button ion-button icon-start block clear (click)="loginWithGoogle()">
+       <!--    <button ion-button icon-start block clear (click)="loginWithGoogle()">
             <ion-icon name="logo-google"></ion-icon>
             Log in with Google
-          </button>
+          </button> -->
 
           <button ion-button icon-start block clear (click)="signup()">
             <ion-icon name="person-add"></ion-icon>

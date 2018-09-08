@@ -11,15 +11,13 @@
 <ion-content >
 
   <h5 class="status-msg">Loading Map</h5>
-	<input id="autocomplete" class="display-none" type="text" [ngModel]="searchInput" (ionChange)="searchLocation">
+	<input id="autocomplete" class="display-none" type="text" [ngModel]="searchInput" (ionChange)="searchLocation" (click)="clearAutocomplete()">
   <div #map id="map" style="height: 100%;"></div>
 
-  <ion-list class="trade-locations-container">
-  	<h5 class="trade-location-header">Trade Locations</h5>
-  	<ion-item class="trade-location" *ngFor="let tradeLocation of profile.user.trade_locations">
-  		<h5>{{tradeLocation}}</h5>
-  	</ion-item>
-  </ion-list>
+  <div class="trade-locations-container">
+  	<!-- <h5 class="trade-location-header">Trade Locations</h5> -->
+     <h5 class="trade-location" *ngFor="let tradeLocation of target.trade_locations" (click)="findLocation(tradeLocation)">{{tradeLocation}}</h5>
+  </div>
 
 </ion-content>
 

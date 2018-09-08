@@ -38,54 +38,66 @@ export class ChatPage {
     , public popoverCtrl: PopoverController
   	) {
   	this.trader = navParams.get('trader')
-    console.log("[chat] trader: ", this.trader)
+    // console.log("[chat] trader: ", this.trader)
     this.converKey =  this.fbApp.getTraderConversationKey(this.trader, this.profile.user)
+    this.fbApp.readConversation(this.converKey, this.profile.user.key);
 
     if(this.converKey){
       this.chatSub = this.fbApp.getConversationMessages(this.converKey)
         .subscribe((res)=>{
-          console.log("thread ", res);
+          // console.log("thread ", res);
           this.thread = res;
+          this.fbApp.readConversation(this.converKey, this.profile.user.key)
        })
 
-      this.traderOfferedGamesSub = this.fbApp.getOfferedGames(
-        this.trader.key,
-        this.converKey
-      ).subscribe( (res)=>{
-        this.traderOfferedGames = res;
+      this.observeTraderOfferedGames();
+      this.observeUserOfferedGames();
 
-        for(var game of res){
-          for(var traderGame of this.trader.matchingTrades){
-            if(game["id"] === traderGame.id){
-              traderGame.isSelected = true;
-            }
-          }
-        }
-
-        console.log(">>> traderrOG",res)
-      });
-
-      this.userOfferedGamesSub = this.fbApp.getOfferedGames(
-        this.profile.user.key,
-        this.converKey
-      ).subscribe( (res)=>{
-        this.userOfferedGames = res;
-
-        if(!this.trader.matchingWishes)
-          this.trader.matchingWishes = [];
-
-        for(var game of res){
-          for(var traderGame of this.trader.matchingWishes){
-            if(game["id"] === traderGame.id){
-              traderGame.isSelected = true;
-            }
-          }
-        }
-      
-        console.log(">>> userOG",res)
-      });
      }
 
+  }
+
+  observeTraderOfferedGames(){
+    this.traderOfferedGamesSub = this.fbApp.getOfferedGames(
+      this.trader.key,
+      this.converKey
+    ).subscribe( (res)=>{
+      this.traderOfferedGames = res;
+      if(!this.trader.matchingTrades) return;
+
+      for(var game of res){
+        
+        for(var traderGame of this.trader.matchingTrades){
+          if(game["id"] === traderGame.id){
+            traderGame.isSelected = true;
+          }
+        }
+      }
+
+      // console.log(">>> traderrOG",res)
+    });
+  }
+
+  observeUserOfferedGames(){
+    this.userOfferedGamesSub = this.fbApp.getOfferedGames(
+      this.profile.user.key,
+      this.converKey
+    ).subscribe( (res)=>{
+      this.userOfferedGames = res;
+
+      if(!this.trader.matchingWishes)
+        this.trader.matchingWishes = [];
+
+      for(var game of res){
+        for(var traderGame of this.trader.matchingWishes){
+          if(game["id"] === traderGame.id){
+            traderGame.isSelected = true;
+          }
+        }
+      }
+    
+      // console.log(">>> userOG",res)
+    });
   }
 
   ionViewDidLoad(){
@@ -96,7 +108,7 @@ export class ChatPage {
 
   ionViewDidLeave(){
     if(this.chatSub){
-      console.log("ONLEAVE CHAT PAGE")
+      // console.log("ONLEAVE CHAT PAGE")
       this.chatSub.unsubscribe();
     }
     if(this.userOfferedGamesSub){
@@ -108,19 +120,20 @@ export class ChatPage {
   }
 
   send(){
-  	console.log("sent message: " , this.message)
+  	// console.log("sent message: " , this.message)
   	
 
   	if(this.converKey){
-  		console.log("UPDATE CHAT " + this.converKey)
+  		// console.log("UPDATE CHAT " + this.converKey)
 			this.fbApp.updateConversation(this.converKey, this.trader, this.profile.user, this.message)
 		}else{
 			this.converKey = this.fbApp.createNewThread(this.trader,this.profile.user,this.message).key	  			
       console.log("PUSH CHAT " + this.converKey)
 			
   		this.chatSub = this.fbApp.getConversationMessages(this.converKey).subscribe((res)=>{
-  				console.log("thread ", res);
+  				// console.log("thread ", res);
   				this.thread = res;
+          this.fbApp.readConversation(this.converKey, this.profile.user.key)
   		})
 		}
 

@@ -31,7 +31,6 @@ export class CourierPopoverPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CourierPopoverPage');
   }
 
   selectCourier(opt){

@@ -1,4 +1,41 @@
 page-trade {
+	
+	.more-btn{
+    margin: 0 auto;
+    display: block;
+	}
+
+	.chat-icon{
+		background: color($colors, app_alt_bg, base);
+		padding: 0 10px;
+	}
+
+	.trade-img-title{
+		position: absolute;
+		/*width: 100%;*/
+		padding: 2px;
+		bottom: 0;
+		color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+		font-size: 1rem;
+	}
+
+	.iunderstand{
+		width: 100%;
+		text-align: center;
+		color: #fff;
+		background: #8d959e;
+		margin: 0;
+		padding: 5px; 
+	}
+
+	.warning-msg{
+		padding: 3px 5px;
+		font-size: 1.1rem;
+		line-height: 100%;
+		background: color($colors, app_alt_bg, base);
+		color: #fff;
+	}
 
 	.matching-trades{
 		background: initial;
@@ -14,9 +51,10 @@ page-trade {
 		display: flex;
 		justify-content: space-between;
 		background: color($colors, ps4_dark_blue_3, base);
-		padding: 2px 5px;
+		padding: 0px 0px 0px 5px;
 		color: #fff;
 	}
+
 
 	.info-row h5{
 		font-size: 1.2rem;
@@ -36,9 +74,17 @@ page-trade {
 		color: #fff;
 	}
 	.trade-grid{
-		padding-top: 2px;
+		/*padding-top: 2px;*/
+    height: 90px;
 		background: rgba(0, 0, 0, 0.2);
+		overflow-x: scroll;
+		overflow-y: hidden;
 	}
+
+	.trade-grid::-webkit-scrollbar {
+		display: none;
+	}
+
 	.trade-grid.white{
 		background: rgba(160, 160, 160, 0.3);
 	}
@@ -49,7 +95,11 @@ page-trade {
 		height: 90px;
 		max-width: 100px;
 		padding-right: 1%;
+		position: relative;
+    overflow: hidden;
+    white-space: normal;
 	}
+
 	ion-spinner{
 		position: absolute;
 		top: 0;
@@ -71,6 +121,13 @@ page-trade {
 	}
 	.trader-distance{
 		font-size: 1.1rem;
+	}
+
+	.view-market-btn{
+		float: right;
+		margin-right: 16px;
+		background: color($colors, app_alt_bg, base);
+		z-index: 5;
 	}
 
 /*	ion-spinner *{

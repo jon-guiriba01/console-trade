@@ -48,7 +48,7 @@ export class IgdbProvider {
     + "&filter[release_dates.platform][not_in]="+excludedPlatforms
     + "&filter[category][eq]="+"0"
     + "&filter[release_dates.platform][exists]"
-    + "&filter[version_parent][not_exists]"
+    // + "&filter[version_parent][not_existss]"
     + "&fields=*";
     // var search = 'https://api-endpoint.igdb.com/games/?search=' + input +
   		// "&filter[release_dates.platform][any]=48,49,130" +
@@ -58,7 +58,7 @@ export class IgdbProvider {
 
     var httpSub = this.http.get( search, {headers}).subscribe((res:Array<object>)=>{
       var gameIds = "";
-      console.log("[igdb] search raw: ", res)
+      // console.log("[igdb] search raw: ", res)
 
       var first = true;
 
@@ -73,7 +73,7 @@ export class IgdbProvider {
       }
 
       var filteredSearch = this.removeUnsupportedPlatforms(res);
-      console.log("[igdb] search clean: ", filteredSearch)
+      // console.log("[igdb] search clean: ", filteredSearch)
 
       resolve(filteredSearch);
       httpSub.unsubscribe();

@@ -19,18 +19,27 @@ page-map {
 	.trade-locations-container{
 		position: fixed;
 		z-index: 120;
-		width: 70%;
-		max-width: 400px;
+		width: 100%;
+		max-width: 800px;
 		left: 0;
 		bottom: 0;
-		padding: 15px 0;
+		padding: 0;
 
+	}
+
+	.trade-locations-container .label{
+		margin: 0;
 	}
 
 	.trade-location, .trade-location-header{
 		background: rgba(0, 0, 0, 0.6);
 		color: #fff;
 		margin: 0;
+		padding: 10px 6px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		text-decoration: underline;
 	}
 	.trade-location-header{
 		padding-left: 10px;
@@ -45,4 +54,6 @@ page-map {
 		font-size: 2.5rem;
 		text-align: center;
 	}
+
+
 }

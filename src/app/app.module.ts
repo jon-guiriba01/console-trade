@@ -4,7 +4,8 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule, FirebaseOptionsToken, 
+    FirebaseAppNameToken, FirebaseAppConfigToken } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { firebaseConfig } from '../config';
 import { NgxErrorsModule } from '@ultimate/ngxerrors';
@@ -21,6 +22,8 @@ import { MapPage } from '../pages/map/map';
 import { DealPage } from '../pages/deal/deal';
 import { ShopPage } from '../pages/shop/shop';
 import { CourierPopoverPage } from '../pages/courier-popover/courier-popover';
+import { ResetpasswordPage } from '../pages/resetpassword/resetpassword';
+import { AllTradersPage } from '../pages/all-traders/all-traders';
 
 
 import { AppAuthProvider } from '../providers/app-auth/app-auth';
@@ -43,6 +46,10 @@ import { FileChooser } from '@ionic-native/file-chooser';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { StorageProvider } from '../providers/storage/storage';
 import { ImageResizer } from '@ionic-native/image-resizer';
+import { GooglePlus } from '@ionic-native/google-plus';
+import { IonicStorageModule } from '@ionic/storage';
+import { EmailComposer } from '@ionic-native/email-composer';
+import { MessagesProvider } from '../providers/messages/messages';
 
 @NgModule({
   declarations: [
@@ -58,6 +65,8 @@ import { ImageResizer } from '@ionic-native/image-resizer';
     DealPage,
     ShopPage,
     CourierPopoverPage,
+    ResetpasswordPage,
+    AllTradersPage,
     TabsPage
   ],
   imports: [
@@ -69,7 +78,8 @@ import { ImageResizer } from '@ionic-native/image-resizer';
     LongPressModule,
     PipesModule,
     IonicImageLoader.forRoot(),
-    NgxErrorsModule
+    NgxErrorsModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -85,9 +95,14 @@ import { ImageResizer } from '@ionic-native/image-resizer';
     DealPage,
     ShopPage,
     CourierPopoverPage,
+    ResetpasswordPage,
+    AllTradersPage,
     TabsPage
   ],
   providers: [
+    // { provide: FirebaseOptionsToken, useValue: firebaseConfig.web },
+    // { provide: FirebaseAppNameToken, useValue: 'stalldata' },
+    // { provide: FirebaseAppConfigToken, useValue: firebaseConfig.web},
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
@@ -106,7 +121,10 @@ import { ImageResizer } from '@ionic-native/image-resizer';
     FileChooser,
     ImagePicker,
     ImageResizer,
-    StorageProvider
+    GooglePlus,
+    EmailComposer,
+    StorageProvider,
+    MessagesProvider
   ]
 })
 export class AppModule {}

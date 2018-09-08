@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { C } from '../../config';
 import * as _ from 'underscore/underscore';
 import { FirebaseappProvider } from '../../providers/firebaseapp/firebaseapp';
+import { ToastController } from 'ionic-angular';
  
 
 @Injectable()
@@ -37,43 +38,54 @@ export class ProfileProvider {
 
   constructor(
   	public http: HttpClient
-  	, public fbapp: FirebaseappProvider) {
+    , public fbapp: FirebaseappProvider
+  	, public toastCtrl: ToastController
+    ) {
   	this.user = new Profile();
   }
 
-	addGameToProfile(user : firebase.User, game : Game, owned : boolean){
+	addGameToProfile(fbUser : firebase.User, game : Game, owned : boolean){
 
     var duplicate = _.find(this.user.wishList, e=>{return e.id === game.id})
-    
+
     if(!game.platforms) 
       game.platforms = [];
-    console.log("addGamToProfile: ",game)
+    // console.log("addGamToProfile: ",game)
     
-    if(duplicate){
-      this.user.ownedList.push(game)
-      this.fbapp.updateUserOwnedList(user, this.user.ownedList)
+    if(duplicate || this.user.wishList.length > 8){
+      
+      let alreadyOwned = _.find(this.user.ownedList, e=>{return e.id === game.id})
+      if(alreadyOwned) return;
+
+      this.user.addToOwnedList(game)
+      this.fbapp.updateUserOwnedList(fbUser, this.user.ownedList)
     }
   	else{
-      this.user.wishList.push(game)
-      this.fbapp.updateUserWishList(user, this.user.wishList)
+
+      this.user.addToWishList(game)
+      this.fbapp.updateUserWishList(fbUser, this.user.wishList)
     }
 
 
 
 	}
 
-	toggleItemOwnership(authUser, item, owned){
+	toggleItemList(authUser, item, owned){
   	if(owned){
-			var duplicate = _.find(this.user.wishList, e=>{return e.id === item.id})  
+			var duplicate = _.find(this.user.wishList, e=>{return e.id === item.id});
+
 			if(duplicate) return;
 
-			this.user.wishList.push(item)
+    if(this.user.wishList.length > 8) return;
+      this.user.addToWishList(item)
 			this.user.ownedList = _.reject(this.user.ownedList, e=>{ return e.id === item.id});
   	}else{
 			var duplicate = _.find(this.user.ownedList, e=>{return e.id === item.id})  
 			if(duplicate) return;
 			
-			this.user.ownedList.push(item)
+    if(this.user.ownedList.length > 8) return;
+
+			this.user.addToOwnedList(item)
 			this.user.wishList = _.reject(this.user.wishList, e=>{ return e.id === item.id});
 		}
 

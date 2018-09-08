@@ -10,6 +10,7 @@ log.txt
 *.sublime-project
 *.sublime-workspace
 .vscode/
+.local-only/
 npm-debug.log*
 platforms/
 other/

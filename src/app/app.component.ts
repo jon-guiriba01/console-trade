@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform, ViewController } from 'ionic-angular';
+import { Platform, ViewController, Events, LoadingController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AppAuthProvider } from '../providers/app-auth/app-auth';
@@ -30,6 +30,8 @@ export class MyApp {
     ,public  profile: ProfileProvider
     ,public  geolocation: Geolocation
     , public trade: TradeProvider
+    , public events: Events
+    , public loadCtrl: LoadingController
     ) {
 
     platform.ready().then(() => {
@@ -43,17 +45,21 @@ export class MyApp {
           .subscribe(
             user => {
 
-            this.auth.user = user;
 
             if (user) {
-              console.log("[fb user]", user)
+              // console.log("[fb user]", user)
 
+              let load = this.loadCtrl.create();
+              load.present();
+              this.auth.user = user;
               this.rootPage = TabsPage;
 
               let usersRef : AngularFireList<any>,
                   users: any;
 
               this.initProfile(user).then((e)=>{
+                load.dismiss();
+                this.events.publish("profile:loaded")
               })
 
 
@@ -80,7 +86,7 @@ export class MyApp {
           changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
         )
        ).subscribe((res)=>{
-        console.log("[initProfile]", res)
+        // console.log("[initProfile]", res)
         
         if(!res[0] || !res[0]["key"]){
           return;
@@ -88,7 +94,6 @@ export class MyApp {
 
 
         this.profile.user.profileImage = res[0]["profileImage"] || "assets/imgs/temp_profile_img_1.png";
-        this.profile.user.name = res[0]["first_name"] + " " + res[0]["last_name"];
         this.profile.user.first_name = res[0]["first_name"] || "";
         this.profile.user.last_name = res[0]["last_name"] || "";
         this.profile.user.email = res[0]["email"] || "";
@@ -97,8 +102,9 @@ export class MyApp {
         this.profile.user.key = res[0].key || "";
         this.profile.user.conversations = res[0]["conversations"] || [];
         this.profile.user.trade_locations = res[0]["trade_locations"] || [];
+        this.profile.user.gender = res[0]["gender"] || [];
 
-        console.log(">>geolocation ", this.profile.user)
+        // console.log(">>geolocation ", this.profile.user)
         this.geolocation.getCurrentPosition({timeout: 20000, enableHighAccuracy: true}).then((geodata) => {
           userRef.update(res[0]["key"], {
             last_location: {
@@ -109,7 +115,7 @@ export class MyApp {
             resolve();
         })
 
-          console.log(">>user from component ", this.profile.user)
+          // console.log(">>user from component ", this.profile.user)
           userSub.unsubscribe();
         }).catch((error) => {
           reject( console.log('>>Error getting location', error) );

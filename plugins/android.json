@@ -45,6 +45,34 @@
     },
     "cordova-plugin-camera": {
       "PACKAGE_NAME": "com.lemontree.console_trade"
+    },
+    "cordova-universal-links-plugin": {
+      "PACKAGE_NAME": "com.lemontree.console_trade"
+    },
+    "cordova-plugin-buildinfo": {
+      "PACKAGE_NAME": "com.lemontree.console_trade"
+    },
+    "cordova-plugin-browsertab": {
+      "PACKAGE_NAME": "com.lemontree.console_trade"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.lemontree.console_trade"
+    },
+    "cordova-plugin-customurlscheme": {
+      "URL_SCHEME": "com.firebase.cordova",
+      "ANDROID_SCHEME": " ",
+      "ANDROID_HOST": " ",
+      "ANDROID_PATHPREFIX": "/",
+      "PACKAGE_NAME": "com.lemontree.console_trade"
+    },
+    "cordova-plugin-googleplus": {
+      "PACKAGE_NAME": "com.lemontree.console_trade"
+    },
+    "cordova-sqlite-storage": {
+      "PACKAGE_NAME": "com.lemontree.console_trade"
+    },
+    "cordova-plugin-email-composer": {
+      "PACKAGE_NAME": "com.lemontree.console_trade"
     }
   },
   "dependent_plugins": {}

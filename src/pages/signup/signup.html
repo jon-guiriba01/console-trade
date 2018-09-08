@@ -53,7 +53,6 @@
 	        	</h5>
 					</div>
 				</div>
-
         <ion-item>
           <ion-input type="{{passwordType}}" placeholder="Password" formControlName="password"></ion-input>
         	<ion-icon name="{{showPasswordIcon}}" (click)="showPassword()" item-right></ion-icon>
@@ -66,6 +65,17 @@
 	        	</h5>
         	</div>
         </div>
+
+        <ion-list radio-group class="gender-row" formControlName="gender">
+          <ion-item no-lines>
+            <ion-label>Male</ion-label>
+            <ion-radio checked="true" value="m"></ion-radio>
+          </ion-item>
+          <ion-item no-lines>
+            <ion-label>Female</ion-label>
+            <ion-radio value="f"></ion-radio>
+          </ion-item>
+        </ion-list>
 
       </ion-list>
 

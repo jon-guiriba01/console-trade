@@ -23,7 +23,6 @@ export class DealPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DealPage');
   }
 
   timeout
@@ -79,7 +78,7 @@ export class DealPage {
   	this.searchInput = null;
 
   	this.cart.push(game)
-  	console.log(this.cart)
+  	// console.log(this.cart)
   	this.clearSearch();
   }
 

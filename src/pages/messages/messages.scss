@@ -1,5 +1,17 @@
 page-messages {
 
+	.notification{
+		position: absolute;
+		height: 15px;
+		width: 15px;
+		text-align: center;
+		padding: 0.4px;
+		background: color($colors, app_notification, base);
+		z-index: 5;
+		right: 20px;
+		border-radius: 100%;
+	}
+
 	div.trade-item{
 		/*display: inline-block;*/
 		/*max-width: 100px;*/

@@ -11,7 +11,6 @@ import { Injectable } from '@angular/core';
 export class UiProvider {
 
   constructor(public http: HttpClient) {
-    console.log('Hello UiProvider Provider');
   }
 
   getRandomProfileImage(){

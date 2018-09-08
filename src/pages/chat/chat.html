@@ -44,7 +44,7 @@
   		</ion-item>
   	</ion-list>
 
-    <h5 class="divider" >{{trader.first_name + " " + trader.last_name}} is offering</h5>
+    <h5 class="divider" *ngIf="trader.matchingTrades">{{trader.first_name + " " + trader.last_name}} matches</h5>
     <div class="trade-grid">
       <div class="trade-item" *ngFor="let item of trader.matchingTrades">
         <img-loader *ngIf="item.cover_url" class="fit-img" src="{{item.cover_url}}"></img-loader>
@@ -53,8 +53,8 @@
       </div>
     </div>
 
-    <h5 class="divider">{{profile.user.first_name + " " + profile.user.last_name}} is offering</h5>
- 		<div class="trade-grid">
+    <h5 class="divider" *ngIf="trader.matchingWishes">{{profile.user.first_name + " " + profile.user.last_name}} matches</h5>
+ 		<div class="trade-grid" >
 	 		<div class="trade-item" *ngFor="let item of trader.matchingWishes" (click)="selectGame(item)">
 	 			<img-loader *ngIf="item.cover_url" class="fit-img" src="{{item.cover_url}}"></img-loader>
         <img *ngIf="!item.cover_url" class="fit-img" >

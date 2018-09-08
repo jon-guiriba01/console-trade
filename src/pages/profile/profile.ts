@@ -50,8 +50,8 @@ export class ProfilePage {
 
   }
 
-  toggleItemOwnership(item, owned){
-    this.profile.toggleItemOwnership(this.auth.user, item, owned);
+  toggleItemList(item, owned){
+    this.profile.toggleItemList(this.auth.user, item, owned);
     this.events.publish("profile:changed")
   }
 
@@ -61,7 +61,7 @@ export class ProfilePage {
   }
 
   removeItem(item, owned){
-    console.log("pressing")
+    // console.log("pressing")
     this.profile.removeItem(this.auth.user, item, owned);
 
     this.events.publish("profile:changed")
@@ -98,7 +98,8 @@ export class ProfilePage {
   }
 
   addGameToProfile(item){
-    if(item.id === "err") return;
+    this.searchInput = null;
+    this.searchOptions = [];
 
   	var platforms = [""];
   	
@@ -118,8 +119,6 @@ export class ProfilePage {
 
     var game = new Game(item.id, item.name, url, platforms);
   	this.profile.addGameToProfile(this.auth.user, game, false)
-  	this.searchInput = null;
-  	this.searchOptions = [];
 
     this.events.publish("profile:changed")
   }
@@ -174,27 +173,25 @@ export class ProfilePage {
   }
 
   uploadImage_web(){
-    return new Promise((resolve,reject)=>{
 
-      $('#fileInput').trigger("click")
-      $('#fileInput').change(()=> {
+    $('#fileInput').trigger("click")
+    $('#fileInput').change(()=> {
 
 
-        let file = $('#fileInput')[0]['files'][0];
-        
-        if(!file) return;
-        this.getBase64(file).then(res=>{
-          //TODO resize image
-          this.storeImage(res)
-        })
+      let file = $('#fileInput')[0]['files'][0];
+      
+      if(!file) return;
+      this.getBase64(file).then(res=>{
+        //TODO resize image
+        this.storeImage(res)
+        $('#fileInput').val('')
+      })
+    });
 
-      });
-
-    })
   }
 
   private storeImage(base64){
-    console.log("[storeImage]",base64)
+    // console.log("[storeImage]",base64)
 
     let loading = this.loadingCtrl.create({
       content: 'Uploading image...'
@@ -204,12 +201,13 @@ export class ProfilePage {
 
     this.fbStorage.uploadImage(base64, this.profile.user.email)
     .then( (res:string)=>{
-       console.log("upload image",res)
+       // console.log("upload image",res)
        this.fbApp.updateUserProfileImage(this.profile.user.key, res);
        this.profile.user.profileImage = res;
 
        loading.dismiss();
-    }).catch(()=>{
+    }).catch((err)=>{
+       console.log("storeImage",err)
      loading.dismiss();
     })
   }

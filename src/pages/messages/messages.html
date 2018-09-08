@@ -1,5 +1,5 @@
-<ion-content >
-    <ion-item *ngFor="let trader of traders" (click)="showChat(trader)" no-lines>
+<ion-content style="margin-top: 50px;">
+    <ion-item *ngFor="let trader of messages.traders" (click)="showChat(trader)" no-lines>
         <div class="message-container">
             <div class="trader-img-container">
                 <img class="fit-img" src="{{trader.profileImage}}"> 
@@ -7,7 +7,7 @@
             <div class="trader-info">
                 <h5 class="trader-name">{{trader.first_name + " " + trader.last_name}} </h5>
             </div>
-       
+            <h5 *ngIf="trader.hasUnreadMessage" class="notification">!</h5>
         </div>
 <!--         <div class="message-container">
             <div class="trader-info">
