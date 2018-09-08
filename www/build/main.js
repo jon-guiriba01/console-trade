@@ -2550,7 +2550,8 @@ var MyApp = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_operators__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_Message__ = __webpack_require__(523);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_message__ = __webpack_require__(558);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_message___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__models_message__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_userConversation__ = __webpack_require__(524);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase_app__ = __webpack_require__(295);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_firebase_app___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_firebase_app__);
@@ -2660,7 +2661,7 @@ var FirebaseappProvider = /** @class */ (function () {
         var members = {};
         members[trader.key] = true;
         members[user.key] = true;
-        var message = new __WEBPACK_IMPORTED_MODULE_3__models_Message__["a" /* Message */](msg, user.first_name + " " + user.last_name, user.key, __WEBPACK_IMPORTED_MODULE_5_firebase_app__["database"].ServerValue.TIMESTAMP);
+        var message = new __WEBPACK_IMPORTED_MODULE_3__models_message__["Message"](msg, user.first_name + " " + user.last_name, user.key, __WEBPACK_IMPORTED_MODULE_5_firebase_app__["database"].ServerValue.TIMESTAMP);
         var converRef = this.pushConversation([message], members);
         user.conversations = user.conversations ? user.conversations : [];
         var userConversation = new __WEBPACK_IMPORTED_MODULE_4__models_userConversation__["a" /* UserConversation */](converRef.key, trader.key, trader.first_name + " " + trader.last_name);
@@ -2686,7 +2687,7 @@ var FirebaseappProvider = /** @class */ (function () {
     };
     FirebaseappProvider.prototype.updateConversation = function (key, trader, user, msg) {
         // console.log("update convo " + key)
-        var message = new __WEBPACK_IMPORTED_MODULE_3__models_Message__["a" /* Message */](msg, user.first_name + " " + user.last_name, user.key, __WEBPACK_IMPORTED_MODULE_5_firebase_app__["database"].ServerValue.TIMESTAMP);
+        var message = new __WEBPACK_IMPORTED_MODULE_3__models_message__["Message"](msg, user.first_name + " " + user.last_name, user.key, __WEBPACK_IMPORTED_MODULE_5_firebase_app__["database"].ServerValue.TIMESTAMP);
         this.afdb.list("/conversations/" + key + "/messages").push(message);
         this.afdb.list("/users/" + trader.key + "/conversations").update(key, { "unread": true });
         // var conversationSub = this.afdb
@@ -2736,35 +2737,13 @@ var FirebaseappProvider = /** @class */ (function () {
     };
     FirebaseappProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_6_angularfire2_database__["a" /* AngularFireDatabase */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _b || Object])
     ], FirebaseappProvider);
     return FirebaseappProvider;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=firebaseapp.js.map
-
-/***/ }),
-
-/***/ 523:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Message; });
-var Message = /** @class */ (function () {
-    function Message(text, sender, senderKey, createdAt) {
-        this.text = "";
-        this.sender = "";
-        this.senderKey = "";
-        this.text = text;
-        this.sender = sender;
-        this.senderKey = senderKey;
-        this.createdAt = createdAt;
-    }
-    return Message;
-}());
-
-//# sourceMappingURL=Message.js.map
 
 /***/ }),
 
@@ -3038,6 +3017,13 @@ var UiProvider = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=ui.js.map
+
+/***/ }),
+
+/***/ 558:
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open 'C:\\wamp64\\www\\console-trade\\src\\models\\message.js'");
 
 /***/ }),
 

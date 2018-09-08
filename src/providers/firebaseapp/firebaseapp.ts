@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, take, first } from 'rxjs/operators';
-import { Message } from '../../models/Message';
-import { Profile } from '../../models/Profile';
+import { Message } from '../../models/message';
+import { Profile } from '../../models/profile';
 import { UserConversation } from '../../models/userConversation';
 import * as firebase from 'firebase/app';
 import { AngularFireDatabase, AngularFireList  } from 'angularfire2/database';
