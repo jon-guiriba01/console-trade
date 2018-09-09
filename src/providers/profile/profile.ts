@@ -35,6 +35,7 @@ export class ProfileProvider {
 	allListsUpdateTimeout = null
 	wishListUpdateTimeout = null
 	ownedListUpdateTimeout = null
+  currentConversation = null;
 
   constructor(
   	public http: HttpClient

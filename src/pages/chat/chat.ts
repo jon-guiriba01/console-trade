@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, App, PopoverController  } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, 
+  App, PopoverController, Content  } from 'ionic-angular';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { FirebaseappProvider } from '../../providers/firebaseapp/firebaseapp';
 import { AppAuthProvider } from '../../providers/app-auth/app-auth';
@@ -7,6 +8,7 @@ import 'rxjs/add/observable/fromEvent';
 import { IonicImageLoader, ImageLoaderConfig } from 'ionic-image-loader';
 import { MapPage } from '../../pages/map/map';
 import { CourierPopoverPage } from '../../pages/courier-popover/courier-popover';
+import { MessagesProvider } from '../../providers/messages/messages';
 import * as $ from 'jquery'
 
 @Component({
@@ -14,6 +16,7 @@ import * as $ from 'jquery'
   templateUrl: 'chat.html',
 })
 export class ChatPage {
+
 
 	trader;
 	message = "";
@@ -27,6 +30,7 @@ export class ChatPage {
   courier ={
     name: "No Courier Selected"
   } 
+  private mutationObserver: MutationObserver
 
   constructor(
   	public navCtrl: NavController
@@ -36,11 +40,14 @@ export class ChatPage {
   	, public auth: AppAuthProvider
     , private app: App
     , public popoverCtrl: PopoverController
+    , public messages: MessagesProvider
   	) {
   	this.trader = navParams.get('trader')
+    this.profile.currentConversation = this.trader.key;
     // console.log("[chat] trader: ", this.trader)
     this.converKey =  this.fbApp.getTraderConversationKey(this.trader, this.profile.user)
     this.fbApp.readConversation(this.converKey, this.profile.user.key);
+
 
     if(this.converKey){
       this.chatSub = this.fbApp.getConversationMessages(this.converKey)
@@ -48,6 +55,10 @@ export class ChatPage {
           // console.log("thread ", res);
           this.thread = res;
           this.fbApp.readConversation(this.converKey, this.profile.user.key)
+
+          setTimeout(()=>{$('#chatContent').scrollTop($('#chatContent')[0].scrollHeight);}, 100)
+     
+
        })
 
       this.observeTraderOfferedGames();
@@ -55,6 +66,9 @@ export class ChatPage {
 
      }
 
+  }
+
+  ionViewDidLoad() {
   }
 
   observeTraderOfferedGames(){
@@ -100,13 +114,11 @@ export class ChatPage {
     });
   }
 
-  ionViewDidLoad(){
-  }
-
   ionViewWillEnter() {
   }
 
   ionViewDidLeave(){
+    this.profile.currentConversation = null;
     if(this.chatSub){
       // console.log("ONLEAVE CHAT PAGE")
       this.chatSub.unsubscribe();
@@ -120,15 +132,17 @@ export class ChatPage {
   }
 
   send(){
-  	// console.log("sent message: " , this.message)
-  	
+
+    if(this.message.trim().length <= 0){
+      return;
+    } 
+        
 
   	if(this.converKey){
   		// console.log("UPDATE CHAT " + this.converKey)
 			this.fbApp.updateConversation(this.converKey, this.trader, this.profile.user, this.message)
 		}else{
 			this.converKey = this.fbApp.createNewThread(this.trader,this.profile.user,this.message).key	  			
-      console.log("PUSH CHAT " + this.converKey)
 			
   		this.chatSub = this.fbApp.getConversationMessages(this.converKey).subscribe((res)=>{
   				// console.log("thread ", res);
@@ -136,27 +150,6 @@ export class ChatPage {
           this.fbApp.readConversation(this.converKey, this.profile.user.key)
   		})
 		}
-
-  	// var converSub =	this.fbApp
-  	// .getConversation(this.trader, this.profile.user)
-  	// .subscribe((res)=>{
-			// console.log("conver res: ", res);
-
-  		// var key;
-  		// if(!res){
-				// var converRef = this.fbApp.pushConversation(this.trader,this.profile.user,this.message)	  			
-  		// 	key = converRef.key;
-  		// }
-  		// else{
-  		// 	key = res[0]["key"];
-  		// 	this.fbApp.updateConversation(key, this.trader, this.profile.user, this.message)
-  		// }
-
-  		// converSub.unsubscribe();
-  	// })
-  	
-
-
 
   	this.message = "";
   }
@@ -204,5 +197,7 @@ export class ChatPage {
         this.courier = courier;
     })
   }
+
+
   
 }

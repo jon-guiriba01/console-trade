@@ -1,4 +1,13 @@
 page-signup {
+	.cb-policy>*{
+			display: inline-block;
+			vertical-align: middle;
+			margin-left: 15px;
+	}
+	.cb-policy>.label{
+		width: 70%;
+		white-space: normal;
+	}
 	.gender-row ion-item.item{
 		display: inline-block;
 		width: 49%;
@@ -55,5 +64,5 @@ page-signup {
     form {
 			margin-top: 0px;
     }
-}
+		}
 }

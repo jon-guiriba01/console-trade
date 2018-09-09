@@ -11,13 +11,13 @@
   </ion-navbar>
 </ion-header>
   <h5 name="menu" menuToggle class="menu-toggle-forced">TRADE DETAILS</h5>
-<ion-content cpadding>
-
-	<div class="thread">
-		<div class="chat-message" [ngClass]="{'trader-message': message.senderKey !== profile.user.key}" *ngFor="let message of thread">
+<ion-content >
+ 
+	<ion-list id="chatContent" class="thread"  >
+		<div class="chat-message" [ngClass]="{'trader-message': message.senderKey !== profile.user.key}" *ngFor="let message of thread; let i = index">
 			<h5>{{message.text}}</h5>
 		</div>
-	</div>
+	</ion-list>
 
 	<div class="message-input message-input">
 			<ion-input [(ngModel)]="message" placeholder="Type a message..." (keyup.enter)="send()">

@@ -1,6 +1,6 @@
 import { LoadingController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable  } from '@angular/core';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { Profile } from '../../models/profile';
 
@@ -17,7 +17,6 @@ export class MessagesProvider {
   	, private profile: ProfileProvider 
   ) {
   }
-
 
   loadConversations(fbApp){
     var load = this.loadCtrl.create();
@@ -36,10 +35,7 @@ export class MessagesProvider {
       }
       
       Promise.all(traderPromises).then((traders)=>{
-      	let unreadTraders = traders.filter(trader=>{return trader.hasUnreadMessage})
-      	let readTraders = traders.filter(trader=>{return !trader.hasUnreadMessage})
-
-      	this.traders = unreadTraders.concat(readTraders);
+        this.sortUnreadMessages(traders)
       	// console.log("[loadConversation]: ", this.traders)
       })
 
@@ -47,19 +43,28 @@ export class MessagesProvider {
 
   }
 
+  sortUnreadMessages(traders){
+    let unreadTraders = traders.filter(trader=>{return trader.hasUnreadMessage})
+    let readTraders = traders.filter(trader=>{return !trader.hasUnreadMessage})
+
+    this.traders = unreadTraders.concat(readTraders);  
+  }
+
   addTraderToList(fbApp, conversation){
     return new Promise((resolve,reject)=>{
       fbApp.getProfile(conversation.traderKey).then((res:Profile)=>{
         res["hasUnreadMessage"] = conversation.unread;
 
-        if(conversation.unread)
+        if(conversation.unread && this.profile.currentConversation != res.key){
         	this.unreadMsgCnt++;
+        }
 
         resolve(res)
       })
 
     })
   }
+
 
 
 }

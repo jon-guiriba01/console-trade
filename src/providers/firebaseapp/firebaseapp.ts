@@ -91,7 +91,7 @@ export class FirebaseappProvider {
 
 	getConversationMessages(key){
 		var conversationRef = this.afdb
-		.list('/conversations/'+key+"/messages/")
+		.list('/conversations/'+key+"/messages/", ref => ref.limitToLast(80))
 		.valueChanges(["child_added"])
 
 		return conversationRef;
