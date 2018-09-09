@@ -28,6 +28,7 @@ page-signup {
 		min-width: 280px;
 		width: 90%;
 		padding: 20px;
+		margin-top: 50px;
 	}
 
 	.error-msg{
@@ -49,4 +50,10 @@ page-signup {
 	.page-content form{
   	background: #fff;
 	}
+
+	@media screen and (min-width: 1270px) {
+    form {
+			margin-top: 0px;
+    }
+}
 }

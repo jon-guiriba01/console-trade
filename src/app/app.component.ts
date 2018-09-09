@@ -60,6 +60,9 @@ export class MyApp {
               this.initProfile(user).then((e)=>{
                 load.dismiss();
                 this.events.publish("profile:loaded")
+              }).catch((res)=>{
+                load.dismiss();
+                this.events.publish("profile:loaded")
               })
 
 

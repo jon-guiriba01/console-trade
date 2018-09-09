@@ -8,8 +8,8 @@ public final class BuildConfig {
   public static final String APPLICATION_ID = "com.lemontree.console_trade";
   public static final String BUILD_TYPE = "debug";
   public static final String FLAVOR = "";
-  public static final int VERSION_CODE = 12;
+  public static final int VERSION_CODE = 15;
   public static final String VERSION_NAME = "0.0.1";
   // Fields from default config.
-  public static final long _BUILDINFO_TIMESTAMP = 1535990538680L;
+  public static final long _BUILDINFO_TIMESTAMP = 1536427771026L;
 }

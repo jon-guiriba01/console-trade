@@ -552,6 +552,15 @@ module.exports = [
       "cordova.plugins.email",
       "plugin.email"
     ]
+  },
+  {
+    "id": "ionic-plugin-keyboard.keyboard",
+    "file": "plugins/ionic-plugin-keyboard/www/android/keyboard.js",
+    "pluginId": "ionic-plugin-keyboard",
+    "clobbers": [
+      "cordova.plugins.Keyboard"
+    ],
+    "runs": true
   }
 ];
 module.exports.metadata = 
@@ -576,7 +585,8 @@ module.exports.metadata =
   "cordova-plugin-customurlscheme": "4.3.0",
   "cordova-plugin-googleplus": "5.3.0",
   "cordova-sqlite-storage": "2.4.0",
-  "cordova-plugin-email-composer": "0.8.15"
+  "cordova-plugin-email-composer": "0.8.15",
+  "ionic-plugin-keyboard": "2.2.1"
 };
 // BOTTOM OF METADATA
 });

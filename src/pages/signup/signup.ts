@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Platform, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AppAuthProvider } from '../../providers/app-auth/app-auth';
 import { TabsPage } from '../tabs/tabs';
+import { Keyboard } from '@ionic-native/keyboard';
 
 @Component({
   selector: 'page-signup',
@@ -46,8 +47,13 @@ export class SignupPage {
   	public navCtrl: NavController
   	, public navParams: NavParams
   	, public auth: AppAuthProvider
+  	, private keyboard: Keyboard
+  	, private platform: Platform
   	, fb: FormBuilder) {
 
+		this.platform.ready().then(() => {
+			this.keyboard.disableScroll(false);
+		});
   	var passwordRegex = '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).+$';
 
 		this.signupForm = fb.group({
@@ -60,8 +66,14 @@ export class SignupPage {
 
   }
   ionViewDidLoad() {
-
   }
+
+  ionViewDidEnter() {
+	}
+
+	ionViewWillLeave() {
+	}
+
   checkForm(){
   	this.canSubmit = this.signupForm.errors == null;
   }

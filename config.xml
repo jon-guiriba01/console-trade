@@ -121,5 +121,6 @@
     </plugin>
     <plugin name="cordova-sqlite-storage" spec="^2.4.0" />
     <plugin name="cordova-plugin-email-composer" spec="^0.8.15" />
+    <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <engine name="android" spec="7.0.0" />
 </widget>

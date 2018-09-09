@@ -49,6 +49,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
 import { IonicStorageModule } from '@ionic/storage';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { MessagesProvider } from '../providers/messages/messages';
+import { Keyboard } from '@ionic-native/keyboard';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,7 @@ import { MessagesProvider } from '../providers/messages/messages';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, { scrollAssist: false, autoFocusAssist: false }),
     AngularFireModule.initializeApp(firebaseConfig.web),
     AngularFireDatabaseModule,
     HttpClientModule,
@@ -123,6 +124,7 @@ import { MessagesProvider } from '../providers/messages/messages';
     GooglePlus,
     EmailComposer,
     StorageProvider,
+    Keyboard,
     MessagesProvider
   ]
 })

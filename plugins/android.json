@@ -73,6 +73,9 @@
     },
     "cordova-plugin-email-composer": {
       "PACKAGE_NAME": "com.lemontree.console_trade"
+    },
+    "ionic-plugin-keyboard": {
+      "PACKAGE_NAME": "com.lemontree.console_trade"
     }
   },
   "dependent_plugins": {}
