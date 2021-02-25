@@ -1,6 +1,5 @@
 page-courier-popover {
 	ion-content{
-		padding: 4px;
 	}
 	.list{
 		margin: 0;
@@ -31,5 +30,13 @@ page-courier-popover {
     padding: 10px 5px;
     color: #fff;
 		background: color($colors, app_main_bg, base);
+	}
+
+	.note{
+		background: color($colors, app_main_bg, base);
+		/*text-align: center;*/
+		padding: 6px 4px;
+		margin-bottom: 0;
+		color: #fff;
 	}
 }

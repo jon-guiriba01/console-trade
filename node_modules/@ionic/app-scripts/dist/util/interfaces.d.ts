@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import { CompilerHost, CompilerOptions, Program } from 'typescript';
 import { FileCache } from './file-cache';
 import { VirtualDirStats, VirtualFileStats } from './virtual-file-utils';

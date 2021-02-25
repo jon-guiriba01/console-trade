@@ -197,8 +197,8 @@ public class MultiImageChooserActivity extends AppCompatActivity implements
         if (maxImages == 0 && isChecked) {
             isChecked = false;
             new AlertDialog.Builder(this)
-                    .setTitle("Maximum " + maxImageCount + " Photos")
-                    .setMessage("You can only select " + maxImageCount + " photos at a time.")
+                    .setTitle(String.format(getString(fakeR.getId("string", "max_count_photos_title")), maxImageCount))
+                    .setMessage(String.format(getString(fakeR.getId("string", "max_count_photos_message")), maxImageCount))
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.cancel();
@@ -319,7 +319,7 @@ public class MultiImageChooserActivity extends AppCompatActivity implements
             progress.dismiss();
             finish();
         } else {
-	        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR); //prevent orientation changes during processing
+            setRequestedOrientation(getResources().getConfiguration().orientation); //prevent orientation changes during processing
             new ResizeImagesTask().execute(fileNames.entrySet());
         }
     }
@@ -608,7 +608,8 @@ public class MultiImageChooserActivity extends AppCompatActivity implements
                     res.putInt("TOTALFILES", imagecursor.getCount());
                 }
 
-                data.putExtras(res);
+                int sync = ResultIPC.get().setLargeData(res);
+                data.putExtra("bigdata:synccode", sync);
                 setResult(RESULT_OK, data);
 
             } else {

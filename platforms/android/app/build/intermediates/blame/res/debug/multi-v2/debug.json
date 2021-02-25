@@ -57,6 +57,62 @@
             ]
         },
         {
+            "outputFile": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-it_values-it.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb8d852306161309098dbe932749c6cc\\res\\values-it\\values-it.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,164,272,395,495,604,688,797,922,999,1075,1156,1262,1370,1468,1572,1677,1784,1906,2006",
+                        "endColumns": "108,107,122,99,108,83,108,124,76,75,80,105,107,97,103,104,106,121,99,100",
+                        "endOffsets": "159,267,390,490,599,683,792,917,994,1070,1151,1257,1365,1463,1567,1672,1779,1901,2001,2102"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,39",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,214,322,445,545,654,738,847,972,1049,1125,1206,1312,1420,1518,1622,1727,1834,1956,4767",
+                        "endColumns": "108,107,122,99,108,83,108,124,76,75,80,105,107,97,103,104,106,121,99,100",
+                        "endOffsets": "209,317,440,540,649,733,842,967,1044,1120,1201,1307,1415,1513,1617,1722,1829,1951,2051,4863"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-15.0.1.aar\\572dc22a3745f2a2733b84e6d2b51e5d\\res\\values-it\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "247",
+                        "endColumns": "194",
+                        "endOffsets": "441"
+                    },
+                    "to": {
+                        "startLines": "29",
+                        "startColumns": "4",
+                        "startOffsets": "3213",
+                        "endColumns": "194",
+                        "endOffsets": "3403"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\2445618130acb183885c92a5f54c30f5\\res\\values-it\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "245,348,531,654,760,977,1103,1249,1378,1594,1699,1884,2009,2224,2431,2524,2611",
+                        "endColumns": "102,182,122,105,216,125,145,128,215,104,184,124,214,206,92,86,101",
+                        "endOffsets": "347,530,653,759,976,1102,1248,1377,1593,1698,1883,2008,2223,2430,2523,2610,2712"
+                    },
+                    "to": {
+                        "startLines": "21,22,23,24,25,26,27,28,30,31,32,33,34,35,36,37,38",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "2056,2163,2346,2473,2583,2800,2930,3080,3408,3624,3733,3918,4047,4262,4473,4570,4661",
+                        "endColumns": "106,182,126,109,216,129,149,132,215,108,184,128,214,210,96,90,105",
+                        "endOffsets": "2158,2341,2468,2578,2795,2925,3075,3208,3619,3728,3913,4042,4257,4468,4565,4656,4762"
+                    }
+                }
+            ]
+        },
+        {
             "outputFile": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-da_values-da.arsc.flat",
             "map": [
                 {
@@ -130,92 +186,6 @@
             ]
         },
         {
-            "outputFile": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-it_values-it.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb8d852306161309098dbe932749c6cc\\res\\values-it\\values-it.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,164,272,395,495,604,688,797,922,999,1075,1156,1262,1370,1468,1572,1677,1784,1906,2006",
-                        "endColumns": "108,107,122,99,108,83,108,124,76,75,80,105,107,97,103,104,106,121,99,100",
-                        "endOffsets": "159,267,390,490,599,683,792,917,994,1070,1151,1257,1365,1463,1567,1672,1779,1901,2001,2102"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,39",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,214,322,445,545,654,738,847,972,1049,1125,1206,1312,1420,1518,1622,1727,1834,1956,4767",
-                        "endColumns": "108,107,122,99,108,83,108,124,76,75,80,105,107,97,103,104,106,121,99,100",
-                        "endOffsets": "209,317,440,540,649,733,842,967,1044,1120,1201,1307,1415,1513,1617,1722,1829,1951,2051,4863"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-15.0.1.aar\\572dc22a3745f2a2733b84e6d2b51e5d\\res\\values-it\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "247",
-                        "endColumns": "194",
-                        "endOffsets": "441"
-                    },
-                    "to": {
-                        "startLines": "29",
-                        "startColumns": "4",
-                        "startOffsets": "3213",
-                        "endColumns": "194",
-                        "endOffsets": "3403"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\2445618130acb183885c92a5f54c30f5\\res\\values-it\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
-                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
-                        "startOffsets": "245,348,531,654,760,977,1103,1249,1378,1594,1699,1884,2009,2224,2431,2524,2611",
-                        "endColumns": "102,182,122,105,216,125,145,128,215,104,184,124,214,206,92,86,101",
-                        "endOffsets": "347,530,653,759,976,1102,1248,1377,1593,1698,1883,2008,2223,2430,2523,2610,2712"
-                    },
-                    "to": {
-                        "startLines": "21,22,23,24,25,26,27,28,30,31,32,33,34,35,36,37,38",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "2056,2163,2346,2473,2583,2800,2930,3080,3408,3624,3733,3918,4047,4262,4473,4570,4661",
-                        "endColumns": "106,182,126,109,216,129,149,132,215,108,184,128,214,210,96,90,105",
-                        "endOffsets": "2158,2341,2468,2578,2795,2925,3075,3208,3619,3728,3913,4042,4257,4468,4565,4656,4762"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-en-rXC_values-en-rXC.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0-rc01.aar\\1867586620ec7e76486066cd8bd2ff5f\\res\\values-en-rXC\\values-en-rXC.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "202",
-                        "endOffsets": "253"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-sq-rAL_values-sq-rAL.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb8d852306161309098dbe932749c6cc\\res\\values-sq-rAL\\values-sq-rAL.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,169,277,400,500,612,699,809,932,1013,1092,1175,1281,1386,1484,1590,1693,1809,1940,2039",
-                        "endColumns": "113,107,122,99,111,86,109,122,80,78,82,105,104,97,105,102,115,130,98,100",
-                        "endOffsets": "164,272,395,495,607,694,804,927,1008,1087,1170,1276,1381,1479,1585,1688,1804,1935,2034,2135"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-si_values-si.arsc.flat",
             "map": [
                 {
@@ -267,6 +237,36 @@
                         "startOffsets": "2784",
                         "endColumns": "100",
                         "endOffsets": "2880"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-sq-rAL_values-sq-rAL.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb8d852306161309098dbe932749c6cc\\res\\values-sq-rAL\\values-sq-rAL.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,169,277,400,500,612,699,809,932,1013,1092,1175,1281,1386,1484,1590,1693,1809,1940,2039",
+                        "endColumns": "113,107,122,99,111,86,109,122,80,78,82,105,104,97,105,102,115,130,98,100",
+                        "endOffsets": "164,272,395,495,607,694,804,927,1008,1087,1170,1276,1381,1479,1585,1688,1804,1935,2034,2135"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-en-rXC_values-en-rXC.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0-rc01.aar\\1867586620ec7e76486066cd8bd2ff5f\\res\\values-en-rXC\\values-en-rXC.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "202",
+                        "endOffsets": "253"
                     }
                 }
             ]
@@ -462,21 +462,6 @@
             ]
         },
         {
-            "outputFile": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-ta-rIN_values-ta-rIN.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb8d852306161309098dbe932749c6cc\\res\\values-ta-rIN\\values-ta-rIN.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,169,277,400,505,620,709,816,942,1023,1103,1185,1287,1391,1488,1598,1700,1807,1926,2026",
-                        "endColumns": "113,107,122,104,114,88,106,125,80,79,81,101,103,96,109,101,106,118,99,100",
-                        "endOffsets": "164,272,395,500,615,704,811,937,1018,1098,1180,1282,1386,1483,1593,1695,1802,1921,2021,2122"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-lo-rLA_values-lo-rLA.arsc.flat",
             "map": [
                 {
@@ -487,6 +472,21 @@
                         "startOffsets": "55,158,266,389,486,593,678,783,895,972,1050,1130,1237,1334,1432,1537,1640,1744,1866,1962",
                         "endColumns": "102,107,122,96,106,84,104,111,76,77,79,106,96,97,104,102,103,121,95,100",
                         "endOffsets": "153,261,384,481,588,673,778,890,967,1045,1125,1232,1329,1427,1532,1635,1739,1861,1957,2058"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\wamp64\\www\\console-trade\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\values-ta-rIN_values-ta-rIN.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Jon\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb8d852306161309098dbe932749c6cc\\res\\values-ta-rIN\\values-ta-rIN.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,169,277,400,505,620,709,816,942,1023,1103,1185,1287,1391,1488,1598,1700,1807,1926,2026",
+                        "endColumns": "113,107,122,104,114,88,106,125,80,79,81,101,103,96,109,101,106,118,99,100",
+                        "endOffsets": "164,272,395,500,615,704,811,937,1018,1098,1180,1282,1386,1483,1593,1695,1802,1921,2021,2122"
                     }
                 }
             ]

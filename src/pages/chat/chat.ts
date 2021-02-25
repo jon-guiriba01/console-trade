@@ -30,6 +30,9 @@ export class ChatPage {
   courier ={
     name: "No Courier Selected"
   } 
+  showMatching = true;
+  guaranteeStatus = "Transaction not guaranteed";
+  guaranteeSub;
   private mutationObserver: MutationObserver
 
   constructor(
@@ -42,12 +45,18 @@ export class ChatPage {
     , public popoverCtrl: PopoverController
     , public messages: MessagesProvider
   	) {
-  	this.trader = navParams.get('trader')
+
+
+    this.trader = navParams.get('trader')
+    console.log("trader ", this.trader)
+    // if(this.trader.matchingWishes && this.trader.matchingTrades)
+    //   if(this.trader.matchingWishes.length > 0 && this.trader.matchingTrades.length > 0)
+    //     this.showMatching = true;
+
     this.profile.currentConversation = this.trader.key;
     // console.log("[chat] trader: ", this.trader)
     this.converKey =  this.fbApp.getTraderConversationKey(this.trader, this.profile.user)
     this.fbApp.readConversation(this.converKey, this.profile.user.key);
-
 
     if(this.converKey){
       this.chatSub = this.fbApp.getConversationMessages(this.converKey)
@@ -65,6 +74,34 @@ export class ChatPage {
       this.observeUserOfferedGames();
 
      }
+
+
+    this.guaranteeSub = this.fbApp.getConversationGuarantee(this.converKey)
+      .subscribe((res)=>{
+        var guaranteeMembers = res.payload.val();
+        // console.log(11, guaranteeMembers)
+
+        // if(this.guarantee)
+        let cnt = 0;
+        for(var member in guaranteeMembers){
+          if(guaranteeMembers[member])
+            cnt++;
+        }
+
+        switch (cnt) {
+          case 1:
+            this.guaranteeStatus = "Waiting for partner to accept"
+            break;
+          case 2:
+            this.guaranteeStatus = "Guaranteed transaction accepted. Please wait a representative will contact you soon"
+            break;
+          
+          default:
+            this.guaranteeStatus = "Transaction not guaranteed"
+            break;
+        }
+
+    });
 
   }
 
@@ -126,8 +163,11 @@ export class ChatPage {
     if(this.userOfferedGamesSub){
       this.userOfferedGamesSub.unsubscribe();
     }
-  	if(this.traderOfferedGamesSub){
-  		this.traderOfferedGamesSub.unsubscribe();
+    if(this.traderOfferedGamesSub){
+      this.traderOfferedGamesSub.unsubscribe();
+    }
+  	if(this.guaranteeSub){
+  		this.guaranteeSub.unsubscribe();
   	}
   }
 
@@ -196,6 +236,32 @@ export class ChatPage {
       if(!courier) return
         this.courier = courier;
     })
+  }
+
+  selectGuarantee(){
+    this.selectCourier();
+
+    this.fbApp.updateConversationGuarantee(this.converKey, this.profile.user.key)
+      .then((res)=>{
+        var yesCnt = 0;
+
+        for(var member in res){
+          console.log("xxxx ", res[member])
+          if(res[member])
+            yesCnt++;
+        }
+
+    })
+  }
+
+  traderContainsGame(item){
+    if(this.trader.matchingTrades)
+    return this.trader.matchingTrades.find(game => game.id == item.id);
+  }
+
+  userrContainsGame(item){
+    if(this.trader.matchingWishes)
+    return this.trader.matchingWishes.find(game => game.id == item.id);
   }
 
 

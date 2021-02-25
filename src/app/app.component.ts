@@ -106,6 +106,7 @@ export class MyApp {
         this.profile.user.conversations = res[0]["conversations"] || [];
         this.profile.user.trade_locations = res[0]["trade_locations"] || [];
         this.profile.user.gender = res[0]["gender"] || [];
+        this.profile.user.admin = res[0]["admin"] || false;
 
         // console.log(">>geolocation ", this.profile.user)
         this.geolocation.getCurrentPosition({timeout: 20000, enableHighAccuracy: true}).then((geodata) => {

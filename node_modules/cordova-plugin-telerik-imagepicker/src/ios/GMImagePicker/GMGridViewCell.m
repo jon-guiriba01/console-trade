@@ -16,7 +16,6 @@
 
 
 @implementation GMGridViewCell
-
 //@synthesize circularProgressView;
 
 static UIFont *titleFont;
@@ -26,6 +25,7 @@ static UIColor *titleColor;
 static UIImage *checkedIcon;
 static UIColor *selectedColor;
 static UIColor *disabledColor;
+
 
 + (void)initialize
 {
@@ -68,8 +68,8 @@ static UIColor *disabledColor;
             _imageView.contentMode = UIViewContentModeScaleAspectFill;
         }*/
         _imageView.clipsToBounds = YES;
-        _imageView.translatesAutoresizingMaskIntoConstraints = NO;
-        _imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        //_imageView.translatesAutoresizingMaskIntoConstraints = NO;
+        //_imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         [self addSubview:_imageView];
         
         
@@ -150,10 +150,16 @@ static UIColor *disabledColor;
 
 -(void)show_progress{
 //    [self.circularProgressView setHidden:false];
+    self.hourGlass = [[FeHourGlass alloc] initWithView:self];
+    [self addSubview:self.hourGlass];
+    [self.hourGlass show];
 }
 
 -(void)hide_progress{
 //    [self.circularProgressView setHidden:true];
+//    [self.hourGlass dismiss];
+    [self.hourGlass removeFromSuperview];
+    
 }
 
 -(void)set_progress:(float)value animated:(BOOL)animated{

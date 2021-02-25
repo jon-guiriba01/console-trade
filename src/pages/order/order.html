@@ -1,0 +1,28 @@
+<ion-content padding style="margin-top: 26px;">
+
+<div class="form-container">
+ <form [formGroup]="form" (ngSubmit)="submit()">
+      <ion-item>
+        <ion-label>Name</ion-label>
+        <ion-input type="text" [(ngModel)]="formInputs.name" name="name" formControlName="name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Email</ion-label>
+        <ion-input type="text" [(ngModel)]="formInputs.email" name="email" formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item class="contact-input">
+        <ion-label>Contact Num</ion-label>
+        <ion-input type="text" [(ngModel)]="formInputs.contactNo" name="contactNo" formControlName="contactNo"></ion-input>
+      </ion-item>
+      <ion-list-header no-lines>
+      Address
+      </ion-list-header>
+      <ion-item no-lines>
+        <ion-textarea  type="text" [(ngModel)]="formInputs.address" name="address" formControlName="address"></ion-textarea >
+      </ion-item>
+    </form>
+    <button ion-button type="submit" class="order-btn" block>Order</button>
+  
+</div>
+
+</ion-content>

@@ -15,6 +15,7 @@ export class Profile{
   public last_location = {};
   public conversations : Array<UserConversation>;
   public gender = "m";
+  public admin = false;
 	constructor(){
   }
 

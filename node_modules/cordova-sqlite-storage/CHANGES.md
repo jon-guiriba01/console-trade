@@ -1,5 +1,21 @@
 # Changes
 
+### cordova-sqlite-storage 2.6.0
+
+- Use cordova-sqlite-storage-dependencies 1.2.1 with SQLite 3.26.0, with a security update and support for window functions
+
+### cordova-sqlite-storage 2.5.2
+
+- Ignore Android end transaction error when closing for androidDatabaseProvider: 'system' setting, to avoid possible crash during app shutdown (<https://github.com/litehelpers/Cordova-sqlite-storage/issues/833>)
+
+### cordova-sqlite-storage 2.5.1
+
+- fix internal plugin cleanup error log on Android
+
+### cordova-sqlite-storage 2.5.0
+
+- androidDatabaseProvider: 'system' setting, to replace androidDatabaseImplementation setting which is now deprecated
+
 ### cordova-sqlite-storage 2.4.0
 
 - Report internal plugin error in case of attempt to open database with no database name on iOS or macOS

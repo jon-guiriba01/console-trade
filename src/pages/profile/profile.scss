@@ -244,6 +244,24 @@ page-profile {
 		text-transform: initial;
 	}
 
+	.admin{
+		background: #66a5cd;
+	}
+
+	.admin-btn{
+		background: color($colors, app_alt_bg, base);
+		color: #fff;
+		padding: 8px;
+		position: absolute;
+		z-index: 99;
+		left: 0;
+		top: 200px;
+	}
+
+	.avatar{
+		width: 100%;
+		height: 100%;
+	}
 	@media only screen and (max-width: 340px) {
 		.set-location-btn{
 			float: initial;

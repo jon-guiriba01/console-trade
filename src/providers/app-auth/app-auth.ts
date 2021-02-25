@@ -11,6 +11,7 @@ import { Game } from '../../models/game';
 import { Geolocation } from '@ionic-native/geolocation';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { ToastController } from 'ionic-angular';
+import { Platform} from 'ionic-angular';
 
 @Injectable()
 export class AppAuthProvider {
@@ -23,6 +24,7 @@ export class AppAuthProvider {
 		, public afdb: AngularFireDatabase
 		, private googlePlus: GooglePlus
 		, private toastCtrl: ToastController
+		, private platform: Platform
 		) {
 	}
 
@@ -103,7 +105,7 @@ export class AppAuthProvider {
 		return this.afAuth.auth.sendPasswordResetEmail(email)
 	}
 
-	googleLogin() {
+	googleLogin_old() {
 		// console.log("googlelogin")
 			let opt = {
         'webClientId': '670922071182-meeqgiin43vk18i54v5kag524cane4d3.apps.googleusercontent.com'
@@ -132,6 +134,48 @@ export class AppAuthProvider {
       });
     // });
    }
+
+	async webGoogleLogin(): Promise<void> {
+
+	  try {
+	    const provider = new firebase.auth.GoogleAuthProvider();
+	    console.log("provider", provider)
+	    const credential = await this.afAuth.auth.signInWithPopup(provider);
+	    console.log("credential", credential)
+
+	  } catch(err) {
+	    console.log(err)
+	  }
+
+	}
+	async nativeGoogleLogin(): Promise<any> {
+	  try {
+    console.log("nativeGoogleLogin")
+
+	    const gplusUser = await this.googlePlus.login({
+	      'webClientId': '670922071182-k9igkfh3iikrl4lg60pp3587sbpfcpkv.apps.googleusercontent.com',
+	      'offline': true,
+	      'scopes': 'profile email'
+	    })
+	    console.log("gplusUser", gplusUser)
+
+	    let gPlusAuth =  await this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken))
+	    console.log("gPlusAuth", gPlusAuth)
+	    return gPlusAuth;
+
+	  } catch(err) {
+	    console.log(err)
+	  }
+	}
+
+	googleLogin() {
+    console.log("googleLogin")
+	  if (this.platform.is('android')) {
+	    this.nativeGoogleLogin();
+	  } else {
+	    this.webGoogleLogin();
+	  }
+	}
 
 	logInWithGoogle() {
 		return this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());

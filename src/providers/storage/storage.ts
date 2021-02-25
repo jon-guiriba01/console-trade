@@ -11,6 +11,7 @@ export class StorageProvider {
   }
 
   uploadImage(image, userEmail){
+    // console.log("f:uploadImage", image, userEmail)
   	return new Promise((resolve, reject) =>{
   	let storageRef = firebase.storage().ref().child(`images/${userEmail}/profile`);
  		let parseUpload = storageRef.putString(image, 'data_url');

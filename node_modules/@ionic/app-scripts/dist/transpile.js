@@ -121,7 +121,7 @@ function transpileWorker(context, workerConfig) {
         // for dev builds let's not create d.ts files
         tsConfig.options.declaration = undefined;
         // let's start a new tsFiles object to cache all the transpiled files in
-        var host = compiler_host_factory_1.getInMemoryCompilerHostInstance(tsConfig.options);
+        var host = compiler_host_factory_1.getFileSystemCompilerHostInstance(tsConfig.options);
         if (workerConfig.useTransforms && helpers_1.getBooleanPropertyValue(Constants.ENV_PARSE_DEEPLINKS)) {
             // beforeArray.push(purgeDeepLinkDecoratorTSTransform());
             // beforeArray.push(getInjectDeepLinkConfigTypescriptTransform());

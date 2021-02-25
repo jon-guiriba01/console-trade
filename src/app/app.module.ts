@@ -23,6 +23,8 @@ import { ShopPage } from '../pages/shop/shop';
 import { CourierPopoverPage } from '../pages/courier-popover/courier-popover';
 import { ResetpasswordPage } from '../pages/resetpassword/resetpassword';
 import { AllTradersPage } from '../pages/all-traders/all-traders';
+import { OrderPopoverPage } from '../pages/order-popover/order-popover';
+import { OrderPage } from '../pages/order/order';
 
 
 import { AppAuthProvider } from '../providers/app-auth/app-auth';
@@ -67,6 +69,8 @@ import { Keyboard } from '@ionic-native/keyboard';
     CourierPopoverPage,
     ResetpasswordPage,
     AllTradersPage,
+    OrderPopoverPage,
+    OrderPage,
     TabsPage
   ],
   imports: [
@@ -97,6 +101,8 @@ import { Keyboard } from '@ionic-native/keyboard';
     CourierPopoverPage,
     ResetpasswordPage,
     AllTradersPage,
+    OrderPopoverPage,
+    OrderPage,
     TabsPage
   ],
   providers: [

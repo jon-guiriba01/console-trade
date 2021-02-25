@@ -1,11 +1,14 @@
 page-shop {
 	.row-1{
 		margin-top: 70px;
-		background: color($colors, app_main_bg, base);
-		padding: 15px 8px 8px 8px;
 	}
 	.row-2{
 		margin-top: 40px;
+	}
+	.row-3{
+		margin-top: 40px;
+	}
+	.shop-row{
 		background: color($colors, app_main_bg, base);
 		padding: 15px 8px 8px 8px;
 	}
@@ -30,17 +33,28 @@ page-shop {
 		padding: 5px 0;
 	}
 
-	.games{
+	div.games{
+		/*justify-content: left !important;
+		flex-wrap: wrap;*/
+
+		display: grid;
+    grid-auto-columns: auto;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
 	}
 	.games img{
 		width: 90px;
 		height: 115px;
-		display: inline-block;
+		/*display: inline-block;*/
+		margin-top: 2px;
+		margin-right: 2px;
 	}
 	.order-btn{
 		background: color($colors, app_main_bg, base);
 		display: block;
 		margin: 20px auto;
-
 	}
+	.cart{
+		min-height: 150px;
+	}
+
 }

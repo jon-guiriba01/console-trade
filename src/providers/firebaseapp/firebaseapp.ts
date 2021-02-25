@@ -89,6 +89,26 @@ export class FirebaseappProvider {
 
 	}
 
+	addGameToRent(user, game){
+		var rentRef = this.afdb.list('/shop/rent/games')
+		var rentSub = rentRef.snapshotChanges().pipe(
+		  map(changes => 
+		    changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+		  )
+		).subscribe((res)=>{
+    	// console.log("get user data", res)
+						
+			if(!res[0]) return;
+			res.push(game)
+			// var key = res[0]["key"];
+			// console.log("adding to owned[" + key + "]", ownedList)
+			
+			rentRef.push(game)
+
+			rentSub.unsubscribe();
+		})
+	}
+
 	getConversationMessages(key){
 		var conversationRef = this.afdb
 		.list('/conversations/'+key+"/messages/", ref => ref.limitToLast(80))
@@ -183,38 +203,13 @@ export class FirebaseappProvider {
 		)
 		this.afdb.list(`/conversations/${key}/messages`).push(message)
 		this.afdb.list(`/users/${trader.key}/conversations`).update(key,{"unread":true})
-		// var conversationSub = this.afdb
-		// .object('/conversations/' + key)
-		// .snapshotChanges()
-		// .subscribe((res)=>{
-		// 	try{
 
-		// 		var conversation = res.payload.val();
-				
-		// 		if(!conversation) return;
-				
-		// 		conversation["messages"] = conversation["messages"] || [];
-
-		// 		var message = new Message(msg, user.first_name + " " + user.last_name, user.key, firebase.database.ServerValue.TIMESTAMP)
-
-
-		// 		conversation["messages"].push(message)
-
-		// 		this.afdb.list('/conversations').update(key, {
-		// 			messages : conversation["messages"]
-		// 		})
-
-		// 		console.log("converRef update: " , res.payload.val())
-		// 		conversationSub.unsubscribe();
-
-		// 	}catch(err){
-		// 		console.log("Error updating conversation ", err)
-		// 	}
-
-		// })
 	}
 
 	readConversation(converKey, userKey){
+		if(!converKey) return;
+		if(!userKey) return;
+
 		return this.afdb.list(`/users/${userKey}/conversations/`)
 		.update(converKey, {unread:false})
 	}
@@ -244,6 +239,61 @@ export class FirebaseappProvider {
 
 
 		})
+	}
+
+	getConversationGuarantee(converKey){
+		return this.afdb
+					.object(`/conversations/${converKey}/guarantee/`)
+					.snapshotChanges()
+					
+		    
+	}
+
+	updateConversationGuarantee(converKey, userKey){
+		// console.log("converKey ", converKey)
+
+ 	return new Promise((resolve,reject)=>{
+		var subscription = this.afdb
+				.object(`/conversations/${converKey}/guarantee`)
+				.snapshotChanges()
+				.subscribe((res)=>{
+					let guaranteeMembers = res.payload.val()
+
+					if(!guaranteeMembers){
+						guaranteeMembers = {};
+						guaranteeMembers[userKey] = true
+					}
+
+					else if(guaranteeMembers[userKey]){
+						guaranteeMembers[userKey] = false
+						// console.log("guarantee false")
+					}else{
+						guaranteeMembers[userKey] = true
+						// console.log("guarantee true")
+					}
+
+					
+						// console.log("guaranteememb ", guaranteeMembers)
+					this.afdb.list(`/conversations/${converKey}`)
+						.update("guarantee", guaranteeMembers)
+				
+					resolve(guaranteeMembers)
+
+
+					subscription.unsubscribe();
+				});
+
+ 	})
+
+		// console.log("test ", subscription)
+	}
+
+	getGamesForRent(){
+		var rentRef = this.afdb
+		.list('shop/rent/games', ref => ref.limitToLast(80))
+		.valueChanges(["child_added"])
+
+		return rentRef;
 	}
 
 }

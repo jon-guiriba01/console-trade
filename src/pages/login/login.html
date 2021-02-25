@@ -1,6 +1,9 @@
 <ion-content class="page-content" padding>
-  <form [formGroup]="loginForm">
-      <ion-list inset>
+  <form class="loginForm" [formGroup]="loginForm">
+    <div class="form-header">
+      <img src="assets/imgs/icon.png"/>
+    </div>
+      <ion-list >
         <ion-item [ngClass]="{ invalid: emailErrors.hasError('*', ['touched', 'dirty']) }">
           <ion-input type="text" placeholder="Email" formControlName="email"></ion-input>
         </ion-item>
@@ -29,10 +32,10 @@
       </div>
 
         <ion-list class="login-options-list">
-       <!--    <button ion-button icon-start block clear (click)="loginWithGoogle()">
+          <button ion-button icon-start block clear (click)="loginWithGoogle()">
             <ion-icon name="logo-google"></ion-icon>
             Log in with Google
-          </button> -->
+          </button>
 
           <button ion-button icon-start block clear (click)="signup()">
             <ion-icon name="person-add"></ion-icon>

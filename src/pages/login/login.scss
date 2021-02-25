@@ -41,4 +41,15 @@ page-login {
 	.login-options-list button{ 
   	/*color: color($colors, app_main_bg, base);*/
 	}
+
+	.loginForm img{
+		width: 75px;
+		height: 75px;
+	}
+
+	.form-header{
+		display: flex;
+		justify-content: center;
+	}
+
 }

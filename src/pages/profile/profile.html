@@ -1,5 +1,5 @@
-<ion-content (click)="clearSearch()">
-<input id="fileInput" type="file" style="display: none" accept="image/*"/>
+<ion-content (click)="clearSearch()" [class.admin]="isAdminMode">
+<input id="fileInput" type="file" accept="image/*"/>
 <div class="profile">
   <div class="profile-image">
     <img-loader class="circle-head" src="{{profile.user.profileImage}}" (click)="uploadImage()"></img-loader>
@@ -7,8 +7,6 @@
   <div class="profile-info-wrapper">
     <div class="profile-info">
         <h4>{{profile.user.first_name + " " + profile.user.last_name}}</h4>
-        <!-- <ion-icon name="create"></ion-icon> -->
-      <!-- <h5>{{profile.user.location}}</h5> -->
     </div>
   </div>
   <button class="set-location-btn" ion-button (click)="navToMap()">
@@ -16,10 +14,10 @@
   </button>
 </div>
 
-<hr inset padding-horizontal style="background-color: #fff;">
+<hr inset padding-horizontal >
 
 <div class="trade-info" >
-  
+  <div class="admin-btn" (click)="toggleAdmin()" *ngIf="profile.user.admin == true">ADMIN</div>
   <div class="game-input-wrapper">
     <ion-spinner *ngIf="searchIsLoading" class="search-spinner" name="dots"></ion-spinner>        
     <ion-item  inset class="game-input" no-lines>
@@ -28,16 +26,22 @@
     </ion-item>
     <h5 float-right class="tip-text">*tap games to toggle, hold to delete</h5>
     <div class="autocomplete">
-      <ion-list>
+      <ion-list *ngIf="!isAdminMode">
         <ion-item class="autocomplete-item" *ngFor="let item of searchOptions" (click)="addGameToProfile(item)">
-          <!-- <img *ngIf="item.cover != null" src="{{item.cover.url}}"> -->
+          <h5>{{item.name}}</h5>
+        </ion-item>
+      </ion-list>
+
+      <ion-list *ngIf="isAdminMode">
+        <ion-item>ADD TO RENT</ion-item>
+        <ion-item class="autocomplete-item" *ngFor="let item of searchOptions" (click)="addGameToRent(item)">
           <h5>{{item.name}}</h5>
         </ion-item>
       </ion-list>
     </div>
   </div>
   
-  <h5 class="divider" style="margin-top: 30px;">Looking for</h5>
+  <h5 class="divider" >Looking for</h5>
   <h5 class="display-text" *ngIf="profile.user.wishList.length == 0">Add games you want to have</h5>
   <div class="display-grid">
     <div class="trade-item" *ngFor="let item of profile.user.wishList">
@@ -72,6 +76,27 @@
       </div>
       
     </div>    
+  </div>
+
+  <div *ngIf="profile.user.admin">
+    <h5 class="divider">Rent</h5>
+
+    <div class="display-grid">
+      <div class="trade-item" *ngFor="let item of gamesForRent">
+        <div ion-long-press class="trade-img" [interval]="400" (onPressing)="removeRentItem(item, true)">
+          <img-loader *ngIf="item.cover_url" class="fit-img" src="{{item.cover_url}}" ></img-loader>
+          <img *ngIf="!item.cover_url" class="fit-img" >
+          <h5 *ngIf="!item.cover_url" class="trade-img-title" >{{item.name}}</h5>
+        </div>
+        <div class="platforms">
+          <img (click)="toggleItemPlatform(item, 'xbox1', true)" [ngClass]="{'faded': item.platforms.indexOf('xbox1') == -1}" src="assets/imgs/xbox_icon.png">
+          <img (click)="toggleItemPlatform(item, 'ps4', true)" [ngClass]="{'faded': item.platforms.indexOf('ps4') == -1}" src="assets/imgs/ps4_icon.png">
+          <img (click)="toggleItemPlatform(item, 'ns', true)" [ngClass]="{'faded': item.platforms.indexOf('ns') == -1}" src="assets/imgs/ns_icon.png">
+        </div>
+        
+      </div>    
+    </div>
+    
   </div>
 </div>
 

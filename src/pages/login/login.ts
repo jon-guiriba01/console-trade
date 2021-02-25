@@ -5,6 +5,7 @@ import { SignupPage } from '../signup/signup';
 import { ResetpasswordPage } from '../resetpassword/resetpassword';
 import { TabsPage } from '../tabs/tabs';
 import { AppAuthProvider } from '../../providers/app-auth/app-auth';
+import { GooglePlus } from '@ionic-native/google-plus';
 
 @Component({
   selector: 'page-login',
@@ -16,7 +17,7 @@ export class LoginPage {
 
 	constructor(
 		private navCtrl: NavController,
-		private auth: AppAuthProvider,
+		private auth: AppAuthProvider, 
 		fb: FormBuilder
 	) {
 		this.loginForm = fb.group({

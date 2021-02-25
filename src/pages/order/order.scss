@@ -1,0 +1,39 @@
+page-order {
+	form{
+		margin-top: 10px;
+		background: #fff;
+		padding-right: 12px;
+	}
+	.form-container{
+		background: color($colors, app_main_bg, base);
+		padding: 15px 16px;
+	}
+	ion-label{
+		width: 45px;
+	}
+	.contact-input ion-label{
+		width: 100px;
+	}
+	ion-textarea{
+		/*margin-top: 10px;*/
+		margin-bottom: 10px;
+		border: 1px solid #dedede;
+	}
+	ion-list-header .ion-label{
+		font-size: 17px;
+		border: 0;
+
+	}
+	textarea{
+		height: 100px;
+		resize: none;
+	}
+
+	ion-item{
+		border-bottom: 1px solid #dedede;
+	}
+
+	.order-btn{
+		margin-top: 16px;
+	}
+}

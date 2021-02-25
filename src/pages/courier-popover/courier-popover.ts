@@ -18,7 +18,7 @@ export class CourierPopoverPage {
 			id:1,
 			logo: "assets/imgs/lalamove_logo.png",
 			name: "Lalamove",
-			price: 300
+			price: 260
 		}
 	]
 

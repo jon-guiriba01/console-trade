@@ -1,5 +1,5 @@
 <ion-content padding>
-	<div class="row-1">
+<!-- 	<div class="row-1 shop-row">
 		<div class="device-container">
 			<div class="device">
 				<img class="fit-img" src="assets/imgs/ps4_device.png">
@@ -15,26 +15,28 @@
 			<h5>&#x20B1;1000 / month</h5>
 			<h5>&#x20B1;600 / 2weeks</h5>
 		</div>
-	</div>
+	</div> -->
 
-	<div class="row-2">
+	<div class="row-2 shop-row">
 		<div class="games">
-			<img src="http://images.igdb.com/igdb/image/upload/t_cover_big/gfzcaqqg1iinenf1rntp.jpg">
-			<img src="http://images.igdb.com/igdb/image/upload/t_cover_big/kqlntgss9yb5invq8nxi.jpg">
-			<img src="http://images.igdb.com/igdb/image/upload/t_cover_big/rzjnrhuv5rozj52g9aq3.jpg">
-			<img src="http://images.igdb.com/igdb/image/upload/t_cover_big/fxgwm1nnyexhvauqv0ds.jpg">
-			<img src="http://images.igdb.com/igdb/image/upload/t_cover_big/cintjlnx6o8qyqtcnajl.jpg">
-			<img src="http://images.igdb.com/igdb/image/upload/t_cover_big/kqlntgss9yb5invq8nxi.jpg">
-			<img src="http://images.igdb.com/igdb/image/upload/t_cover_big/faqrpb5usp5leipmwgtq.jpg">
+			<img class="game" src="{{game.cover_url}}" *ngFor="let game of gamesForRent" (click)="addGameToCart(game)">
 		</div>
 
 		<div class="prices">
-			<h5>&#x20B1;100 / month</h5>
-			<h5>&#x20B1;50 / 2weeks</h5>
+			<h5>&#x20B1;{{priceMonth}} / month</h5>
+			<h5>&#x20B1;{{priceWeeks}} / 2weeks</h5>
 		</div>
 
 	</div>
 
-		<button class="order-btn" ion-button>Order</button>
+	<div class="row-3 shop-row">
+		<div class="cart">
+			<div class="games">
+				<img class="game" src="{{game.cover_url}}" *ngFor="let game of cart.games" (click)="removeGameFromCart(game)">
+			</div>
+		</div>
+	</div>
+
+		<button class="order-btn" ion-button (click)="order()">Order</button>
 	
 </ion-content>

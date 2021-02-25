@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import * as childProcess from 'child_process';
 /**
  * open a file or uri using the default application for the file type.

@@ -61,7 +61,7 @@ function runAot(context, options) {
                     });
                     aggregateCompilerOption = Object.assign(tsConfig.options, angularCompilerOptions);
                     fileSystem = hybrid_file_system_factory_1.getInstance(false);
-                    compilerHost = compiler_host_factory_1.getInMemoryCompilerHostInstance(tsConfig.options);
+                    compilerHost = compiler_host_factory_1.getFileSystemCompilerHostInstance(tsConfig.options);
                     tsProgram = typescript_1.createProgram(tsConfig.fileNames, tsConfig.options, compilerHost);
                     logger_diagnostics_1.clearDiagnostics(context, logger_diagnostics_1.DiagnosticsType.TypeScript);
                     if (!isNg5(context.angularVersion)) return [3 /*break*/, 2];

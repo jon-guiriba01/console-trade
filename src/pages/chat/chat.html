@@ -44,28 +44,31 @@
   		</ion-item>
   	</ion-list>
 
-    <h5 class="divider" *ngIf="trader.matchingTrades">{{trader.first_name + " " + trader.last_name}} matches</h5>
+    <h5 class="divider" *ngIf="showMatching">{{trader.first_name + " " + trader.last_name}} has</h5>
     <div class="trade-grid">
-      <div class="trade-item" *ngFor="let item of trader.matchingTrades">
+      <div [class.matching-item]="traderContainsGame(item)" class="trade-item" *ngFor="let item of trader.ownedList">
         <img-loader *ngIf="item.cover_url" class="fit-img" src="{{item.cover_url}}"></img-loader>
         <img *ngIf="!item.cover_url" class="fit-img" >
         <img class="select-icon" *ngIf="item.isSelected" src="assets/imgs/selector_green.png">
       </div>
     </div>
 
-    <h5 class="divider" *ngIf="trader.matchingWishes">{{profile.user.first_name + " " + profile.user.last_name}} matches</h5>
+    <h5 class="divider" *ngIf="showMatching">{{profile.user.first_name + " " + profile.user.last_name}} has</h5>
  		<div class="trade-grid" >
-	 		<div class="trade-item" *ngFor="let item of trader.matchingWishes" (click)="selectGame(item)">
+	 		<div class="trade-item" [class.matching-item]="userrContainsGame(item)" *ngFor="let item of profile.user.ownedList" (click)="selectGame(item)">
 	 			<img-loader *ngIf="item.cover_url" class="fit-img" src="{{item.cover_url}}"></img-loader>
         <img *ngIf="!item.cover_url" class="fit-img" >
-        <img class="select-icon" *ngIf="item.isSelected" src="assets/imgs/selector_orange.png">
+        <!-- <img class="select-icon" *ngIf="item.isSelected" src="assets/imgs/selector_orange.png"> -->
+        <h5 class="selected-item" *ngIf="item.isSelected" >FOR TRADE</h5>
 	 		</div>
  		</div>
-    <div class="action-row" style="display: none;">
-      <h5 class="methodText">{{courier.name}} <span *ngIf="courier.price">&#8369;</span>{{courier.price}}</h5>
+    <div class="action-row" >
+      <!-- <h5 class="methodText">{{courier.name}} <span *ngIf="courier.price">&#8369;</span>{{courier.price}}</h5> -->
+      <h5 class="methodText">{{guaranteeStatus}}</h5>
       <!-- <h5 class="action-option meetup" (click)="selectMeetup()">MEETUP</h5> -->
-      <button ion-button class="action-option courier" (click)="selectCourier()"> SELECT COURIER</button>
+      <button ion-button class="action-option courier" (click)="selectGuarantee()">Guaranteed Delivery </button>
       <!-- <h5 class="action-option courier" (click)="selectCourier()">SELECT COURIER</h5> -->
+      <!-- <span *ngIf="courier.price">&#8369;</span> -->
     </div>
   </ion-content>
 </ion-menu>

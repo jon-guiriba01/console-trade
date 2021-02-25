@@ -1,3 +1,3 @@
 import { CompilerOptions } from 'typescript';
-import { InMemoryCompilerHost } from './compiler-host';
-export declare function getInMemoryCompilerHostInstance(options: CompilerOptions): InMemoryCompilerHost;
+import { FileSystemCompilerHost } from './compiler-host';
+export declare function getFileSystemCompilerHostInstance(options: CompilerOptions): FileSystemCompilerHost;

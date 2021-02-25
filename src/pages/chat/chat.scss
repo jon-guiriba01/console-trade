@@ -200,6 +200,21 @@ page-chat {
     vertical-align: middle;
 	}
 
+	.matching-item{
+		border: 3px solid #50befd;
+	}
+
+	.selected-item{
+		position: absolute;
+		bottom: 0;
+		padding: 2px;
+		background: rgba(127,140,146,0.95);
+		color: #fff;
+		width: 100%;
+		font-size: 10px;
+		text-align: center;
+		margin: 0;
+	}
 	@media only screen and (max-height: 650px) {
   	.action-row{
   		margin-top: 20px;

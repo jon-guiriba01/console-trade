@@ -107717,6 +107717,22 @@ page-chat .location-btn {
   vertical-align: middle;
 }
 
+page-chat .matching-item {
+  border: 3px solid #50befd;
+}
+
+page-chat .selected-item {
+  position: absolute;
+  bottom: 0;
+  padding: 2px;
+  background: rgba(127, 140, 146, 0.95);
+  color: #fff;
+  width: 100%;
+  font-size: 10px;
+  text-align: center;
+  margin: 0;
+}
+
 @media only screen and (max-height: 650px) {
   page-chat .action-row {
     margin-top: 20px;
@@ -107724,10 +107740,6 @@ page-chat .location-btn {
     bottom: 0;
     width: 100%;
   }
-}
-
-page-courier-popover ion-content {
-  padding: 4px;
 }
 
 page-courier-popover .list {
@@ -107761,6 +107773,14 @@ page-courier-popover .courier-item h5 {
   padding: 10px 5px;
   color: #fff;
   background: #353535;
+}
+
+page-courier-popover .note {
+  background: #353535;
+  /*text-align: center;*/
+  padding: 6px 4px;
+  margin-bottom: 0;
+  color: #fff;
 }
 
 page-deal .game-input {
@@ -107960,6 +107980,22 @@ page-login .login-options-list button {
   /*color: color($colors, app_main_bg, base);*/
 }
 
+page-login .loginForm img {
+  width: 75px;
+  height: 75px;
+}
+
+page-login .form-header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
 page-map ion-content .scroll-content {
   padding: 0;
 }
@@ -108097,6 +108133,49 @@ page-messages .matches {
 
 page-messages ion-label.label-md {
   margin: 0;
+}
+
+page-order form {
+  margin-top: 10px;
+  background: #fff;
+  padding-right: 12px;
+}
+
+page-order .form-container {
+  background: #353535;
+  padding: 15px 16px;
+}
+
+page-order ion-label {
+  width: 45px;
+}
+
+page-order .contact-input ion-label {
+  width: 100px;
+}
+
+page-order ion-textarea {
+  /*margin-top: 10px;*/
+  margin-bottom: 10px;
+  border: 1px solid #dedede;
+}
+
+page-order ion-list-header .ion-label {
+  font-size: 17px;
+  border: 0;
+}
+
+page-order textarea {
+  height: 100px;
+  resize: none;
+}
+
+page-order ion-item {
+  border-bottom: 1px solid #dedede;
+}
+
+page-order .order-btn {
+  margin-top: 16px;
 }
 
 page-profile ion-content .scroll-content {
@@ -108373,6 +108452,20 @@ page-profile .set-location-btn {
   text-transform: initial;
 }
 
+page-profile .admin {
+  background: #66a5cd;
+}
+
+page-profile .admin-btn {
+  background: #616e7e;
+  color: #fff;
+  padding: 8px;
+  position: absolute;
+  z-index: 99;
+  left: 0;
+  top: 200px;
+}
+
 @media only screen and (max-width: 340px) {
   page-profile .set-location-btn {
     float: initial;
@@ -108386,12 +108479,17 @@ page-resetpassword .button {
 
 page-shop .row-1 {
   margin-top: 70px;
-  background: #353535;
-  padding: 15px 8px 8px 8px;
 }
 
 page-shop .row-2 {
   margin-top: 40px;
+}
+
+page-shop .row-3 {
+  margin-top: 40px;
+}
+
+page-shop .shop-row {
   background: #353535;
   padding: 15px 8px 8px 8px;
 }
@@ -108420,10 +108518,20 @@ page-shop .prices h5 {
   padding: 5px 0;
 }
 
+page-shop div.games {
+  /*justify-content: left !important;
+		flex-wrap: wrap;*/
+  display: grid;
+  grid-auto-columns: auto;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+}
+
 page-shop .games img {
   width: 90px;
   height: 115px;
-  display: inline-block;
+  /*display: inline-block;*/
+  margin-top: 2px;
+  margin-right: 2px;
 }
 
 page-shop .order-btn {
@@ -108432,8 +108540,19 @@ page-shop .order-btn {
   margin: 20px auto;
 }
 
-page-signup ion-content, page-signup .scroll-content {
-  position: absolute;
+page-shop .cart {
+  min-height: 150px;
+}
+
+page-signup .cb-policy > * {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 15px;
+}
+
+page-signup .cb-policy > .label {
+  width: 70%;
+  white-space: normal;
 }
 
 page-signup .gender-row ion-item.item {
@@ -108473,7 +108592,7 @@ page-signup form {
   min-width: 280px;
   width: 90%;
   padding: 20px;
-  position: absolute;
+  margin-top: 50px;
 }
 
 page-signup .error-msg {
@@ -108504,6 +108623,12 @@ page-signup .page-content {
 
 page-signup .page-content form {
   background: #fff;
+}
+
+@media screen and (min-width: 1270px) {
+  page-signup form {
+    margin-top: 0px;
+  }
 }
 
 page-tabs .toolbar-content.toolbar-content-md {

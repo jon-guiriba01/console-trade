@@ -20,6 +20,24 @@
 -->
 # Release Notes
 
+### 5.0.4 (Jun 03, 2020)
+* [GH-261](https://github.com/apache/cordova-plugin-splashscreen/pull/261) chore: add `cordova-ios` requirement <6.0.0
+* chore(asf): update git notification settings
+* update CONTRIBUTING.md
+* [GH-251](https://github.com/apache/cordova-plugin-splashscreen/pull/251) chore(npm): adds ignore list
+* [GH-252](https://github.com/apache/cordova-plugin-splashscreen/pull/252) ci: updates Node.js versions
+* [GH-236](https://github.com/apache/cordova-plugin-splashscreen/pull/236) update homepage to github `README` page
+* [GH-239](https://github.com/apache/cordova-plugin-splashscreen/pull/239) update `README`.md by adding missing info
+* ci(travis): Upgrade node from 6 to 8
+* ci(travis): Remove **Android 4.4**, Add **Android** 9.0
+* [GH-212](https://github.com/apache/cordova-plugin-splashscreen/pull/212) ci(travis): Add ADDITIONAL_TESTS_DIR=./tests/ios
+
+### 5.0.3 (May 09, 2019)
+* Update CI configuration and README ([#210](https://github.com/apache/cordova-plugin-splashscreen/pull/210), [#208](https://github.com/apache/cordova-plugin-splashscreen/pull/208), [#198](https://github.com/apache/cordova-plugin-splashscreen/pull/198), [#194](https://github.com/apache/cordova-plugin-splashscreen/pull/194))
+* Add or update GitHub pull request and issue template
+* [CB-13826](https://issues.apache.org/jira/browse/CB-13826) Incremented plugin version.
+* [CB-12277](https://issues.apache.org/jira/browse/CB-12277) (android) avoid NullPointerException on splashImageView when removing splashscreen
+
 ### 5.0.2 (Jan 24, 2018)
 * [CB-13750](https://issues.apache.org/jira/browse/CB-13750) Add build-tools-26.0.2 to travis
 * [CB-13737](https://issues.apache.org/jira/browse/CB-13737) (iOS): fix Splash screen images for iPhone X
